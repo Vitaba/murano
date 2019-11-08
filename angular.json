@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "projects": {
+    "murano-admin": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/murano-admin",
+      "sourceRoot": "apps/murano-admin/src",
+      "prefix": "vitaba",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/murano-admin",
+            "index": "apps/murano-admin/src/index.html",
+            "main": "apps/murano-admin/src/main.ts",
+            "polyfills": "apps/murano-admin/src/polyfills.ts",
+            "tsConfig": "apps/murano-admin/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/murano-admin/src/favicon.ico",
+              "apps/murano-admin/src/assets"
+            ],
+            "styles": ["apps/murano-admin/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/murano-admin/src/environments/environment.ts",
+                  "with": "apps/murano-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "murano-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "murano-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "murano-admin:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/murano-admin/tsconfig.app.json",
+              "apps/murano-admin/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/murano-admin/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/murano-admin/jest.config.js",
+            "tsConfig": "apps/murano-admin/tsconfig.spec.json",
+            "setupFile": "apps/murano-admin/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "murano-admin-e2e": {
+      "root": "apps/murano-admin-e2e",
+      "sourceRoot": "apps/murano-admin-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/murano-admin-e2e/cypress.json",
+            "tsConfig": "apps/murano-admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "murano-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "murano-admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/murano-admin-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/murano-admin-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "murano-admin"
+}
