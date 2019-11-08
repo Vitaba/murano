@@ -20,20 +20,21 @@ Nx supports many plugins which add capabilities for developing different types o
 
 These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-Below are some plugins which you can add to your workspace:
+# Types Of Libraries
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+LibTypes of libs There are many different types of libraries in a workspace. In order to maintain a certain sense of order, we recommend having only the below four (4) types of libraries:
+
+- **Feature libraries**: Developers should consider feature libraries as libraries that implement smart UI (with injected services) for specific business use cases or pages in an application.
+
+- **UI libraries**: A UI library contains only presentational components.
+
+- **Data-access** libraries: A data-access library contains services and utilities for interacting with a back-end system. It also includes all the code related to State management.
+
+- **Utility libraries**: A utility library contains common utilities and services used by many libraries and applications.
+
+Why do we make these distinctions between libraries? Good question! It is good to set boundaries for what a library should and should not do. This demarcation makes it easier to understand the capabilities of each library, and how they interact with each other.
+
+More concretely, we can form rules about what each types of libraries can depend on. For example, UI libraries cannot use feature or data-access libraries, because doing so will mean that they are effectful.
 
 ## Generate an application
 
