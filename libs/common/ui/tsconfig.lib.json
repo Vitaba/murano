@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "rootDir": "libs",
     "outDir": "../../../dist/out-tsc",
-    "target": "es2015",
+    "module": "es2015",
+    "target": "esnext",
     "declaration": true,
     "inlineSources": true,
     "types": [],
