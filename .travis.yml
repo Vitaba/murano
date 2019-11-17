@@ -7,8 +7,6 @@ matrix:
       sudo: required
       cache:
         npm: false
-      addons:
-        chrome: stable
       before_install:
         - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
       install:
@@ -23,8 +21,6 @@ matrix:
       sudo: required
       cache:
         npm: false
-      addons:
-        chrome: stable
       before_install:
         - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
       install:
@@ -39,8 +35,6 @@ matrix:
       sudo: required
       cache:
         npm: false
-      addons:
-        chrome: stable
       before_install:
         - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
       install:
