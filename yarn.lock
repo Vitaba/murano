@@ -88,7 +88,7 @@
     webpack-subresource-integrity "1.1.0-rc.6"
     worker-plugin "3.2.0"
 
-"@angular-devkit/build-ng-packagr@~0.803.3":
+"@angular-devkit/build-ng-packagr@~0.803.19":
   version "0.803.19"
   resolved "https://registry.npmjs.org/@angular-devkit/build-ng-packagr/-/build-ng-packagr-0.803.19.tgz#62bd30d82691378782edd5404350dc557862020e"
   integrity sha512-8P7jq/ZvyKM9B5A9Ovt6P3fgo33DvoDIjsJmoXW7kgAbzz1NqRgsP9fwasSmgYo8G1CcqJDeGPHSkdsPRypRmg==
