@@ -1,31 +1,36 @@
-import { TestBed, async } from '@angular/core/testing';
+// tslint:disable: no-unsafe-any
+import { async, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent]
+      declarations: [AppComponent],
     }).compileComponents();
   }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
+
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'murano-admin'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
+
     expect(app.title).toEqual('murano-admin');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
+
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
+
     expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to murano-admin!'
+      'Welcome to murano-admin!',
     );
   });
 });
