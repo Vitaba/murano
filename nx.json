@@ -19,7 +19,7 @@
       "implicitDependencies": ["common-utils"]
     },
     "common-utils": {
-      "tags": ["type:utils", "scope:common/utils"],
+      "tags": ["type:utils", "scope:common/utils"]
     }
   }
 }
