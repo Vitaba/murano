@@ -1,0 +1,26 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "libs",
+    "outDir": "../../../../dist/out-tsc",
+    "target": "es2015",
+    "module": "esnext",
+    "declaration": true,
+    "inlineSources": true,
+    "types": ["node", "jest"],
+    "lib": ["dom", "es2018"],
+    "paths": {
+      "@vitaba/common-utils": ["dist/libs/common/utils"],
+      "@vitaba/common-ui": ["dist/libs/common/ui"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true
+  }
+}

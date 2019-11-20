@@ -18,9 +18,9 @@
     "paths": {
       "@vitaba/common-utils": [
         "dist/libs/common/utils",
-        "libs/common/utils/src/index.ts",
+        "libs/common/utils/src/index.ts"
       ],
-      "@vitaba/common-ui": ["libs/common/ui/src/index.ts"]
+      "@vitaba/common-ui": ["libs/common/ui/src/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]

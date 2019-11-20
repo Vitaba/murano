@@ -14,12 +14,12 @@
     "murano-admin": {
       "tags": []
     },
-    "common-utils": {
-      "tags": []
-    },
     "common-ui": {
-      "tags": [],
+      "tags": ["type:ui", "scope:common/ui"],
       "implicitDependencies": ["common-utils"]
+    },
+    "common-utils": {
+      "tags": ["type:utils", "scope:common/utils"],
     }
   }
 }
