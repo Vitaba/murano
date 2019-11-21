@@ -103,7 +103,11 @@
     "no-eval": true,
     "no-floating-promises": [false],
     "no-for-in-array": true,
-    "no-implicit-dependencies": [true, "dev", ["@sebasg/personal"]],
+    "no-implicit-dependencies": [
+      true,
+      "dev",
+      ["@vitaba/common-ui", "@vitaba/common-utils"]
+    ],
     "no-import-side-effect": [false],
     "no-inferrable-types": [true, "ignore-params"],
     "no-inferred-empty-object-type": true,
