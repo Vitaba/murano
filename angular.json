@@ -107,7 +107,7 @@
           "options": {
             "browsers": [
               "chrome --no-sandbox",
-              "firefox",
+              "firefox"
             ],
             "devServerTarget":"murano-admin:serve",
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
