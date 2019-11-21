@@ -108,8 +108,6 @@
             "browsers": [
               "chrome --no-sandbox",
               "firefox",
-              "safari",
-              "opera"
             ],
             "devServerTarget":"murano-admin:serve",
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
