@@ -21,7 +21,7 @@ matrix:
       sudo: required
       addons:
         chrome: stable
-        firefox: stable
+        firefox: 69
       cache:
         npm: false
       before_install:
@@ -30,7 +30,7 @@ matrix:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
         - yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH)
-        - yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH)
+        - yarn ng serve && yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH)
     - os: linux
       language: node_js
       node_js: 12
