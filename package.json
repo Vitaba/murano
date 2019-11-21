@@ -43,13 +43,10 @@
     "@nrwl/angular": "8.7.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.4.0",
-<<<<<<< HEAD
     "testcafe": "^1.6.1",
     "testcafe-angular-selectors": "^0.3.2",
     "testcafe-browser-provider-browserstack": "^1.10.0",
     "testcafe-reporter-html": "^1.4.5",
-=======
->>>>>>> 4907142f2225c14aefb42d2d0c25373c8caea95f
     "tslib": "^1.10.0",
     "tslint-consistent-codestyle": "^1.16.0",
     "tslint-eslint-rules": "^5.4.0",
