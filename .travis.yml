@@ -21,7 +21,7 @@ matrix:
       sudo: required
       addons:
         chrome: stable
-        firefox: 69
+        firefox: 56
       cache:
         npm: false
       before_install:
