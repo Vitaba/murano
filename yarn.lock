@@ -10,7 +10,7 @@
     "@angular-devkit/core" "8.3.18"
     rxjs "6.4.0"
 
-"@angular-devkit/architect@0.803.19":
+"@angular-devkit/architect@0.803.19", "@angular-devkit/architect@^0.803.2":
   version "0.803.19"
   resolved "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.803.19.tgz#03c13c94cd9c71f6a6c74b80b7323b973325a1fc"
   integrity sha512-ttWVQyks//9+EOeRbZbRll1hA3RVGzW2SYWy5swEBI4vKYaKDED5mehVZUP5NUtvJaMm5yLOiK4pg0l4l4VA6Q==
@@ -127,7 +127,7 @@
     rxjs "6.4.0"
     source-map "0.7.3"
 
-"@angular-devkit/core@8.3.19":
+"@angular-devkit/core@8.3.19", "@angular-devkit/core@^8.3.2":
   version "8.3.19"
   resolved "https://registry.npmjs.org/@angular-devkit/core/-/core-8.3.19.tgz#c3310bfdbd456c6301ed33713c7b58fea7822f5b"
   integrity sha512-NTNxSpRB6zMlqsuWLHs2F6QuypIb/XUitMkJy2P7Ee3kZfCYvvH9cCkiQqkwEhKw6J01qKeXwOElmxnqmF291w==
@@ -156,6 +156,15 @@
   dependencies:
     "@angular-devkit/core" "8.3.3"
     rxjs "6.4.0"
+
+"@angular-plugins/testcafe@^0.0.1-beta":
+  version "0.0.1-beta"
+  resolved "https://registry.npmjs.org/@angular-plugins/testcafe/-/testcafe-0.0.1-beta.tgz#80fa862172fdf6ad429c2dd662926e78274fa40c"
+  integrity sha512-I7hVwkfUbod6hng75fiNTpiUW853gS77eg7oyXVA6flf9g/ERdvGje0nXrTEXpewAOCCjUsqF5yeUlyRTAVIbw==
+  dependencies:
+    "@angular-devkit/architect" "^0.803.2"
+    "@angular-devkit/core" "^8.3.2"
+    "@angular-devkit/schematics" "8.3.3"
 
 "@angular/animations@^8.2.0":
   version "8.2.13"
@@ -1564,13 +1573,6 @@
     tmp "0.0.33"
     yargs "^11.0.0"
     yargs-parser "10.0.0"
-
-"@politie/angular-testcafe-builder@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.npmjs.org/@politie/angular-testcafe-builder/-/angular-testcafe-builder-2.0.5.tgz#7159a04b40b54fb4fe81f9a3f5be47ca0d6cad75"
-  integrity sha512-Rrl9dgF0TCJccZbiombz2cS0uF8LTblsag4F/SKj8fx01bPca5+KGGO8X+mVj7qvI4z5kKpySeOKP982um8J3g==
-  dependencies:
-    lodash "4.17.15"
 
 "@schematics/angular@8.3.3":
   version "8.3.3"

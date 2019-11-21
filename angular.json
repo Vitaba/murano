@@ -103,14 +103,16 @@
       "projectType": "application",
       "architect": {
         "e2e": {
-          "builder": "@politie/angular-testcafe-builder:testcafe",
+          "builder": "@angular-plugins/testcafe:e2e",
           "options": {
             "browsers": [
               "chrome --no-sandbox",
-              "firefox"
+              "firefox",
+              "safari",
+              "opera"
             ],
+            "devServerTarget":"murano-admin:serve",
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
-            "host": "localhost",
             "reporters": [
               {
                 "name": "spec"
