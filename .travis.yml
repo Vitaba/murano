@@ -19,6 +19,9 @@ matrix:
       node_js: 12
       dist: trusty
       sudo: required
+      addons:
+        chrome: stable
+        firefox: latest
       cache:
         npm: false
       before_install:
