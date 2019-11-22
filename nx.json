@@ -16,13 +16,13 @@
     },
     "common-ui": {
       "tags": ["type:ui", "scope:common/ui"],
-      "implicitDependencies": ["common-utils"]
+      "implicitDependencies": ["common-utils", "scss-ui"]
     },
     "common-utils": {
       "tags": ["type:utils", "scope:common/utils"]
     },
     "scss-ui": {
-      "tags": ["type:ui"]
+      "tags": ["type:ui", "scope:scss/ui"]
     }
   }
 }
