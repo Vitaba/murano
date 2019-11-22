@@ -20,6 +20,9 @@
     },
     "common-utils": {
       "tags": ["type:utils", "scope:common/utils"]
+    },
+    "scss-ui": {
+      "tags": ["type:ui"]
     }
   }
 }

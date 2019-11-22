@@ -199,6 +199,44 @@
           "styleext": "scss"
         }
       }
+    },
+    "scss-ui": {
+      "projectType": "library",
+      "root": "libs/scss/ui",
+      "sourceRoot": "libs/scss/ui/src",
+      "prefix": "vitaba",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/scss/ui/tsconfig.lib.json",
+            "project": "libs/scss/ui/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/scss/ui/tsconfig.lib.json",
+              "libs/scss/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/scss/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/scss/ui/jest.config.js",
+            "tsConfig": "libs/scss/ui/tsconfig.spec.json",
+            "setupFile": "libs/scss/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
