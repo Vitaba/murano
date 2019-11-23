@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Items } from '@vitaba/common-utils';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -7,6 +7,7 @@ import { Items } from '@vitaba/common-utils';
   templateUrl: './card-list.component.html',
 })
 export class CardListComponent {
+  @Input()
   public items: Items[] = [
     {
       name: 'Item 1',

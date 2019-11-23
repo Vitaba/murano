@@ -75,6 +75,15 @@
     "ts-node": "~7.0.0",
     "tsickle": "^0.37.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.4.5"
+    "typescript": "~3.4.5",
+    "@nrwl/storybook": "*",
+    "@storybook/angular": "5.2.5",
+    "@storybook/react": "5.2.5",
+    "@storybook/addon-knobs": "5.2.5",
+    "babel-loader": "8.0.6",
+    "@babel/core": "7.5.4",
+    "to-string-loader": "*",
+    "html-loader": "*",
+    "css-loader": "*"
   }
 }

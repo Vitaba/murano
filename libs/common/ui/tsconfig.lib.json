@@ -1,4 +1,10 @@
 {
   "extends": "../../../tsconfig.build.json",
-  "exclude": ["src/test-setup.ts", "**/*.spec.ts"]
+  "exclude": [
+    "src/test-setup.ts",
+    "**/*.spec.ts",
+    "**/*.stories.ts",
+    "**/*.stories.ts",
+    "**/*.stories.ts"
+  ]
 }
