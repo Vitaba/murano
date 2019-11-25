@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Items } from '@vitaba/common-utils';
+import { Items as Item } from '@vitaba/common-utils';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'vitaba-card-list',
@@ -9,11 +9,11 @@ import { Items } from '@vitaba/common-utils';
 export class CardListComponent {
   @Input() public title = 'Card List Example';
   @Input() public styles = {
-  title: 'font-sans text-lg text-gray-800 text-center mb-3',
-  items: 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded'
+    items: 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded',
+    title: 'font-sans text-lg text-gray-800 text-center mb-3',
   };
   @Input()
-  public items: Items[] = [
+  public items: Item[] = [
     {
       name: 'Item 1',
       value: 1,
@@ -23,4 +23,8 @@ export class CardListComponent {
       value: 2,
     },
   ];
+
+  public trackByFn(option: Item) {
+    return option.value;
+  }
 }

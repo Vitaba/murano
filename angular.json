@@ -240,6 +240,8 @@
       "projectType": "application",
       "architect": {
         "e2e": {
+          "debugMode": true,
+          "debugOnFail": true,
           "builder": "@angular-plugins/testcafe:e2e",
           "options": {
             "browsers": [
@@ -247,6 +249,7 @@
               "firefox"
             ],
             "devServerTarget": "common-ui:storybook",
+            "devServerTargetTimeout": 15000,
             "src": "apps/common-ui-e2e/src/integration/*/*.spec.ts",
             "reporters": [
               {

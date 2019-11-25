@@ -1,12 +1,11 @@
 import { Selector } from 'testcafe';
-import { waitForAngular } from 'testcafe-angular-selectors';
 
-const header = Selector('p');
+const header = Selector('.sample');
 
-fixture('Home')
- .page('http://localhost:4400/?path=/story/cardlistcomponent--primary')
- .beforeEach(async () => waitForAngular());
+fixture('Home 1')
+ .page('http://localhost:4400/iframe.html?id=cardlistcomponent--primary&knob-items=[{%22name%22:%22a%22,%22value%22:%22a%22}]');
 
 test('Card List Works', async t => {
-  await t.expect(header.textContent).eql('card-list works!');
+  await t
+        .expect(header.textContent).contains('Sample');
 });

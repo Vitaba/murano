@@ -1,7 +1,7 @@
 <h3 [class]="styles.title">{{title}}</h3>
 <div [class]="styles.items">
-    <ul *ngFor="let item of items">
+    <ul *ngFor="let item of items; trackBy: trackByFn">
         <li> {{ item.name }} </li>
     </ul>
 </div>
-<p class="sample"> Sample</p>
+<p class="sample">Sample</p>

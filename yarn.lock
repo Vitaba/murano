@@ -165,10 +165,10 @@
     "@angular-devkit/core" "8.3.3"
     rxjs "6.4.0"
 
-"@angular-plugins/testcafe@^0.0.1-beta":
-  version "0.0.1-beta"
-  resolved "https://registry.npmjs.org/@angular-plugins/testcafe/-/testcafe-0.0.1-beta.tgz#80fa862172fdf6ad429c2dd662926e78274fa40c"
-  integrity sha512-I7hVwkfUbod6hng75fiNTpiUW853gS77eg7oyXVA6flf9g/ERdvGje0nXrTEXpewAOCCjUsqF5yeUlyRTAVIbw==
+"@angular-plugins/testcafe@0.0.2-beta":
+  version "0.0.2-beta"
+  resolved "https://registry.npmjs.org/@angular-plugins/testcafe/-/testcafe-0.0.2-beta.tgz#926487370e6c012988d07f4d5ce09fc2911b59b6"
+  integrity sha512-pJXjzijP35ZyPlOUJwSPXw5koH65/ukdo/Vr8H8lGheuk6qqpksBlOJenYVh42/h0RmZLnMM9NPlEUvTaZ0W6Q==
   dependencies:
     "@angular-devkit/architect" "^0.803.2"
     "@angular-devkit/core" "^8.3.2"
