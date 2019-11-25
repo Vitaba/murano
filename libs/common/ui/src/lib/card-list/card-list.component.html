@@ -1,7 +1,7 @@
-
-<div [class]="styleClass">
-    <p>{{title}}</p>
+<h3 [class]="styles.title">{{title}}</h3>
+<div [class]="styles.items">
     <ul *ngFor="let item of items">
         <li> {{ item.name }} </li>
     </ul>
 </div>
+<p class="sample"> Sample</p>
