@@ -15,22 +15,17 @@
       "tags": []
     },
     "common-ui": {
-      "tags": [
-        "type:ui",
-        "scope:common/ui"
-      ],
-      "implicitDependencies": [
-        "common-utils"
-      ]
+      "tags": ["type:ui", "scope:common/ui"],
+      "implicitDependencies": ["common-utils", "scss-ui"]
     },
     "common-utils": {
-      "tags": [
-        "type:utils",
-        "scope:common/utils"
-      ]
+      "tags": ["type:utils", "scope:common/utils"]
     },
     "common-ui-e2e": {
       "tags": []
+    },
+    "scss-ui": {
+      "tags": ["type:ui", "scope:scss/ui"]
     }
   }
 }
