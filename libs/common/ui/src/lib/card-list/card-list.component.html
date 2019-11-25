@@ -1,4 +1,7 @@
-<p>card-list works!</p>
-<ul *ngFor="let item of items">
-    <li> {{ item.name }} </li>
-</ul>
+
+<div [class]="styleClass">
+    <p>{{title}}</p>
+    <ul *ngFor="let item of items">
+        <li> {{ item.name }} </li>
+    </ul>
+</div>

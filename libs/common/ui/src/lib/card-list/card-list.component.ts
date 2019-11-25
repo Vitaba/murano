@@ -7,6 +7,8 @@ import { Items } from '@vitaba/common-utils';
   templateUrl: './card-list.component.html',
 })
 export class CardListComponent {
+  @Input() public title = 'Card List Example';
+  @Input() public styleClass = 'red';
   @Input()
   public items: Items[] = [
     {
