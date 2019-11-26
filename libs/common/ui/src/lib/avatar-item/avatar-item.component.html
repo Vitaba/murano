@@ -1,0 +1,27 @@
+<pre>{{ data | json}} </pre>
+<div [class]="styles.container">
+  <ng-template #imageDefaultTemplate>
+    <img
+      [class]="styles.image"
+      [src]="data.image.value"
+      [alt]="data.image.alt"
+    />
+  </ng-template>
+  <ng-container [ngTemplateOutlet]="imageExtraTemplate || imageDefaultTemplate">
+  </ng-container>
+
+  <div [class]="styles.dataContainer">
+    <ng-template #nameDefaultTemplate>
+      <p [class]="styles.name">{{ data.name }}</p>
+    </ng-template>
+    <ng-container [ngTemplateOutlet]="nameExtraTemplate || nameDefaultTemplate">
+    </ng-container>
+
+    <ng-template #dateDefaultTemplate>
+      <p [class]="styles.date">{{ data.date | date : config.dateFormat}}</p>
+    </ng-template>
+    <ng-container [ngTemplateOutlet]="dateExtraTemplate || dateDefaultTemplate">
+    </ng-container>
+    
+  </div>
+</div>
