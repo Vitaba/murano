@@ -249,7 +249,7 @@
               "firefox"
             ],
             "devServerTarget": "common-ui:storybook",
-            "devServerTargetTimeout": 15000,
+            "devServerTargetTimeout": 50000,
             "src": "apps/common-ui-e2e/src/integration/*/*.spec.ts",
             "reporters": [
               {
