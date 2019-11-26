@@ -1,1 +1,7 @@
-<button class="border border-blue-500 text-blue-700 rounded px-4 py-3">card-list works!</button>
+<h3 [class]="styles.title">{{title}}</h3>
+<div [class]="styles.items">
+    <ul *ngFor="let item of items; trackBy: trackByFn">
+        <li> {{ item.name }} </li>
+    </ul>
+</div>
+<p class="sample">Sample</p>

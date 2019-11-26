@@ -25,7 +25,9 @@
               "apps/murano-admin/src/favicon.ico",
               "apps/murano-admin/src/assets"
             ],
-            "styles": ["apps/murano-admin/src/styles.scss"],
+            "styles": [
+              "apps/murano-admin/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -84,7 +86,10 @@
               "apps/murano-admin/tsconfig.app.json",
               "apps/murano-admin/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/murano-admin/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/murano-admin/**"
+            ]
           }
         },
         "test": {
@@ -109,7 +114,7 @@
               "chrome --no-sandbox",
               "firefox"
             ],
-            "devServerTarget":"murano-admin:serve",
+            "devServerTarget": "murano-admin:serve",
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
             "reporters": [
               {
@@ -121,8 +126,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/murano-admin-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/murano-admin-e2e/**"]
+            "tsConfig": [
+              "apps/murano-admin-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/murano-admin-e2e/**"
+            ]
           }
         }
       }
@@ -147,7 +157,10 @@
               "libs/common/ui/tsconfig.lib.json",
               "libs/common/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/common/ui/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/ui/**"
+            ]
           }
         },
         "test": {
@@ -156,6 +169,21 @@
             "jestConfig": "libs/common/ui/jest.config.js",
             "tsConfig": "libs/common/ui/tsconfig.spec.json",
             "setupFile": "libs/common/ui/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/common/ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       },
@@ -185,7 +213,10 @@
               "libs/common/utils/tsconfig.lib.json",
               "libs/common/utils/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/common/utils/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/utils/**"
+            ]
           }
         },
         "test": {
@@ -200,6 +231,44 @@
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
+        }
+      }
+    },
+    "common-ui-e2e": {
+      "root": "apps/common-ui-e2e",
+      "sourceRoot": "apps/common-ui-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "debugMode": true,
+          "debugOnFail": true,
+          "builder": "@angular-plugins/testcafe:e2e",
+          "options": {
+            "browsers": [
+              "chrome --no-sandbox",
+              "firefox"
+            ],
+            "devServerTarget": "common-ui:storybook",
+            "devServerTargetTimeout": 50000,
+            "src": "apps/common-ui-e2e/src/integration/*/*.spec.ts",
+            "reporters": [
+              {
+                "name": "spec"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/common-ui-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/common-ui-e2e/**"
+            ]
+          }
         }
       }
     },

@@ -1,1 +1,9 @@
 @import 'libs/scss/ui/src/lib/base/base.scss';
+
+:host{
+    --primary-color: red;
+}
+
+.sample{
+    background: var(--primary-color);
+}

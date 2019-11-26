@@ -106,7 +106,7 @@
     "no-implicit-dependencies": [
       true,
       "dev",
-      ["@vitaba/common-ui", "@vitaba/common-utils"]
+      ["@vitaba/common-ui", "@vitaba/common-utils", "@storybook/addon-knobs"]
     ],
     "no-import-side-effect": [false],
     "no-inferrable-types": [true, "ignore-params"],
@@ -310,7 +310,7 @@
     "no-pipe-impure": true,
     "no-queries-metadata-property": true,
     "no-unused-css": true,
-    "pipe-prefix": [true, "sebasg"],
+    "pipe-prefix": [true, "vitaba"],
     "prefer-inline-decorator": false,
     "prefer-on-push-component-change-detection": true,
     "prefer-output-readonly": true,

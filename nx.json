@@ -21,6 +21,9 @@
     "common-utils": {
       "tags": ["type:utils", "scope:common/utils"]
     },
+    "common-ui-e2e": {
+      "tags": []
+    },
     "scss-ui": {
       "tags": ["type:ui", "scope:scss/ui"]
     }
