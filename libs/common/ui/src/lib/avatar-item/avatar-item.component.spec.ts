@@ -1,6 +1,6 @@
 
 // tslint:disable: no-any component-max-inline-declarations ter-max-len
-import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AvatarItemComponent } from './avatar-item.component';
 
