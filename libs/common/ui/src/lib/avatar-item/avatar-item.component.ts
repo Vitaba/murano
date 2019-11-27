@@ -49,7 +49,9 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
 
   public ngAfterViewInit(): void {
     this.changes.subscribe((changes: SimpleChanges) => {
-      this.validateAvatarData(changes.data.currentValue as AvatarData);
+      if (changes.data) {
+        this.validateAvatarData(changes.data.currentValue as AvatarData);
+      }
     });
   }
 
