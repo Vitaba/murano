@@ -1,25 +1,7 @@
-import { ChangeDetectionStrategy, Component, ContentChild, Input, TemplateRef } from '@angular/core';
-interface AvatarConfig {
-  dateFormat?: string;
-}
-
-interface AvatarData {
-  name: string;
-  image: {
-    value: string;
-    alt: string;
-  };
-  date?: string;
-  dateFormat?: string;
-}
-
-interface AvatarStyles {
-  container: string;
-  image: string;
-  dataContainer: string;
-  name: string;
-  date: string;
-}
+// tslint:disable: no-unsafe-any no-any
+import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
+import { AvatarConfig, AvatarData, AvatarStyles, GuardError, isAvatarData } from '@vitaba/common-utils';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,7 +10,9 @@ interface AvatarStyles {
   templateUrl: './avatar-item.component.html',
 })
 
-export class AvatarItemComponent {
+export class AvatarItemComponent implements AfterViewInit, OnChanges {
+  public changes!: BehaviorSubject<SimpleChanges>;
+  public errors!: GuardError;
   @Input() public config: AvatarConfig = {
     dateFormat: 'mediumDate',
   };
@@ -48,14 +32,52 @@ export class AvatarItemComponent {
     name: 'Sebastian'};
 
   @ContentChild('imageExtraTemplate', { static: false })
-  // tslint:disable-next-line: no-any
   public imageExtraTemplate!: TemplateRef<any>;
 
   @ContentChild('nameExtraTemplate', { static: false })
-  // tslint:disable-next-line: no-any
   public nameExtraTemplate!: TemplateRef<any>;
 
   @ContentChild('dateExtraTemplate', { static: false })
-  // tslint:disable-next-line: no-any
   public dateExtraTemplate!: TemplateRef<any>;
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (!this.changes) {
+      this.changes = new BehaviorSubject(changes);
+    }
+    this.changes.next(changes);
+  }
+
+  public ngAfterViewInit(): void {
+    this.changes.subscribe((changes: SimpleChanges) => {
+      this.validateAvatarData(changes.data.currentValue as AvatarData);
+    });
+  }
+
+  public validateAvatarData(value: AvatarData) {
+    const validations = [];
+
+    if (!this.imageExtraTemplate) {
+      validations.push({
+        name: 'image',
+        type: 'object',
+      });
+    }
+
+    if (!this.nameExtraTemplate) {
+      validations.push({
+        name: 'name',
+        type: 'string',
+      });
+    }
+
+    if (!this.dateExtraTemplate) {
+      validations.push({
+        name: 'date',
+        type: 'string',
+      });
+    }
+    const validation = isAvatarData(value, validations);
+
+    this.errors = !validation.valid ? validation : undefined;
+  }
 }

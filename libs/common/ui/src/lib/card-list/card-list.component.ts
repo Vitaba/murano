@@ -1,3 +1,4 @@
+// tslint:disable: no-unsafe-any no-any
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Items as Item } from '@vitaba/common-utils';
 @Component({
