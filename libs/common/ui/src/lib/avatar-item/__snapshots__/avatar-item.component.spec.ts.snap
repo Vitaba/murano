@@ -199,36 +199,55 @@ exports[`AvatarItemComponent should throw errors when data is not in right forma
     ng-reflect-styles="[object Object]"
   >
     
-    
-    <div
-      class="flex items-center"
-    >
-      
-      
-      <img
-        alt="1"
-        class="w-10 h-10 rounded-full mr-4"
-        src="1"
-      />
-      <div
-        class="text-sm"
-      >
-        
-        
-        <p
-          class="text-gray-900 leading-none"
-        >
-          1
-        </p>
-        
-        
-        <p
-          class="text-gray-600"
-        >
-          Dec 31, 1969
-        </p>
-      </div>
-    </div>
+     {
+    "valid": false,
+    "guard": "isAvatarData",
+    "value": {
+      "image": 1,
+      "name": 1
+    },
+    "message": "Is not a avatar data",
+    "errors": [
+      {
+        "valid": false,
+        "guard": "hasProperties",
+        "value": {
+          "image": 1,
+          "name": 1
+        },
+        "errors": [
+          {
+            "value": {
+              "name": "image",
+              "type": "object"
+            },
+            "guard": "Object Validation",
+            "message": "Is not an object",
+            "valid": true
+          },
+          {
+            "value": {
+              "name": "name",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": true
+          },
+          {
+            "value": {
+              "name": "date",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": true
+          }
+        ]
+      }
+    ]
+  }
+  
     
   </vitaba-avatar-item>
 </vitaba-avatar-item-sample-implementation>

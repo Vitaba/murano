@@ -1,5 +1,5 @@
 // tslint:disable: no-unsafe-any no-any
-import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef, ChangeDetectorRef } from '@angular/core';
 import { AvatarConfig, AvatarData, AvatarStyles, GuardError, isAvatarData } from '@vitaba/common-utils';
 import { BehaviorSubject } from 'rxjs';
 
@@ -13,6 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AvatarItemComponent implements AfterViewInit, OnChanges {
   public changes!: BehaviorSubject<SimpleChanges>;
   public errors!: GuardError;
+
   @Input() public config: AvatarConfig = {
     dateFormat: 'mediumDate',
   };
@@ -40,6 +41,10 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
   @ContentChild('dateExtraTemplate', { static: false })
   public dateExtraTemplate!: TemplateRef<any>;
 
+  public constructor(
+    private readonly _changeDetectorRef: ChangeDetectorRef,
+  ) {}
+
   public ngOnChanges(changes: SimpleChanges): void {
     if (!this.changes) {
       this.changes = new BehaviorSubject(changes);
@@ -49,9 +54,7 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
 
   public ngAfterViewInit(): void {
     this.changes.subscribe((changes: SimpleChanges) => {
-      if (changes.data) {
-        this.validateAvatarData(changes.data.currentValue as AvatarData);
-      }
+      this.validateAvatarData(changes.data.currentValue as AvatarData);
     });
   }
 
@@ -81,5 +84,6 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
     const validation = isAvatarData(value, validations);
 
     this.errors = !validation.valid ? validation : undefined;
+    this._changeDetectorRef.detectChanges();
   }
 }

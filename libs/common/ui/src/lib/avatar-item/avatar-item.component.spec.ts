@@ -1,5 +1,5 @@
 
-// tslint:disable:component-max-inline-declarations ter-max-len
+// tslint:disable: no-any component-max-inline-declarations ter-max-len
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AvatarItemComponent } from './avatar-item.component';
@@ -57,7 +57,6 @@ class TestHostComponent {
 describe('AvatarItemComponent', () => {
   let component: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let debugElement: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -69,7 +68,6 @@ describe('AvatarItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
   });
 
   it('should create', () => {
@@ -103,11 +101,7 @@ describe('AvatarItemComponent', () => {
   it('should throw errors when data is not in right format', () => {
     component.mode = 'default';
     component.avatarData = {
-      date: 1,
-      image: {
-        alt: 1,
-        value: 1,
-      },
+      image: 1,
       name: 1,
     } as any;
     fixture.changeDetectorRef.detectChanges();
