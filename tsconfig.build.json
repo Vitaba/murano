@@ -11,7 +11,8 @@
     "lib": ["dom", "es2018"],
     "paths": {
       "@vitaba/common-utils": ["dist/libs/common/utils"],
-      "@vitaba/common-ui": ["dist/libs/common/ui"]
+      "@vitaba/common-ui": ["dist/libs/common/ui"],
+      "@vitaba/scss-ui": ["dist/libs/scss/ui"]
     }
   },
   "include": ["**/*.ts"],

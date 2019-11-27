@@ -1,5 +1,5 @@
 // tslint:disable:no-any no-unsafe-any
-import { GuardError } from '@vitaba/common-utils';
+import { GuardError } from '../../interfaces/guard/guard.interface';
 import { hasProperties } from '../common/has-properties.guard';
 import { isObject } from '../common/is-object.guard';
 
