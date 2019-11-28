@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-export class AvatarItemPage {
+export class AvatarItemComponent {
   public storybookPath = 'http://localhost:4400/iframe.html?id=avataritemcomponent--basic';
 
   public container: Selector;

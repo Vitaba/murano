@@ -1,4 +1,4 @@
-import { avatarItemComponent } from '../../pages/index';
+import { avatarItemComponent } from '../../components/index';
 
 fixture('Avatar Item - Basic Story').page(avatarItemComponent.storybookPath);
 
