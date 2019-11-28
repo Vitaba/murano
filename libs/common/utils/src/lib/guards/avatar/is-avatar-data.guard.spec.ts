@@ -48,7 +48,7 @@ describe('isAvatarData Guard', () => {
         errors: [{
           guard: 'String Validation',
           message: 'Is not a string',
-          valid: true,
+          valid: false,
           value: { name: 'name', type: 'string' },
         }],
         guard: 'hasProperties',
@@ -80,12 +80,12 @@ describe('isAvatarData Guard', () => {
         errors: [{
           guard: 'String Validation',
           message: 'Is not a string',
-          valid: true,
+          valid: false,
           value: { name: 'name', type: 'string' },
         }, {
           guard: 'Object Validation',
           message: 'Is not an object',
-          valid: true,
+          valid: false,
           value: { name: 'image', type: 'object' },
         }],
         guard: 'hasProperties',
@@ -119,7 +119,7 @@ describe('isAvatarData Guard', () => {
         errors: [{
           guard: 'String Validation',
           message: 'Is not a string',
-          valid: true,
+          valid: false,
           value: { name: 'date', type: 'string' },
         }],
         guard: 'hasProperties',
@@ -152,12 +152,12 @@ describe('isAvatarData Guard', () => {
         errors: [{
           guard: 'String Validation',
           message: 'Is not a string',
-          valid: true,
+          valid: false,
           value: { name: 'name', type: 'string' },
         }, {
           guard: 'String Validation',
           message: 'Is not a string',
-          valid: true,
+          valid: false,
           value: { name: 'date', type: 'string' },
         }],
         guard: 'hasProperties',

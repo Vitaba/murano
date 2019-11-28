@@ -5,7 +5,7 @@ const chance = new Chance();
 
 describe('isAvatarConfig Guard', () => {
   it('Should pass when config is a non empty object', () => {
-    const avatarConfig = [{ dateFormat: chance.string() }];
+    const avatarConfig = { dateFormat: chance.string() };
 
     expect(isAvatarConfig(avatarConfig)).toEqual({
       guard: 'isAvatarConfig',
@@ -32,17 +32,17 @@ describe('isAvatarConfig Guard', () => {
   });
 
   it('Should fail when config is an empty object', () => {
-    expect(isAvatarConfig([])).toEqual({
+    expect(isAvatarConfig({})).toEqual({
       errors: [{
-        guard: 'isNotEmpty',
-        message: 'Is not empty',
+        guard: 'isNotEmptyObject',
+        message: 'Is not empty object',
         valid: false,
-        value: [],
+        value: {},
       }],
       guard: 'isAvatarConfig',
       message: 'Is not a avatar config',
       valid: false,
-      value: [],
+      value: {},
     });
   });
 });

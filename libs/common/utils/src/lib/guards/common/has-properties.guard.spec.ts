@@ -37,14 +37,12 @@ describe('hasProperties Guard', () => {
       errors: [{
         guard: 'String Validation',
         message : 'Is not a string',
-        // this should be false
-        valid : true,
+        valid : false,
         value: { name: 'name', type: 'string' },
       }, {
         guard: 'Number Validation',
         message : 'Is not a number',
-        // this should be false
-        valid : true,
+        valid : false,
         value: { name: 'age', type: 'number' },
       }],
       guard: 'hasProperties',
@@ -56,12 +54,12 @@ describe('hasProperties Guard', () => {
   it('Should fail with incorrect property types', () => {
     const data = {
       age: chance.string(),
-      date: chance.string(),
       name: chance.string(),
+      year: chance.string(),
     };
 
     expect(hasProperties(data, [{
-      name: 'date', type: 'string',
+      name: 'name', type: 'string',
     }, {
       name: 'year', type: 'number',
     }, {
@@ -70,14 +68,12 @@ describe('hasProperties Guard', () => {
       errors: [{
         guard: 'Number Validation',
         message : 'Is not a number',
-        // this should be false
-        valid : true,
+        valid : false,
         value: { name: 'year', type: 'number' },
       }, {
         guard: 'Number Validation',
         message : 'Is not a number',
-        // this should be false
-        valid : true,
+        valid : false,
         value: { name: 'age', type: 'number' },
       }],
       guard: 'hasProperties',
