@@ -46,7 +46,7 @@ export function hasProperties(
           value,
           guard: propertyValidation.guard,
           message: propertyValidation.message,
-          valid: !propertyValidation.valid,
+          valid: propertyValidation.valid,
         });
       }
 

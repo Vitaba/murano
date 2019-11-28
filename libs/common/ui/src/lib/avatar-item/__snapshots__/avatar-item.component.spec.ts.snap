@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvatarItemComponent should be dateExtraTemplate 1`] = `
+<vitaba-avatar-item-sample-implementation
+  avatarConfig={[Function Object]}
+  avatarData={[Function Object]}
+  avatarStyles={[Function Object]}
+  mode={[Function String]}
+>
+  <vitaba-avatar-item
+    ng-reflect-config="[object Object]"
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="flex items-center"
+    >
+      
+      
+      <img
+        alt="John Doe Avatar"
+        class="w-10 h-10 rounded-full mr-4"
+        src="https://avatars3.githubusercontent.com/u/17608169?s=460&v=4"
+      />
+      <div
+        class="text-sm"
+      >
+        
+        
+        <p
+          class="text-gray-900 leading-none"
+        >
+          John Doe
+        </p>
+        
+        
+        <p>
+          Date content-projection
+        </p>
+      </div>
+    </div>
+    
+  </vitaba-avatar-item>
+</vitaba-avatar-item-sample-implementation>
+`;
+
+exports[`AvatarItemComponent should be default 1`] = `
+<vitaba-avatar-item-sample-implementation
+  avatarConfig={[Function Object]}
+  avatarData={[Function Object]}
+  avatarStyles={[Function Object]}
+  mode={[Function String]}
+>
+  <vitaba-avatar-item
+    ng-reflect-config="[object Object]"
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="flex items-center"
+    >
+      
+      
+      <img
+        alt="John Doe Avatar"
+        class="w-10 h-10 rounded-full mr-4"
+        src="https://avatars3.githubusercontent.com/u/17608169?s=460&v=4"
+      />
+      <div
+        class="text-sm"
+      >
+        
+        
+        <p
+          class="text-gray-900 leading-none"
+        >
+          John Doe
+        </p>
+        
+        
+        <p
+          class="text-gray-600"
+        >
+          Nov 26, 2019
+        </p>
+      </div>
+    </div>
+    
+  </vitaba-avatar-item>
+</vitaba-avatar-item-sample-implementation>
+`;
+
+exports[`AvatarItemComponent should be imageExtraTemplate 1`] = `
+<vitaba-avatar-item-sample-implementation
+  avatarConfig={[Function Object]}
+  avatarData={[Function Object]}
+  avatarStyles={[Function Object]}
+  mode={[Function String]}
+>
+  <vitaba-avatar-item
+    ng-reflect-config="[object Object]"
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="flex items-center"
+    >
+      
+      
+      <p>
+        Image content-projection
+      </p>
+      <div
+        class="text-sm"
+      >
+        
+        
+        <p
+          class="text-gray-900 leading-none"
+        >
+          John Doe
+        </p>
+        
+        
+        <p
+          class="text-gray-600"
+        >
+          Nov 26, 2019
+        </p>
+      </div>
+    </div>
+    
+  </vitaba-avatar-item>
+</vitaba-avatar-item-sample-implementation>
+`;
+
+exports[`AvatarItemComponent should be nameExtraTemplate 1`] = `
+<vitaba-avatar-item-sample-implementation
+  avatarConfig={[Function Object]}
+  avatarData={[Function Object]}
+  avatarStyles={[Function Object]}
+  mode={[Function String]}
+>
+  <vitaba-avatar-item
+    ng-reflect-config="[object Object]"
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="flex items-center"
+    >
+      
+      
+      <img
+        alt="John Doe Avatar"
+        class="w-10 h-10 rounded-full mr-4"
+        src="https://avatars3.githubusercontent.com/u/17608169?s=460&v=4"
+      />
+      <div
+        class="text-sm"
+      >
+        
+        
+        <p>
+          Name content-projection
+        </p>
+        
+        
+        <p
+          class="text-gray-600"
+        >
+          Nov 26, 2019
+        </p>
+      </div>
+    </div>
+    
+  </vitaba-avatar-item>
+</vitaba-avatar-item-sample-implementation>
+`;
+
+exports[`AvatarItemComponent should throw errors when data is not in right format 1`] = `
+<vitaba-avatar-item-sample-implementation
+  avatarConfig={[Function Object]}
+  avatarData={[Function Object]}
+  avatarStyles={[Function Object]}
+  mode={[Function String]}
+>
+  <vitaba-avatar-item
+    ng-reflect-config="[object Object]"
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+     {
+    "valid": false,
+    "guard": "isAvatarData",
+    "value": {
+      "image": 1,
+      "name": 1
+    },
+    "message": "Is not a avatar data",
+    "errors": [
+      {
+        "valid": false,
+        "guard": "hasProperties",
+        "value": {
+          "image": 1,
+          "name": 1
+        },
+        "errors": [
+          {
+            "value": {
+              "name": "image",
+              "type": "object"
+            },
+            "guard": "Object Validation",
+            "message": "Is not an object",
+            "valid": false
+          },
+          {
+            "value": {
+              "name": "name",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": false
+          },
+          {
+            "value": {
+              "name": "date",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": false
+          }
+        ]
+      }
+    ]
+  }
+  
+    
+  </vitaba-avatar-item>
+</vitaba-avatar-item-sample-implementation>
+`;
