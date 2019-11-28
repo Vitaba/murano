@@ -1,11 +1,8 @@
 import { avatarItemComponent } from '../../pages/index';
 
-fixture('Avatar Item - Basic Story').page(
-  'http://localhost:4400/iframe.html?id=avataritemcomponent--basic',
-);
+fixture('Avatar Item - Basic Story').page(avatarItemComponent.storybookPath);
 
-fixture('Avatar Item - Image')
-  .page('http://localhost:4400/iframe.html?id=avataritemcomponent--basic');
+fixture('Avatar Item - Image').page(avatarItemComponent.storybookPath);
 
 test('Should have the default image', async t => {
   await t
@@ -13,16 +10,14 @@ test('Should have the default image', async t => {
     .eql('https://avatars1.githubusercontent.com/u/7867954?s=400&amp;v=4');
 });
 
-fixture('Avatar Item - Text')
-  .page('http://localhost:4400/iframe.html?id=avataritemcomponent--basic');
+fixture('Avatar Item - Text').page(avatarItemComponent.storybookPath);
 test('Should have the default ', async t => {
   await t
     .expect(await avatarItemComponent.dataContainer.find('p').textContent)
     .eql('Jhon Doe');
 });
 
-fixture('Avatar Item - Date')
-  .page('http://localhost:4400/iframe.html?id=avataritemcomponent--basic');
+fixture('Avatar Item - Date').page(avatarItemComponent.storybookPath);
 test('Should have the default ', async t => {
   await t
     .expect(
