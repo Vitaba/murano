@@ -223,7 +223,7 @@ exports[`AvatarItemComponent should throw errors when data is not in right forma
             },
             "guard": "Object Validation",
             "message": "Is not an object",
-            "valid": true
+            "valid": false
           },
           {
             "value": {
@@ -232,7 +232,7 @@ exports[`AvatarItemComponent should throw errors when data is not in right forma
             },
             "guard": "String Validation",
             "message": "Is not a string",
-            "valid": true
+            "valid": false
           },
           {
             "value": {
@@ -241,7 +241,7 @@ exports[`AvatarItemComponent should throw errors when data is not in right forma
             },
             "guard": "String Validation",
             "message": "Is not a string",
-            "valid": true
+            "valid": false
           }
         ]
       }

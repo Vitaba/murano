@@ -1,11 +1,11 @@
 // tslint:disable:no-any
 import { GuardError } from '../../interfaces/guard/guard.interface';
-import { isNotEmpty } from '../common/is-not-empty.guard';
+import { isNotEmptyObject } from '../common/is-not-empty-object.guard';
 import { isObject } from '../common/is-object.guard';
 
 export function isAvatarConfig(arg: any) {
   const isObjectValidation = isObject(arg);
-  const isNotEmptyValidation = isNotEmpty(arg);
+  const isNotEmptyValidation = isNotEmptyObject(arg);
   const valid = isObjectValidation.valid && isNotEmptyValidation.valid;
   const compose: GuardError = {
     valid,
