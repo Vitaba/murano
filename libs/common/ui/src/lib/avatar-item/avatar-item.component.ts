@@ -27,10 +27,10 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
   @Input() public data: AvatarData = {
     date: '2019-11-26T15:03:29.435Z',
     image: {
-      alt: 'Avatar de Sebastian',
+      alt: 'Avatar de Jhon Doe',
       value: 'https://avatars3.githubusercontent.com/u/17608169?s=460&v=4',
     },
-    name: 'Sebastian'};
+    name: 'Jhon Doe'};
 
   @ContentChild('imageExtraTemplate', { static: false })
   public imageExtraTemplate!: TemplateRef<any>;
