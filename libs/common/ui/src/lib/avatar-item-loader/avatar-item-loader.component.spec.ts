@@ -22,8 +22,4 @@ describe('AvatarItemLoaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should create the loader component', () => {
-    expect(fixture).toMatchSnapshot();
-  });
 });
