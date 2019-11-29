@@ -1,10 +1,14 @@
-<ngx-content-loading
+<content-loader
 [height]="height"
 [width]="width"
 [speed]="speed"
+[idClip]="idClip"
+[idGradient]="idGradient"
+[ignoreBaseUrl]="true"
+[idGradient]="'speed'"
 [primaryColor]="colors.primary"
 [secondaryColor]="colors.secondary">
-  <svg:g ngx-rect x="70" y="15" rx="4" ry="4" width="117" height="6"></svg:g>
-  <svg:g ngx-rect x="70" y="35" rx="3" ry="3" width="85" height="6"></svg:g> 
-  <svg:g ngx-circle cx="30" cy="30" r="30"></svg:g>
-</ngx-content-loading>
+<svg:rect x="70" y="15" rx="4" ry="4" width="117" height="6"></svg:rect>
+<svg:rect x="70" y="35" rx="3" ry="3" width="85" height="6"></svg:rect>
+<svg:circle cx="30" cy="30" r="30"></svg:circle>
+</content-loader>

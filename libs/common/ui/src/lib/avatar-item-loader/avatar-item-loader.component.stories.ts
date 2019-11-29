@@ -1,5 +1,5 @@
+import { ContentLoaderModule } from '@vitaba/content-loader';
 import { number, object } from '@storybook/addon-knobs';
-import { NgxContentLoadingModule } from 'ngx-content-loading';
 import { AvatarItemLoaderComponent } from './avatar-item-loader.component';
 
 // tslint:disable-next-line:no-default-export
@@ -11,7 +11,7 @@ export const primary = () => ({
   component: AvatarItemLoaderComponent,
   moduleMetadata: {
     declarations: [AvatarItemLoaderComponent],
-    imports: [NgxContentLoadingModule],
+    imports: [ContentLoaderModule],
   },
   props: {
     data: {

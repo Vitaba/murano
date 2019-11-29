@@ -14,6 +14,8 @@ export class AvatarItemLoaderComponent implements OnChanges {
     primary: '#f4f4f4',
     secondary: '#ecebeb',
   };
+  @Input() public idClip = 'avatar-item-loader-idclip';
+  @Input() public idGradient = 'avatar-item-loader-gradient';
 
   public constructor(
     private readonly _changeDetectionRef: ChangeDetectorRef,
