@@ -1,12 +1,13 @@
-import { object } from '@storybook/addon-knobs';
+// tslint:disable:no-default-export object-literal-sort-keys
+
+import { object, text } from '@storybook/addon-knobs';
 import { AvatarItemComponent } from './avatar-item.component';
-// tslint:disable-next-line:no-default-export
 export default {
   title: 'AvatarItemComponent',
 };
 
 const data = {
-  date: '2019-11-26T15:03:29.435Z',
+  date: '2019-11-26',
   image: {
     alt: 'Avatar de Jhon Doe',
     value: 'https://avatars1.githubusercontent.com/u/7867954?s=400&v=4',
@@ -32,11 +33,31 @@ export const basic = () => ({
     imports: [],
   },
   props: {
-    config: object('styles', { ...config }),
-    data: object('data', data),
-    styles: object('styles', { ...styles }),
+    data_date: text('date', data.date, 'Avatar Data'),
+    data_imageAlt: text('image Alt', data.image.alt, 'Avatar Data'),
+    data_imageSrc: text('image Src', data.image.value, 'Avatar Data'),
+    data_name: text('name', data.name, 'Avatar Data'),
+    config_dateFormat: text('date Format', config.dateFormat, 'Avatar Config'),
+    styles_container: text('container', styles.container, 'Avatar Styles'),
+    styles_dataContainer: text(
+      'dataContainer',
+      styles.dataContainer,
+      'Avatar Styles',
+    ),
+    styles_date: text('Date', styles.date, 'Avatar Styles'),
+    styles_image: text('Image', styles.image, 'Avatar Styles'),
+    styles_name: text('Name', styles.name, 'Avatar Styles'),
   },
-  template: `<vitaba-avatar-item [data]="data"> </vitaba-avatar-item>`,
+  template: `
+  <vitaba-avatar-item [data]="{
+    date: data_date,
+    image: {
+    alt: data_imageAlt,
+    value: data_imageSrc
+  },
+  name: data_name }"> </vitaba-avatar-item>
+  <pre> {{ date }} </pre>
+  `,
 });
 
 export const imageProjection = () => ({
