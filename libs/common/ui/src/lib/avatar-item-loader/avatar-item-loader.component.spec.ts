@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NgxContentLoadingModule } from 'ngx-content-loading';
 import { AvatarItemLoaderComponent } from './avatar-item-loader.component';
 
 describe('AvatarItemLoaderComponent', () => {
@@ -9,6 +10,7 @@ describe('AvatarItemLoaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AvatarItemLoaderComponent],
+      imports: [NgxContentLoadingModule],
     })
     .compileComponents();
   }));
@@ -16,10 +18,10 @@ describe('AvatarItemLoaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AvatarItemLoaderComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });
