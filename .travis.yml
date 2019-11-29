@@ -43,7 +43,7 @@ matrix:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-       - yarn nx affected:build --base=$(git merge-base HEAD $TRAVIS_BRANCH)       
+       - yarn nx affected:build --all       
 notifications:
   email: false
   webhooks:
