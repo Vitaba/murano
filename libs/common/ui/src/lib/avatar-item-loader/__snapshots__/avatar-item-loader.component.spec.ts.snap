@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvatarItemLoaderComponent should create loader 1`] = `
+<vitaba-avatar-item-loader
+  _changeDetectionRef={[Function ViewRef_]}
+  colors={[Function Object]}
+  height={[Function Number]}
+  idClip={[Function String]}
+  idGradient={[Function String]}
+  speed={[Function Number]}
+  width={[Function Number]}
+>
+  <content-loader
+    ng-reflect-height="100"
+    ng-reflect-id-clip="avatar-item-loader-idclip"
+    ng-reflect-id-gradient="avatar-item-loader-gradient"
+    ng-reflect-ignore-base-url="true"
+    ng-reflect-primary-color="#f4f4f4"
+    ng-reflect-secondary-color="cecece"
+    ng-reflect-speed="2"
+    ng-reflect-width="100"
+  >
+    <svg
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 100 100"
+    >
+      <rect
+        clip-path="url(#avatar-item-loader-idclip)"
+        height="100"
+        ng-reflect-ng-style="[object Object]"
+        style="fill: url(#avatar-item-loader-gradient);"
+        width="100"
+        x="0"
+        y="0"
+      />
+      <defs>
+        <clippath
+          id="avatar-item-loader-idclip"
+        >
+          <rect
+            height="6"
+            rx="4"
+            ry="4"
+            width="117"
+            x="70"
+            y="15"
+          />
+          <rect
+            height="6"
+            rx="3"
+            ry="3"
+            width="85"
+            x="70"
+            y="35"
+          />
+          <circle
+            cx="30"
+            cy="30"
+            r="30"
+          />
+        </clippath>
+        <lineargradient
+          id="avatar-item-loader-gradient"
+        >
+          <stop
+            offset="0%"
+            stop-color="#f4f4f4"
+            stop-opacity="1"
+          >
+            
+            
+            <animate
+              attributeName="offset"
+              dur="2"
+              repeatCount="indefinite"
+              s=""
+              values="-3; 1"
+            />
+          </stop>
+          <stop
+            offset="50%"
+            stop-color="cecece"
+            stop-opacity="1"
+          >
+            
+            
+            <animate
+              attributeName="offset"
+              dur="2"
+              repeatCount="indefinite"
+              s=""
+              values="-2; 2"
+            />
+          </stop>
+          <stop
+            offset="100%"
+            stop-color="#f4f4f4"
+            stop-opacity="1"
+          >
+            
+            
+            <animate
+              attributeName="offset"
+              dur="2"
+              repeatCount="indefinite"
+              s=""
+              values="-1; 3"
+            />
+          </stop>
+        </lineargradient>
+      </defs>
+    </svg>
+  </content-loader>
+</vitaba-avatar-item-loader>
+`;

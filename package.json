@@ -41,6 +41,7 @@
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
     "@nrwl/angular": "8.8.1",
+    "@vitaba/content-loader": "^0.0.1-beta",
     "core-js": "^2.5.4",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",

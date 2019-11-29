@@ -106,7 +106,7 @@
     "no-implicit-dependencies": [
       true,
       "dev",
-      ["@vitaba/common-ui", "@vitaba/common-utils", "@storybook/addon-knobs", "rxjs", "chance"]
+      ["@vitaba/common-ui", "@vitaba/common-utils", "@storybook/addon-knobs", "rxjs", "chance", "@vitaba/content-loader"]
     ],
     "no-import-side-effect": [false],
     "no-inferrable-types": [true, "ignore-params"],

@@ -2768,6 +2768,13 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@vitaba/content-loader@^0.0.1-beta":
+  version "0.0.1-beta"
+  resolved "https://registry.yarnpkg.com/@vitaba/content-loader/-/content-loader-0.0.1-beta.tgz#0618247e55bfffe3ad63e8dc023f7d052bd23ac6"
+  integrity sha512-qTxP+qLjuRJWbGCx6plGeomsf3wMFcBKp4DoObmoXOwKOCEPzEYJb+iENu2tcyIqvJhlWuwUul4Ck24D3YitsA==
+  dependencies:
+    tslib "^1.9.0"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.npmjs.org/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
