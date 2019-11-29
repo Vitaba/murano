@@ -10,9 +10,7 @@ exports[`AvatarItemLoaderComponent should create loader 1`] = `
   speed={[Function Number]}
   width={[Function Number]}
 >
-  <h1>
-    Content Loaders
-  </h1><content-loader
+  <content-loader
     ng-reflect-height="100"
     ng-reflect-id-clip="avatar-item-loader-idclip"
     ng-reflect-id-gradient="avatar-item-loader-gradient"
