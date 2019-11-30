@@ -1,6 +1,6 @@
 // tslint:disable: no-unsafe-any no-any
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
-import { AvatarConfig, AvatarData, AvatarStyles, GuardError, isAvatarData } from '@vitaba/common-utils';
+import { AvatarConfig, AvatarData, AvatarStyles, GuardError, isAvatarData, isAvatarStyle } from '@vitaba/common-utils';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -54,7 +54,12 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
 
   public ngAfterViewInit(): void {
     this.changes.subscribe((changes: SimpleChanges) => {
-      this.validateAvatarData(changes.data.currentValue as AvatarData);
+      if (changes.data) {
+        this.validateAvatarData(changes.data.currentValue as AvatarData);
+      }
+      if (changes.styles) {
+        this.validateAvatarStyles(changes.styles.currentValue as AvatarStyles);
+      }
     });
   }
 
@@ -82,6 +87,35 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
       });
     }
     const validation = isAvatarData(value, validations);
+
+    this.errors = !validation.valid ? validation : undefined;
+    this._changeDetectorRef.detectChanges();
+  }
+
+  public validateAvatarStyles(value: AvatarStyles) {
+    const validations = [];
+
+    if (!this.imageExtraTemplate) {
+      validations.push({
+        name: 'image',
+        type: 'string',
+      });
+    }
+
+    if (!this.nameExtraTemplate) {
+      validations.push({
+        name: 'name',
+        type: 'string',
+      });
+    }
+
+    if (!this.dateExtraTemplate) {
+      validations.push({
+        name: 'date',
+        type: 'string',
+      });
+    }
+    const validation = isAvatarStyle(value, validations);
 
     this.errors = !validation.valid ? validation : undefined;
     this._changeDetectorRef.detectChanges();

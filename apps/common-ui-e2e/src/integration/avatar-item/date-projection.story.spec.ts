@@ -1,21 +1,20 @@
 import { avatarItemComponent } from '../../components/index';
 
-fixture('Avatar Item - Basic Story')
+fixture('Avatar Item - Date Projection Story')
 .page(`${avatarItemComponent.storybookPath}
-${avatarItemComponent.storybooks.basic}`);
+${avatarItemComponent.storybooks.dateProjection}`);
+
+test('Should have the date with content-projection', async t => {
+  await t
+    .expect(await avatarItemComponent.dataContainer.find('b')
+    .textContent)
+    .eql('Date Extra Template');
+});
 
 test('Should have the default text', async t => {
   await t
-    .expect(await avatarItemComponent.dataContainer.find('p').textContent)
-    .eql('Jhon Doe');
-});
-
-test('Should have the default date', async t => {
-  await t
-    .expect(
-      await avatarItemComponent.dataContainer.find('p:nth-child(2)')
-      .textContent)
-    .eql('Nov 26, 2019');
+      .expect(await avatarItemComponent.dataContainer.find('p').textContent)
+      .eql('Jhon Doe');
 });
 
 test('Should have the default image value', async t => {
@@ -57,38 +56,21 @@ test('Should have the default name style', async t => {
     .eql('text-gray-900 leading-none');
 });
 
-test('Should have the default date style', async t => {
+fixture('Avatar Item Date Projection Story - Combinations').
+page(`${avatarItemComponent.storybookPath}
+${avatarItemComponent.storybooks.dateProjection}
+&knob-date_data=2020-01-26&knob-image alt_data=Avatar de Tommy Atkins&knob-image value_data=https://avatars1.githubusercontent.com/u/17608169?s=400&knob-date_config=mediumDate&knob-container_styles=flex&knob-dataContainer_styles=text-sm&knob-date_styles=text-blue-600&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none`);
+
+test('Should have the date with content-projection', async t => {
   await t
-    .expect(
-      await avatarItemComponent.dataContainer.find('p:nth-child(2)')
-      .getAttribute('class'))
-    .eql('text-gray-600');
+      .expect(await avatarItemComponent.dataContainer.find('b').textContent)
+      .eql('Date Extra Template');
 });
 
-fixture('Avatar Item - Combinations').page(`${avatarItemComponent.storybookPath}
-${avatarItemComponent.storybooks.basic}
-&knob-name_data=Tommy Atkins&knob-date_data=2020-01-26&knob-image alt_data=Avatar de Tommy Atkins&knob-image value_data=https://avatars1.githubusercontent.com/u/17608169?s=400&knob-date_config=mediumDate&knob-container_styles=flex&knob-dataContainer_styles=text-sm&knob-date_styles=text-blue-600&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none`);
-
-test('Should change the change text', async t => {
+test('Should have the default text', async t => {
   await t
-    .expect(await avatarItemComponent.dataContainer.find('p').textContent)
-    .eql('Tommy Atkins');
-});
-
-test('Should change the change date', async t => {
-  await t
-    .expect(
-      await avatarItemComponent.dataContainer.find('p:nth-child(2)')
-      .textContent)
-    .eql('Jan 26, 2020');
-});
-
-test('Should change the change date', async t => {
-  await t
-    .expect(
-      await avatarItemComponent.dataContainer.find('p:nth-child(2)')
-      .textContent)
-    .eql('Jan 26, 2020');
+      .expect(await avatarItemComponent.dataContainer.find('p').textContent)
+      .eql('Jhon Doe');
 });
 
 test('Should change the change image value', async t => {
@@ -122,12 +104,4 @@ test('Should have the change name style', async t => {
     .expect(
       await avatarItemComponent.dataContainer.find('p').getAttribute('class'))
     .eql('text-blue-900 leading-none');
-});
-
-test('Should have the change date style', async t => {
-  await t
-    .expect(
-      await avatarItemComponent.dataContainer.find('p:nth-child(2)')
-      .getAttribute('class'))
-    .eql('text-blue-600');
 });

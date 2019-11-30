@@ -7,3 +7,4 @@ export * from './lib/guards/common/is-not-empty.guard';
 export * from './lib/guards/common/has-properties.guard';
 export * from './lib/guards/avatar/is-avatar-config.guard';
 export * from './lib/guards/avatar/is-avatar-data.guard';
+export * from './lib/guards/avatar/is-avatar-styles.guard';
