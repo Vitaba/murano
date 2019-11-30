@@ -1,5 +1,5 @@
-import { ContentLoaderModule } from '@vitaba/content-loader';
 import { number, object } from '@storybook/addon-knobs';
+import { ContentLoaderModule } from '@vitaba/content-loader';
 import { AvatarItemLoaderComponent } from './avatar-item-loader.component';
 
 // tslint:disable-next-line:no-default-export

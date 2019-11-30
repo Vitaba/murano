@@ -33,29 +33,42 @@ export const basic = () => ({
     imports: [],
   },
   props: {
-    data_date: text('date', data.date, 'Avatar Data'),
-    data_imageAlt: text('image Alt', data.image.alt, 'Avatar Data'),
-    data_imageSrc: text('image Src', data.image.value, 'Avatar Data'),
-    data_name: text('name', data.name, 'Avatar Data'),
-    config_dateFormat: text('date Format', config.dateFormat, 'Avatar Config'),
-    styles_container: text('container', styles.container, 'Avatar Styles'),
+    data_date: text('date', data.date, 'data'),
+    data_imageAlt: text('image alt', data.image.alt, 'data'),
+    data_imageValue: text('image value', data.image.value, 'data'),
+    data_name: text('name', data.name, 'data'),
+    config_dateFormat: text('date format', config.dateFormat, 'config'),
+    styles_container: text('container', styles.container, 'styles'),
     styles_dataContainer: text(
       'dataContainer',
       styles.dataContainer,
-      'Avatar Styles',
+      'styles',
     ),
-    styles_date: text('Date', styles.date, 'Avatar Styles'),
-    styles_image: text('Image', styles.image, 'Avatar Styles'),
-    styles_name: text('Name', styles.name, 'Avatar Styles'),
+    styles_date: text('date', styles.date, 'styles'),
+    styles_image: text('image', styles.image, 'styles'),
+    styles_name: text('name', styles.name, 'styles'),
   },
   template: `
-  <vitaba-avatar-item [data]="{
-    date: data_date,
-    image: {
-    alt: data_imageAlt,
-    value: data_imageSrc
-  },
-  name: data_name }"> </vitaba-avatar-item>
+  <vitaba-avatar-item
+  [data]="
+    {
+      date: data_date,
+      image: {
+      alt: data_imageAlt,
+      value: data_imageValue
+    },
+      name: data_name
+    }"
+  [styles]="
+    {
+    container: styles_container,
+    dataContainer: styles_dataContainer,
+    date: styles_date,
+    image: styles_image,
+    name: styles_name
+    }
+  "
+  > </vitaba-avatar-item>
   <pre> {{ date }} </pre>
   `,
 });
