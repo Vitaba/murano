@@ -16,13 +16,12 @@ test('Should have the default text', async t => {
     .eql('Jhon Doe');
 });
 
-test('Should have the default date', async t => {
+test('Should change the change date', async t => {
   await t
-    .expect(
-      await avatarItemComponent.dataContainer.
-      find('p:nth-child(2)').textContent,
-    )
-    .eql('Nov 26, 2019');
+      .expect(
+        await avatarItemComponent.dataContainer.find('p:nth-child(2)')
+        .textContent)
+      .eql('Nov 26, 2019');
 });
 
 test('Should have the default container style', async t => {
@@ -61,7 +60,7 @@ ${avatarItemComponent.storybooks.imageProjection}
 &knob-date_data=2020-01-26&knob-date_config=mediumDate&knob-container_styles=
 flex&knob-dataContainer_styles=text-sm&knob-date_styles=text-blue-600
 &knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=
-text-blue-900 leading-none`);
+text-blue-900 leading-none&knob-date format_config=short`);
 
 test('Should have the image with content-projection', async t => {
   await t
@@ -75,13 +74,12 @@ test('Should have the change text', async t => {
     .eql('Jhon Doe');
 });
 
-test('Should have the change date', async t => {
+test('Should change the change date', async t => {
   await t
       .expect(
-        await avatarItemComponent.dataContainer.
-        find('p:nth-child(2)').textContent,
-      )
-      .eql('Jan 26, 2020');
+        await avatarItemComponent.dataContainer.find('p:nth-child(2)')
+        .textContent)
+      .eql('1/26/20, 12:00 AM');
 });
 
 test('Should have the change container style', async t => {

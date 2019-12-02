@@ -67,7 +67,7 @@ test('Should have the default date style', async t => {
 
 fixture('Avatar Item - Combinations').page(`${avatarItemComponent.storybookPath}
 ${avatarItemComponent.storybooks.basic}
-&knob-name_data=Tommy Atkins&knob-date_data=2020-01-26&knob-image alt_data=Avatar de Tommy Atkins&knob-image value_data=https://avatars1.githubusercontent.com/u/17608169?s=400&knob-date_config=mediumDate&knob-container_styles=flex&knob-dataContainer_styles=text-sm&knob-date_styles=text-blue-600&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none`);
+&knob-name_data=Tommy Atkins&knob-date_data=2020-01-26&knob-image alt_data=Avatar de Tommy Atkins&knob-image value_data=https://avatars1.githubusercontent.com/u/17608169?s=400&knob-date_config=mediumDate&knob-container_styles=flex&knob-dataContainer_styles=text-sm&knob-date_styles=text-blue-600&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none&knob-date format_config=short`);
 
 test('Should change the change text', async t => {
   await t
@@ -80,15 +80,7 @@ test('Should change the change date', async t => {
     .expect(
       await avatarItemComponent.dataContainer.find('p:nth-child(2)')
       .textContent)
-    .eql('Jan 26, 2020');
-});
-
-test('Should change the change date', async t => {
-  await t
-    .expect(
-      await avatarItemComponent.dataContainer.find('p:nth-child(2)')
-      .textContent)
-    .eql('Jan 26, 2020');
+    .eql('1/26/20, 12:00 AM');
 });
 
 test('Should change the change image value', async t => {
