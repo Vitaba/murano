@@ -1,4 +1,4 @@
-// tslint:disable:no-any
+// tslint:disable:no-any no-unsafe-any
 import { GuardError } from '../../interfaces/guard/guard.interface';
 import { hasProperties } from '../common/has-properties.guard';
 import { isObject } from '../common/is-object.guard';

@@ -1,12 +1,20 @@
-// tslint:disable:no-any
+// tslint:disable:no-any no-unsafe-any
 import { GuardError } from '../../interfaces/guard/guard.interface';
-import { isNotEmptyObject } from '../common/is-not-empty-object.guard';
+import { hasProperties } from '../common/has-properties.guard';
 import { isObject } from '../common/is-object.guard';
 
-export function isAvatarConfig(arg: any) {
+export function isAvatarConfig(
+  arg: any,
+  properties: Array<{ name: string; type: string }> = [
+    {
+      name: 'dateFormat',
+      type: 'string',
+    },
+  ],
+) {
   const isObjectValidation = isObject(arg);
-  const isNotEmptyValidation = isNotEmptyObject(arg);
-  const valid = isObjectValidation.valid && isNotEmptyValidation.valid;
+  const hasPropertiesValidation = hasProperties(arg, properties);
+  const valid = isObjectValidation.valid && hasPropertiesValidation.valid;
   const compose: GuardError = {
     valid,
     guard: 'isAvatarConfig',
@@ -18,8 +26,8 @@ export function isAvatarConfig(arg: any) {
   if (!isObjectValidation.valid) {
     errors.push({ ...isObjectValidation });
   }
-  if (!isNotEmptyValidation.valid) {
-    errors.push({ ...isNotEmptyValidation });
+  if (!hasPropertiesValidation.valid) {
+    errors.push({ ...hasPropertiesValidation });
   }
 
   if (!valid) {

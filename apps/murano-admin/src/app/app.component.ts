@@ -8,10 +8,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class AppComponent {
   public avatarData = {
-    image: {
-      alt: 'Avatar de Sebastian',
-      value: 'https://avatars3.githubusercontent.com/u/17608169?s=460&v=4',
-    },
-    name: 'sebas',
+    image: 1,
+    name: 1,
   };
 }
