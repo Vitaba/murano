@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
-import { AvatarData, GuardError, HeaderData, HeaderStyles, isHeaderData } from '@vitaba/common-utils';
+import { GuardError, HeaderData, HeaderStyles, isHeaderData } from '@vitaba/common-utils';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -21,7 +21,7 @@ export class HeaderTitleComponent implements OnChanges, AfterViewInit {
   };
   @Input() public data: HeaderData = {
     description: 'Useful resources and assets for users.',
-    title: 'News',
+    title: 'Lorem Ipsum',
   };
 
   @ContentChild('titleExtraTemplate', { static: false })
@@ -65,7 +65,7 @@ export class HeaderTitleComponent implements OnChanges, AfterViewInit {
           this.errors = { ...this.errors, ...validation };
         }
       }
-
+      debugger;
       this._changeDetectorRef.detectChanges();
     });
   }

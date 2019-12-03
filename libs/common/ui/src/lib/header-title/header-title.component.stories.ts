@@ -46,3 +46,92 @@ export const basic = () => ({
     > </vitaba-header-title>
   `,
 });
+
+export const titleProjection = () => ({
+  moduleMetadata: {
+    declarations: [HeaderTitleComponent],
+    imports: [],
+  },
+  props: {
+    data_description: text('description', data.description, 'data'),
+    styles_container: text('container', styles.container, 'styles'),
+    styles_description: text('description', styles.description, 'styles'),
+    styles_line: text('line', styles.line, 'styles'),
+  },
+  template: `
+  <vitaba-header-title
+    [data]="{
+    title: data_title,
+    description: data_description
+    }"
+    [styles]="{
+    container: styles_container,
+    description: styles_description,
+    line: styles_line,
+    title: styles_title
+    }"
+    >
+    <pre> {{ styles_container }} </pre>
+    <ng-template #titleExtraTemplate> <b>Title Extra Template</b> </ng-template>
+    </vitaba-header-title>
+  `,
+});
+
+export const descriptionProjection = () => ({
+  moduleMetadata: {
+    declarations: [HeaderTitleComponent],
+    imports: [],
+  },
+  props: {
+    data_title: text('title', data.title, 'data'),
+    styles_container: text('container', styles.container, 'styles'),
+    styles_title: text('title', styles.title, 'styles'),
+    styles_line: text('line', styles.line, 'styles'),
+  },
+  template: `
+  <vitaba-header-title
+    [data]="{
+    title: data_title,
+    description: data_description
+    }"
+    [styles]="{
+    container: styles_container,
+    description: styles_description,
+    line: styles_line,
+    title: styles_title
+    }"
+    >
+    <ng-template #descriptionExtraTemplate> <b>Description Extra Template</b> </ng-template>
+    </vitaba-header-title>
+  `,
+});
+
+export const lineProjection = () => ({
+  moduleMetadata: {
+    declarations: [HeaderTitleComponent],
+    imports: [],
+  },
+  props: {
+    data_title: text('title', data.title, 'data'),
+    data_description: text('description', data.description, 'data'),
+    styles_container: text('container', styles.container, 'styles'),
+    styles_title: text('title', styles.title, 'styles'),
+    styles_description: text('description', styles.description, 'styles'),
+  },
+  template: `
+  <vitaba-header-title
+    [data]="{
+    title: data_title,
+    description: data_description
+    }"
+    [styles]="{
+    container: styles_container,
+    description: styles_description,
+    line: styles_line,
+    title: styles_title
+    }"
+    >
+    <ng-template #lineExtraTemplate> <b>Line Extra Template</b> </ng-template>
+    </vitaba-header-title>
+  `,
+});
