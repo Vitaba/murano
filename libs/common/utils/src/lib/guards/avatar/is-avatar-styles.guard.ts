@@ -3,21 +3,16 @@ import { GuardError } from '../../interfaces/guard/guard.interface';
 import { hasProperties } from '../common/has-properties.guard';
 import { isObject } from '../common/is-object.guard';
 
-export function isAvatarConfig(
+export function isAvatarStyle(
   arg: any,
-  properties: Array<{ name: string; type: string }> = [
-    {
-      name: 'dateFormat',
-      type: 'string',
-    },
-  ],
+  properties: Array<{ name: string; type: string }>,
 ) {
   const isObjectValidation = isObject(arg);
   const hasPropertiesValidation = hasProperties(arg, properties);
   const valid = isObjectValidation.valid && hasPropertiesValidation.valid;
   const compose: GuardError = {
     valid,
-    guard: 'isAvatarConfig',
+    guard: 'isAvatarStyle',
     value: arg,
   };
 
@@ -31,7 +26,7 @@ export function isAvatarConfig(
   }
 
   if (!valid) {
-    compose.message = 'Is not a avatar config';
+    compose.message = 'Is not a avatar style';
     compose.errors = errors;
   }
 

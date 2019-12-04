@@ -10,3 +10,4 @@ export * from './lib/guards/avatar/is-avatar-config.guard';
 export * from './lib/guards/avatar/is-avatar-data.guard';
 export * from './lib/guards/header/is-header-data.guard';
 export * from './lib/guards/header/is-header-styles.guard';
+export * from './lib/guards/avatar/is-avatar-styles.guard';

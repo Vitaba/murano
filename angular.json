@@ -185,6 +185,22 @@
               "quiet": true
             }
           }
+        },
+        "e2e": {
+          "builder": "@angular-plugins/testcafe:e2e",
+          "options": {
+            "browsers": [
+              "chrome --no-sandbox",
+              "firefox"
+            ],
+            "devServerTarget": "murano-admin:serve",
+            "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
+            "reporters": [
+              {
+                "name": "spec"
+              }
+            ]
+          }
         }
       },
       "schematics": {
