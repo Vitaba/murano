@@ -16,7 +16,7 @@ export class AppComponent {
   };
 
   public headerData = {
+    description: 'Sample Description',
     title: 'Sebastian',
-    description: '',
   };
 }

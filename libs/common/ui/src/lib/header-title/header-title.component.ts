@@ -1,3 +1,4 @@
+// tslint:disable: no-unsafe-any no-any
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
 import { GuardError, HeaderData, HeaderStyles, isHeaderData } from '@vitaba/common-utils';
 import { BehaviorSubject } from 'rxjs';
@@ -65,7 +66,6 @@ export class HeaderTitleComponent implements OnChanges, AfterViewInit {
           this.errors = { ...this.errors, ...validation };
         }
       }
-      debugger;
       this._changeDetectorRef.detectChanges();
     });
   }
