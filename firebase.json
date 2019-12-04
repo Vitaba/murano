@@ -1,0 +1,15 @@
+{
+  "hosting":[ {
+    "target":"beta",
+    "public": "dist/apps",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [{
+      "source": "/murano-admin",
+      "destination": "/murano-admin/index.html"
+    }]
+  }]
+}

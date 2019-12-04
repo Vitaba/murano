@@ -1,0 +1,1 @@
+.node_modules/standard-version --prerelease beta

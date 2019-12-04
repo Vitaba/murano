@@ -27,6 +27,7 @@ matrix:
       before_install:
         - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
       install:
+        - yarn install 
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
         - yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH)
@@ -43,7 +44,9 @@ matrix:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-       - yarn nx affected:build --all       
+       - yarn nx affected:build --all
+       after_success:
+      - firebase deploy --only hosting:beta --non-interactive
 notifications:
   email: false
   webhooks:
