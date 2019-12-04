@@ -4,8 +4,8 @@ import { isAvatarConfig } from './is-avatar-config.guard';
 const chance = new Chance();
 
 describe('isAvatarConfig Guard', () => {
-  it('Should pass when config is a non empty object', () => {
-    const avatarConfig = { dateFormat: chance.string() };
+  it('Should pass when config is correct', () => {
+    const avatarConfig = { dateFormat: 'medium' };
 
     expect(isAvatarConfig(avatarConfig)).toEqual({
       guard: 'isAvatarConfig',
@@ -17,25 +17,41 @@ describe('isAvatarConfig Guard', () => {
   it('Should fail when config is not an object', () => {
     const avatarConfig = chance.string();
 
-    expect(isAvatarConfig(avatarConfig)).toEqual({
+    expect(isAvatarConfig({ arg: avatarConfig })).toEqual({
       errors: [{
-        guard: 'isObject',
-        message: 'Invalid Object',
+        errors: [{
+          guard: 'String Validation',
+          message: 'Is not a string',
+          valid: false,
+          value: {
+            name: 'dateFormat',
+            type: 'string',
+          },
+        }],
+        guard: 'hasProperties',
         valid: false,
-        value: avatarConfig,
+        value: { arg: avatarConfig },
       }],
       guard: 'isAvatarConfig',
       message: 'Is not a avatar config',
       valid: false,
-      value: avatarConfig,
+      value: { arg: avatarConfig },
     });
   });
 
   it('Should fail when config is an empty object', () => {
     expect(isAvatarConfig({})).toEqual({
       errors: [{
-        guard: 'isNotEmptyObject',
-        message: 'Is not empty object',
+        errors: [{
+          guard: 'String Validation',
+          message: 'Is not a string',
+          valid: false,
+          value: {
+            name: 'dateFormat',
+            type: 'string',
+          },
+        }],
+        guard: 'hasProperties',
         valid: false,
         value: {},
       }],

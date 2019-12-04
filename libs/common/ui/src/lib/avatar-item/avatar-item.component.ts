@@ -1,6 +1,6 @@
 // tslint:disable: no-unsafe-any no-any
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
-import { AvatarConfig, AvatarData, AvatarStyles, GuardError, isAvatarData } from '@vitaba/common-utils';
+import { AvatarConfig, AvatarData, AvatarStyles, GuardError, isAvatarConfig, isAvatarData, isAvatarStyle } from '@vitaba/common-utils';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -54,7 +54,32 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
 
   public ngAfterViewInit(): void {
     this.changes.subscribe((changes: SimpleChanges) => {
-      this.validateAvatarData(changes.data.currentValue as AvatarData);
+      if (changes.data) {
+        const validation =
+        this.validateAvatarData(changes.data.currentValue as AvatarData);
+
+        if (validation) {
+          this.errors = { ...this.errors, ...validation };
+        }
+      }
+      if (changes.styles) {
+        const validation =
+        this.validateAvatarStyles(changes.styles.currentValue as AvatarStyles);
+
+        if (validation) {
+          this.errors = { ...this.errors, ...validation };
+        }
+      }
+
+      if (changes.config) {
+        const validation =
+        this.validateAvatarConfig(changes.config.currentValue as AvatarConfig);
+
+        if (validation) {
+          this.errors = { ...this.errors, ...validation };
+        }
+      }
+      this._changeDetectorRef.detectChanges();
     });
   }
 
@@ -83,7 +108,40 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
     }
     const validation = isAvatarData(value, validations);
 
-    this.errors = !validation.valid ? validation : undefined;
-    this._changeDetectorRef.detectChanges();
+    return !validation.valid ? validation : undefined;
+  }
+
+  public validateAvatarStyles(value: AvatarStyles) {
+    const validations = [];
+
+    if (!this.imageExtraTemplate) {
+      validations.push({
+        name: 'image',
+        type: 'string',
+      });
+    }
+
+    if (!this.nameExtraTemplate) {
+      validations.push({
+        name: 'name',
+        type: 'string',
+      });
+    }
+
+    if (!this.dateExtraTemplate) {
+      validations.push({
+        name: 'date',
+        type: 'string',
+      });
+    }
+    const validation = isAvatarStyle(value, validations);
+
+    return !validation.valid ? validation : undefined;
+  }
+
+  public validateAvatarConfig(value: AvatarConfig) {
+    const validation = isAvatarConfig(value);
+
+    return !validation.valid ? validation : undefined;
   }
 }

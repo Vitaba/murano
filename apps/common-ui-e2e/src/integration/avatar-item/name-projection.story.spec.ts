@@ -1,13 +1,13 @@
 import { avatarItemComponent } from '../../components/index';
 
-fixture('Avatar Item - Basic Story')
+fixture('Avatar Item - Name Projection Story')
 .page(`${avatarItemComponent.storybookPath}
-${avatarItemComponent.storybooks.basic}`);
+${avatarItemComponent.storybooks.nameProjection}`);
 
-test('Should have the default text', async t => {
+test('Should have the name with content-projection', async t => {
   await t
-    .expect(await avatarItemComponent.dataContainer.find('p').textContent)
-    .eql('Jhon Doe');
+    .expect(await avatarItemComponent.dataContainer.find('b').textContent)
+    .eql('Name Extra Template');
 });
 
 test('Should have the default date', async t => {
@@ -50,13 +50,6 @@ test('Should have the default image style', async t => {
     .eql('w-10 h-10 rounded-full mr-4');
 });
 
-test('Should have the default name style', async t => {
-  await t
-    .expect(
-      await avatarItemComponent.dataContainer.find('p').getAttribute('class'))
-    .eql('text-gray-900 leading-none');
-});
-
 test('Should have the default date style', async t => {
   await t
     .expect(
@@ -65,14 +58,16 @@ test('Should have the default date style', async t => {
     .eql('text-gray-600');
 });
 
-fixture('Avatar Item - Combinations').page(`${avatarItemComponent.storybookPath}
-${avatarItemComponent.storybooks.basic}
-&knob-name_data=Tommy Atkins&knob-date_data=2020-01-26&knob-image alt_data=Avatar de Tommy Atkins&knob-image value_data=https://avatars1.githubusercontent.com/u/17608169?s=400&knob-date_config=mediumDate&knob-container_styles=flex&knob-dataContainer_styles=text-sm&knob-date_styles=text-blue-600&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none&knob-date format_config=short`);
+fixture('Avatar Item Name Projection Story - Combinations')
+.page(`${avatarItemComponent.storybookPath}
+${avatarItemComponent.storybooks.nameProjection}
+&knob-date_data=2020-01-26&knob-image alt_data=Avatar de Tommy Atkins&knob-image value_data=https://avatars1.githubusercontent.com/u/17608169?s=400&knob-date_config=mediumDate&knob-container_styles=flex&knob-dataContainer_styles=text-sm&knob-date_styles=text-blue-600&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none
+&knob-date format_config=short`);
 
-test('Should change the change text', async t => {
+test('Should have the name with content-projection', async t => {
   await t
-    .expect(await avatarItemComponent.dataContainer.find('p').textContent)
-    .eql('Tommy Atkins');
+    .expect(await avatarItemComponent.dataContainer.find('b').textContent)
+    .eql('Name Extra Template');
 });
 
 test('Should change the change date', async t => {
@@ -107,13 +102,6 @@ test('Should have the change image style', async t => {
       await avatarItemComponent.container.find('img')
       .getAttribute('class'))
     .eql('w-10 h-10 rounded-none mr-4');
-});
-
-test('Should have the change name style', async t => {
-  await t
-    .expect(
-      await avatarItemComponent.dataContainer.find('p').getAttribute('class'))
-    .eql('text-blue-900 leading-none');
 });
 
 test('Should have the change date style', async t => {
