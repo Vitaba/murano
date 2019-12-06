@@ -1,6 +1,6 @@
 {
   "name": "vitaba",
-  "version": "1.2.4",
+  "version": "0.0.9",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -30,7 +30,7 @@
     "help": "nx help",
     "release": "node ./tools/scripts/release.js"
   },
-  "private": false,
+  "private": true,
   "dependencies": {
     "@angular-plugins/npm": "^0.0.4",
     "@angular-plugins/testcafe": "0.0.2-beta",
