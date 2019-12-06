@@ -203,8 +203,14 @@
               }
             ]
           }
-        }
-      },
+        },
+        "deploy":{
+          "builder": "@angular-plugins/npm:deploy",
+          "options": {
+            "packageJsonPath":"dist/libs/common/ui/package.json"
+          }
+      }
+    },
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
