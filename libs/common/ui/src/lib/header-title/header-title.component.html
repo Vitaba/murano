@@ -1,0 +1,30 @@
+<ng-container *ngIf="!errors; else showErrors">
+<div
+  [class]="styles.container">
+  <ng-template #titleDefaultTemplate>
+    <h1 [class]="styles.title">{{data.title}}</h1>
+  </ng-template>
+
+  <ng-container [ngTemplateOutlet]="titleExtraTemplate || titleDefaultTemplate">
+  </ng-container>
+
+  <ng-template #descriptionDefaultTemplate>
+    <div [class]="styles.description">{{data.description}}</div>
+  </ng-template>
+
+  <ng-container [ngTemplateOutlet]="descriptionExtraTemplate || descriptionDefaultTemplate">
+  </ng-container>
+
+  <ng-template #lineDefaultTemplate>
+    <hr [class]="styles.line" />
+  </ng-template>
+
+  <ng-container [ngTemplateOutlet]="lineExtraTemplate || lineDefaultTemplate">
+  </ng-container>
+
+</div>
+</ng-container>
+
+<ng-template #showErrors>
+  {{ errors | json}}
+</ng-template>

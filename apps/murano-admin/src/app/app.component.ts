@@ -15,4 +15,9 @@ export class AppComponent {
     },
     name: 'Jhon Doe',
   };
+
+  public headerData = {
+    description: 'Sample Description',
+    title: 'Sebastian',
+  };
 }
