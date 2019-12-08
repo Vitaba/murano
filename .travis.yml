@@ -1,5 +1,7 @@
 os: linux
 language: node_js
+cache:
+  npm: false
 stages:
   - name: validation
     if: type = pull_request OR type = push
