@@ -1,7 +1,10 @@
 os: linux
 language: node_js
+node_js: 12
 cache:
   npm: false
+install:
+  - echo "avoid install"  
 stages:
   - name: validation
     if: type = pull_request OR type = push
