@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderTitleComponent should be default 1`] = `
+<vitaba-header-title-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-header-title
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="font-sans font-light leading-normal markdown mb-6 px-6
+      max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4"
+    >
+      
+      
+      <h1
+        class="text-3xl text-gray-900"
+      >
+        Lorem Ipsum
+      </h1>
+      
+      
+      <div
+        class="mt-0 mb-4 text-gray-600"
+      >
+        Useful resources and assets for users.
+      </div>
+      
+      
+      <hr
+        class="my-8 border-b-2 border-gray-200"
+      />
+    </div>
+    
+  </vitaba-header-title>
+</vitaba-header-title-sample-implementation>
+`;
+
+exports[`HeaderTitleComponent should be descriptionExtraTemplate 1`] = `
+<vitaba-header-title-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-header-title
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="font-sans font-light leading-normal markdown mb-6 px-6
+      max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4"
+    >
+      
+      
+      <h1
+        class="text-3xl text-gray-900"
+      >
+        Lorem Ipsum
+      </h1>
+      
+      
+      <p>
+        Description content-projection
+      </p>
+      
+      
+      <hr
+        class="my-8 border-b-2 border-gray-200"
+      />
+    </div>
+    
+  </vitaba-header-title>
+</vitaba-header-title-sample-implementation>
+`;
+
+exports[`HeaderTitleComponent should be lineExtraTemplate 1`] = `
+<vitaba-header-title-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-header-title
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="font-sans font-light leading-normal markdown mb-6 px-6
+      max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4"
+    >
+      
+      
+      <h1
+        class="text-3xl text-gray-900"
+      >
+        Lorem Ipsum
+      </h1>
+      
+      
+      <div
+        class="mt-0 mb-4 text-gray-600"
+      >
+        Useful resources and assets for users.
+      </div>
+      
+      
+      <p>
+        Line content-projection
+      </p>
+    </div>
+    
+  </vitaba-header-title>
+</vitaba-header-title-sample-implementation>
+`;
+
+exports[`HeaderTitleComponent should be titleExtraTemplate 1`] = `
+<vitaba-header-title-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-header-title
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="font-sans font-light leading-normal markdown mb-6 px-6
+      max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4"
+    >
+      
+      
+      <p>
+        Title content-projection
+      </p>
+      
+      
+      <div
+        class="mt-0 mb-4 text-gray-600"
+      >
+        Useful resources and assets for users.
+      </div>
+      
+      
+      <hr
+        class="my-8 border-b-2 border-gray-200"
+      />
+    </div>
+    
+  </vitaba-header-title>
+</vitaba-header-title-sample-implementation>
+`;
+
+exports[`HeaderTitleComponent should throw errors when data is not in right format 1`] = `
+<vitaba-header-title-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-header-title
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+     {
+    "valid": false,
+    "guard": "isHeaderData",
+    "value": {
+      "description": 1,
+      "title": 1
+    },
+    "message": "Is not a header data",
+    "errors": [
+      {
+        "valid": false,
+        "guard": "hasProperties",
+        "value": {
+          "description": 1,
+          "title": 1
+        },
+        "errors": [
+          {
+            "value": {
+              "name": "title",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": false
+          },
+          {
+            "value": {
+              "name": "description",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": false
+          }
+        ]
+      }
+    ]
+  }
+  
+    
+  </vitaba-header-title>
+</vitaba-header-title-sample-implementation>
+`;

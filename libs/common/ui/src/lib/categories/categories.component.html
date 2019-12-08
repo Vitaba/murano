@@ -1,0 +1,22 @@
+<ng-container *ngIf="!errors; else showErrors">
+  <div [class]="styles.container">
+    <ng-template #imageDefaultTemplate>
+      <img [class]="styles.image" [src]="data.image.value"[alt]="data.image.alt"/>
+    </ng-template>
+    <ng-container [ngTemplateOutlet]="imageExtraTemplate || imageDefaultTemplate">
+    </ng-container>
+
+
+    <ng-template #nameDefaultTemplate>
+      <p [class]="styles.name">{{data.name}}</p>
+    </ng-template>
+    <ng-container [ngTemplateOutlet]="nameExtraTemplate || nameDefaultTemplate">
+      </ng-container>
+    
+  </div>
+</ng-container>
+
+<ng-template #showErrors>
+    {{ errors | json}}
+</ng-template>
+  

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardListComponent should create 1`] = `
+<vitaba-card-list
+  items={[Function Array]}
+  styles={[Function Object]}
+  title={[Function String]}
+>
+  <h3
+    class="font-sans text-lg text-gray-800 text-center mb-3"
+  >
+    Card List Example
+  </h3><div
+    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
+  >
+    
+    <ul>
+      <li>
+         Item 1 
+      </li>
+    </ul>
+    <ul>
+      <li>
+         Item 2 
+      </li>
+    </ul>
+  </div><p
+    class="sample"
+  >
+    Sample
+  </p>
+</vitaba-card-list>
+`;
