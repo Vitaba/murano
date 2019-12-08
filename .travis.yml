@@ -31,14 +31,9 @@ matrix:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; 
-        yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; 
-        yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel;
-        yarn nx affected:build --all --parallel; fi;'
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; yarn nx affected:build --all --parallel; fi;'
+    if: branch = master
     - os: linux
-    - branches:
-       only:
-        - master
       language: node_js
       node_js: 12
       dist: trusty
@@ -50,9 +45,10 @@ matrix:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-      - yarn nx affected:build --all --parallel
-      - firebase deploy --only hosting:beta --non-interactive
+      - yarn nx affected:build --all --parallel; 
+      - firebase deploy --only hosting:beta --non-interactive;
       - yarn vitaba-release
+      - yarn nx affected --target="deploy" --all --parallel; 
 notifications:
   email: false
   webhooks:

@@ -53,6 +53,3 @@ case "$COMMIT_TYPE" in
     fi;
     ;;
 esac
-
-.node_modules/bin/nx affected --target=build --all;
-.node_modules/bin/nx affected --target=deploy --all;
