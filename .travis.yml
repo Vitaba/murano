@@ -1,56 +1,49 @@
-matrix:
+stages:
+  - commit
+  - name: linting
+    if: branch != master
+  - name: testing
+    if: branch != master
+  - name: build
+  - name: deployment
+    if: branch = master
+os: linux
+language: node_js
+jobs:
   include:
-    - name: "lint"
-    - os: linux
+    - stage: "Validation"
       language: node_js
       node_js: 12
       dist: trusty
-      sudo: required
       cache:
         npm: false
       before_install:
         - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
+      name: "commit"  
+      script:
+        - yarn checkcommit
+      name: "linting"  
       script:
         - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:lint --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; fi'
-        - yarn checkcommit
-    - os: linux
-    - name: "test"
-      language: node_js
-      node_js: 12
-      dist: trusty
-      sudo: required
-      addons:
-        chrome: stable
-        firefox: latest
-      cache:
-        npm: false
-      before_install:
-        - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
-      install:
-        - yarn install --network-timeout 1000000 --frozen-lockfile
+      name: "testing"  
       script:
-        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; yarn nx affected:build --all --parallel; fi;'
-    if: branch = master
-    - os: linux
-      language: node_js
-      node_js: 12
-      dist: trusty
-      sudo: required
-      cache:
-        npm: false
-      before_install:
-        - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
-      install:
-        - yarn install --network-timeout 1000000 --frozen-lockfile
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; fi' 
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; fi'
+      name: "building"  
       script:
-      - yarn nx affected:build --all --parallel; 
-      - firebase deploy --only hosting:beta --non-interactive;
-      - yarn vitaba-release
-      - yarn nx affected --target="deploy" --all --parallel; 
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:build --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; fi'    
+      name: "deployment"  
+      after_script: 
+        - yarn add firebase-tools
+      script:
+        - firebase deploy --only hosting:beta --non-interactive --token $FIREBASE_TOKEN;
+        - yarn vitaba-release
+        - yarn nx affected --target="deploy" --all --parallel;
+ 
 notifications:
-  email: false
+  email: true
   webhooks:
     on_success: true
     on_failure: true
