@@ -1,5 +1,6 @@
 matrix:
   include:
+    - name: "lint"
     - os: linux
       language: node_js
       node_js: 12
@@ -12,8 +13,9 @@ matrix:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:lint --base=$(git merge-base HEAD $TRAVIS_BRANCH); fi'
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:lint --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; fi'
         - yarn checkcommit
+    - name: "test"
     - os: linux
       language: node_js
       node_js: 12
@@ -30,9 +32,31 @@ matrix:
         - yarn install 
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-        - yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH)
-        - yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH)
+        - yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel
+        - yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel
+    - name: "build"
     - os: linux
+      language: node_js
+      node_js: 12
+      dist: trusty
+      sudo: required
+      addons:
+        chrome: stable
+        firefox: latest
+      cache:
+        npm: false
+      before_install:
+        - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
+      install:
+        - yarn install 
+        - yarn install --network-timeout 1000000 --frozen-lockfile
+      script:
+        - yarn nx affected:build --all --parallel 
+    - name: "publish packages and apps"         
+    - os: linux
+    - branches:
+      only:
+        - tmp
       language: node_js
       node_js: 12
       dist: trusty
@@ -44,9 +68,10 @@ matrix:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-       - yarn nx affected:build --all
+       - yarn nx affected:build --all --parallel
        after_success:
       - firebase deploy --only hosting:beta --non-interactive
+      - yarn vitaba-release
 notifications:
   email: false
   webhooks:
