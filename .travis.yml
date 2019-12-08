@@ -56,7 +56,7 @@ matrix:
     - os: linux
     - branches:
       only:
-        - tmp
+        - master
       language: node_js
       node_js: 12
       dist: trusty
