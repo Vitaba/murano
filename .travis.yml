@@ -1,13 +1,5 @@
 os: linux
 language: node_js
-node_js: 12
-dist: trusty
-cache:
-  npm: false
-before_install:
-  - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
-install:
-  - yarn install --network-timeout 1000000 --frozen-lockfile
 stages:
   - name: validation
     if: type = pull_request OR type = push
@@ -25,6 +17,14 @@ jobs:
       script:
         - yarn checkcommit
     - stage: linting
+      node_js: 12
+      dist: trusty
+      cache:
+        npm: false
+      before_install:
+        - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
+      install:
+        - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
         - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:lint --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; fi'
     - stage: testing    
