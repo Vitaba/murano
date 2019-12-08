@@ -1,12 +1,12 @@
 stages:
   - commit
   - name: linting
-    if: branch != master
+    if: head_branch != master
   - name: testing
-    if: branch != master
-  - name: build
+    if: head_branch != master
+  - build
   - name: deployment
-    if: branch = master
+    if: head_branch = master
 os: linux
 language: node_js
 jobs:
