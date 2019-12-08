@@ -51,7 +51,7 @@ matrix:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
        - yarn nx affected:build --all --parallel
-       after_success:
+      after_success:
       - firebase deploy --only hosting:beta --non-interactive
       - yarn vitaba-release
 notifications:
