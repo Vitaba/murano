@@ -116,6 +116,6 @@ export const imageProjection = () => ({
     name: styles_name
   }
   ">
-  <ng-template #imageExtraTemplate> <b>mage Extra Template</b> </ng-template>
+  <ng-template #imageExtraTemplate> <b>Image Extra Template</b> </ng-template>
   </vitaba-categories>`,
 });
