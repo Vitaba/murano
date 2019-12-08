@@ -32,7 +32,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-plugins/npm": "^0.0.4",
+    "@angular-plugins/npm": "^0.0.7-beta",
     "@angular-plugins/testcafe": "0.0.2-beta",
     "@angular/animations": "^8.2.0",
     "@angular/common": "^8.2.0",

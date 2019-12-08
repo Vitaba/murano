@@ -165,10 +165,10 @@
     "@angular-devkit/core" "8.3.3"
     rxjs "6.4.0"
 
-"@angular-plugins/npm@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.npmjs.org/@angular-plugins/npm/-/npm-0.0.4.tgz#d9c3d2e1fbb9dd431027676fda065bd98ae67f44"
-  integrity sha512-K95kbl79/+1sBg3aUT7cUHhI3ATqnALkFp46MOMkKtKOeDYfHwUhgsulWi3aFw1zfnZeZBCL9w1NzvrVk0a6zg==
+"@angular-plugins/npm@^0.0.7-beta":
+  version "0.0.7-beta"
+  resolved "https://registry.npmjs.org/@angular-plugins/npm/-/npm-0.0.7-beta.tgz#85186ce881b4383dfbbc7db65ca5bceac05225a1"
+  integrity sha512-HnyViSv0j0xtIt9TpawmEWP/yf1Yxd/X1hJK847ghYguSVzj7SKFTJyrChVmHb8RBRjRsPTD1s2B5Mp+l+PJIQ==
   dependencies:
     "@angular-devkit/architect" "^0.803.2"
     "@angular-devkit/core" "^8.3.2"
