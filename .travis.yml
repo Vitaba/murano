@@ -1,5 +1,6 @@
 matrix:
   include:
+    - name: "lint"
     - os: linux
       language: node_js
       node_js: 12
@@ -14,9 +15,8 @@ matrix:
       script:
         - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn nx affected:lint --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; fi'
         - yarn checkcommit
-        - yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel
-        - yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel
     - os: linux
+    - name: "test"
       language: node_js
       node_js: 12
       dist: trusty
@@ -29,15 +29,15 @@ matrix:
       before_install:
         - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
       install:
-        - yarn install 
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-        - yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel
-        - yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel
-        - yarn nx affected:build --all --parallel 
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; 
+        yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel; 
+        yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel;
+        yarn nx affected:build --all --parallel; fi;'
     - os: linux
     - branches:
-      only:
+       only:
         - master
       language: node_js
       node_js: 12
@@ -50,8 +50,7 @@ matrix:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
       script:
-       - yarn nx affected:build --all --parallel
-      after_success:
+      - yarn nx affected:build --all --parallel
       - firebase deploy --only hosting:beta --non-interactive
       - yarn vitaba-release
 notifications:

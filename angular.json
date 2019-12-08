@@ -116,7 +116,7 @@
               "chrome --no-sandbox",
               "firefox"
             ],
-            "devServerTarget": "murano-admin:serve",
+            "devServerTarget": "murano-admin:serve --port 4201",
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
             "reporters": [
               {
@@ -195,7 +195,7 @@
               "chrome --no-sandbox",
               "firefox"
             ],
-            "devServerTarget": "murano-admin:serve",
+            "devServerTarget": "murano-admin:serve --port 4202",
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
             "reporters": [
               {
