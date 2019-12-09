@@ -9,7 +9,6 @@ export class CategoriesComponent {
   };
 
   public container: Selector;
-  public dataContainer: Selector;
 
   public constructor() {
     this.container = Selector('vitaba-categories > div');

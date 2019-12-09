@@ -25,8 +25,8 @@ export const basic = () => ({
     imports: [],
   },
   props: {
-    data_imageAlt: text('image alt', data.image.alt, 'data'),
-    data_imageValue: text('image value', data.image.value, 'data'),
+    data_image_alt: text('image alt', data.image.alt, 'data'),
+    data_image_value: text('image value', data.image.value, 'data'),
     data_name: text('name', data.name, 'data'),
     styles_container: text('container', styles.container, 'styles'),
     styles_image: text('image', styles.image, 'styles'),
@@ -37,8 +37,8 @@ export const basic = () => ({
   [data]="
   {
     image: {
-      alt: data_imageAlt,
-      value: data_imageValue
+      alt: data_image_alt,
+      value: data_image_value
     },
     name: data_name
   }"
@@ -58,8 +58,8 @@ export const nameProjection = () => ({
     imports: [],
   },
   props: {
-    data_imageAlt: text('image alt', data.image.alt, 'data'),
-    data_imageValue: text('image value', data.image.value, 'data'),
+    data_image_alt: text('image alt', data.image.alt, 'data'),
+    data_image_value: text('image value', data.image.value, 'data'),
     data_name: text('name', data.name, 'data'),
     styles_container: text('container', styles.container, 'styles'),
     styles_image: text('image', styles.image, 'styles'),
@@ -70,8 +70,8 @@ export const nameProjection = () => ({
   [data]="
   {
     image: {
-      alt: data_imageAlt,
-      value: data_imageValue
+      alt: data_image_alt,
+      value: data_image_value
     },
     name: data_name
   }"
@@ -92,8 +92,8 @@ export const imageProjection = () => ({
     imports: [],
   },
   props: {
-    data_imageAlt: text('image alt', data.image.alt, 'data'),
-    data_imageValue: text('image value', data.image.value, 'data'),
+    data_image_alt: text('image alt', data.image.alt, 'data'),
+    data_image_value: text('image value', data.image.value, 'data'),
     data_name: text('name', data.name, 'data'),
     styles_container: text('container', styles.container, 'styles'),
     styles_image: text('image', styles.image, 'styles'),
@@ -104,8 +104,8 @@ export const imageProjection = () => ({
   [data]="
   {
     image: {
-      alt: data_imageAlt,
-      value: data_imageValue
+      alt: data_image_alt,
+      value: data_image_value
     },
     name: data_name
   }"

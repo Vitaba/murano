@@ -6,13 +6,11 @@
     <ng-container [ngTemplateOutlet]="imageExtraTemplate || imageDefaultTemplate">
     </ng-container>
 
-
     <ng-template #nameDefaultTemplate>
       <p [class]="styles.name">{{data.name}}</p>
     </ng-template>
     <ng-container [ngTemplateOutlet]="nameExtraTemplate || nameDefaultTemplate">
       </ng-container>
-    
   </div>
 </ng-container>
 

@@ -33,7 +33,7 @@ test('Should have the default name style', async t => {
 fixture('Categories Image Projection Story - Combinations')
 .page(`${categoriesComponent.storybookPath}
 ${categoriesComponent.storybooks.imageProjection}
-&knob-name_data=History&knob-image alt_data=History Category&knob-image value_data=https://image.flaticon.com/icons/svg/2089/2089679.svg&knob-container_styles=flex items-center&knob-container_styles=text-sm&knob-date_styles=text-blue-600&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none&knob-date format_config=short`);
+&knob-name_data=History&knob-image alt_data=History Category&knob-image value_data=https://image.flaticon.com/icons/svg/2089/2089679.svg &knob-container_styles=flex items-center&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none`)
 
 test('Should have the image with content-projection', async t => {
   await t
@@ -59,14 +59,4 @@ test('Should have the change name style', async t => {
       await categoriesComponent.container.find('p').getAttribute('class'),
     )
     .eql('text-blue-900 leading-none');
-});
-
-test('Should have the change date style', async t => {
-  await t
-    .expect(
-      await categoriesComponent.container
-        .find('p:nth-child(2)')
-        .getAttribute('class'),
-    )
-    .eql('text-blue-600');
 });
