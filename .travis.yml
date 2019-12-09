@@ -7,7 +7,7 @@ install:
   - echo "No install"  
 stages:
   - name: setup
-    if: type = pull_request OR type = push
+    if: type = pull_request OR type = push AND head_branch != master
   - name: lint
     if: type = pull_request 
   - name: unit
@@ -17,7 +17,7 @@ stages:
   - name: build
     if: type = pull_request
   - name: deployment
-    if: head_branch = master  
+    if: type = push AND head_branch = master  
 jobs:
   fast_finish: true
   include:
