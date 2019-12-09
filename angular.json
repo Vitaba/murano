@@ -32,6 +32,8 @@
           },
           "configurations": {
             "production": {
+              "baseHref" : "/murano-admin/",
+            "deployUrl": "/murano-admin/",
               "fileReplacements": [
                 {
                   "replace": "apps/murano-admin/src/environments/environment.ts",
@@ -114,7 +116,9 @@
               "chrome --no-sandbox",
               "firefox"
             ],
+            "dev": true,
             "devServerTarget": "murano-admin:serve",
+            "devServerTargetTimeout": 50000,
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
             "reporters": [
               {
@@ -194,6 +198,7 @@
               "firefox"
             ],
             "devServerTarget": "murano-admin:serve",
+            "devServerTargetTimeout": 50000,
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
             "reporters": [
               {
@@ -201,8 +206,14 @@
               }
             ]
           }
-        }
-      },
+        },
+        "deploy":{
+          "builder": "@angular-plugins/npm:deploy",
+          "options": {
+            "packageJsonPath":"dist/libs/common/ui/package.json"
+          }
+      }
+    },
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
@@ -255,6 +266,18 @@
       "sourceRoot": "apps/common-ui-e2e/src",
       "projectType": "application",
       "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/common-ui-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/common-ui-e2e/**"
+            ]
+          }
+        },
         "e2e": {
           "debugMode": true,
           "debugOnFail": true,
@@ -271,18 +294,6 @@
               {
                 "name": "spec"
               }
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/common-ui-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/common-ui-e2e/**"
             ]
           }
         }

@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "vitaba-7f5f6"
+  },
+  "targets": {
+    "vitaba-7f5f6": {
+      "hosting": {
+        "beta": [
+          "beta-vitaba"
+        ],
+        "prod": [
+          "prod-vitaba"
+        ]
+      }
+    }
+  }
+}

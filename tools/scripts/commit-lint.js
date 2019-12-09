@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-console.log('🙈🙈🙈 Validating git commit message 🙈🙈🙈');
+console.log('  Validating git commit message 🙈🙈🙈');
 const gitMessage = require('child_process')
   .execSync('git log -1 --no-merges')
   .toString()
   .trim();
-const matchCommit = /(chore|build|feat|fix|refactor|style|docs|test)\((nx|repo|common)\):\s(([a-z0-9:\-\s])+)/g.test(
+const matchCommit = /(chore|build|feat|fix|refactor|style|docs|test)\((nx|repo|common|release|pre-release)\):\s(([a-z0-9:\-\s])+)/g.test(
   gitMessage
 );
 const matchRelease = /release/gi.test(gitMessage);
