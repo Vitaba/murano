@@ -17,7 +17,7 @@ stages:
   - name: build
     if: type = pull_request
   - name: deployment
-    if: type = push AND head_branch = master  
+    if: branch = master  
 jobs:
   fast_finish: true
   include:
