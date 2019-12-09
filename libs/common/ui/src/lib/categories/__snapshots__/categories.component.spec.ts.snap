@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoriesComponent should be default 1`] = `
+<vitaba-categories-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-categories
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="flex"
+    >
+      
+      
+      <img
+        alt="News Feed Icon"
+        class="w-6 h-6"
+        src="https://www.materialui.co/materialIcons/action/lock_black_144x144.png"
+      />
+      
+      
+      <p
+        class="text-sm text-gray-600 flex items-center"
+      >
+        News Feed
+      </p>
+    </div>
+    
+  </vitaba-categories>
+</vitaba-categories-sample-implementation>
+`;
+
+exports[`CategoriesComponent should be imageExtraTemplate 1`] = `
+<vitaba-categories-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-categories
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="flex"
+    >
+      
+      
+      <p>
+        Image content-projection
+      </p>
+      
+      
+      <p
+        class="text-sm text-gray-600 flex items-center"
+      >
+        News Feed
+      </p>
+    </div>
+    
+  </vitaba-categories>
+</vitaba-categories-sample-implementation>
+`;
+
+exports[`CategoriesComponent should be nameExtraTemplate 1`] = `
+<vitaba-categories-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-categories
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="flex"
+    >
+      
+      
+      <img
+        alt="News Feed Icon"
+        class="w-6 h-6"
+        src="https://www.materialui.co/materialIcons/action/lock_black_144x144.png"
+      />
+      
+      
+      <p>
+        Name content-projection
+      </p>
+    </div>
+    
+  </vitaba-categories>
+</vitaba-categories-sample-implementation>
+`;
+
+exports[`CategoriesComponent should throw errors when data is not in right format 1`] = `
+<vitaba-categories-sample-implementation
+  data={[Function Object]}
+  mode={[Function String]}
+  styles={[Function Object]}
+>
+  <vitaba-categories
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+     {
+    "valid": false,
+    "guard": "isCategoriesData",
+    "value": {
+      "image": 1,
+      "name": 1
+    },
+    "message": "Is not a categories data",
+    "errors": [
+      {
+        "valid": false,
+        "guard": "hasProperties",
+        "value": {
+          "image": 1,
+          "name": 1
+        },
+        "errors": [
+          {
+            "value": {
+              "name": "name",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": false
+          },
+          {
+            "value": {
+              "name": "image",
+              "type": "object"
+            },
+            "guard": "Object Validation",
+            "message": "Is not an object",
+            "valid": false
+          }
+        ]
+      }
+    ]
+  }
+  
+    
+  </vitaba-categories>
+</vitaba-categories-sample-implementation>
+`;
