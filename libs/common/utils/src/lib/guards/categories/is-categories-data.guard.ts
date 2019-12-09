@@ -1,5 +1,8 @@
+import { GuardError } from '../../interfaces/guard/guard.interface';
+import { hasProperties } from '../common/has-properties.guard';
+import { isObject } from '../common/is-object.guard';
+
 // tslint:disable: no-any no-unsafe-any
-import { GuardError, hasProperties, isObject } from '@vitaba/common-utils';
 
 export function isCategoriesData(
   arg: any,
