@@ -46,7 +46,7 @@ test('Should have the default name style', async t => {
 fixture('Categories Basic Story - Combinations')
 .page(`${categoriesComponent.storybookPath}
 ${categoriesComponent.storybooks.basic}
-&knob-name_data=History&knob-image alt_data=History Category&knob-image value_data=https://image.flaticon.com/icons/svg/2089/2089679.svg &knob-container_styles=flex items-center&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none`)
+&knob-name_data=History&knob-image alt_data=History Category&knob-image value_data=https://image.flaticon.com/icons/svg/2089/2089679.svg &knob-container_styles=flex items-center&knob-image_styles=w-10 h-10 rounded-none mr-4&knob-name_styles=text-blue-900 leading-none`);
 
 test('Should change the change text', async t => {
   await t
