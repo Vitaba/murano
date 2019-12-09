@@ -15,8 +15,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref" : "/murano-admin/",
-            "deployUrl": "/murano-admin/",
             "outputPath": "dist/apps/murano-admin",
             "index": "apps/murano-admin/src/index.html",
             "main": "apps/murano-admin/src/main.ts",
@@ -34,6 +32,8 @@
           },
           "configurations": {
             "production": {
+              "baseHref" : "/murano-admin/",
+            "deployUrl": "/murano-admin/",
               "fileReplacements": [
                 {
                   "replace": "apps/murano-admin/src/environments/environment.ts",

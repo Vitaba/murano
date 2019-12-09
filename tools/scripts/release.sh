@@ -5,7 +5,8 @@ COMMIT_TYPE=${COMMIT_MESSAGE%(*}  # retain the part before the colon
 COMMIT_SCOPE=${COMMIT_MESSAGE#*(}
 COMMIT_SCOPE=${COMMIT_SCOPE%)*}
 
-case "release" in
+# Based on feat(release): adding new feature
+case "${COMMIT_SCOPE}" in
 'release')
     ENV="prod";
     echo "Release for production 👌"
@@ -33,7 +34,7 @@ case "$COMMIT_TYPE" in
     if $ENV = "prod" then
     .node_modules/bin/release-it --ci major;
     else 
-    .node_modules/bin/release-it --ci major --preRelease=COMMIT_SCOPE;
+    .node_modules/bin/release-it --ci major --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 'refactor'| 'test')
@@ -41,7 +42,7 @@ case "$COMMIT_TYPE" in
     if $ENV = "prod" then
     .node_modules/bin/release-it --ci minor;
     else 
-    .node_modules/bin/release-it --ci minor --preRelease=COMMIT_SCOPE;
+    .node_modules/bin/release-it --ci minor --preRelease=$COMMIT_SCOPE;
     fi;
     ;;    
 'chore' | 'build' | 'fix' | 'style' | 'docs')
@@ -49,7 +50,10 @@ case "$COMMIT_TYPE" in
     if $ENV = "prod" then
     .node_modules/bin/release-it --ci patch;
     else 
-    .node_modules/bin/release-it --ci patch --preRelease=COMMIT_SCOPE;
+    .node_modules/bin/release-it --ci patch --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 esac
+
+.node_modules/bin/firebase deploy --only hosting:$ENV --non-interactive --token $FIREBASE_TOKEN;
+
