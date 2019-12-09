@@ -13,6 +13,7 @@ stages:
   - name: deployment
     if: head_branch = master  
 jobs:
+  fast_finish: true
   include:
     - stage: setup    
       script:
@@ -30,10 +31,10 @@ jobs:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile  
       script:
-        - yarn nx affected:lint --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel
-        - yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel 
-        - yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH)
-        - yarn nx affected:build --base=$(git merge-base HEAD $TRAVIS_BRANCH) --parallel  
+        - yarn nx affected:lint --base=$(git merge-base HEAD $TRAVIS_BRANCH) HEAD --parallel
+        - yarn nx affected:test --base=$(git merge-base HEAD $TRAVIS_BRANCH) HEAD --parallel 
+        - yarn nx affected:e2e --base=$(git merge-base HEAD $TRAVIS_BRANCH) HEAD
+        - yarn nx affected:build --base=$(git merge-base HEAD $TRAVIS_BRANCH) HEAD --parallel  
     - stage: deployment
       node_js: 12
       dist: trusty
