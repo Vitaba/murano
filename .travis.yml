@@ -85,13 +85,10 @@ jobs:
         - yarn install --network-timeout 1000000 --frozen-lockfile
         - yarn global add firebase-tools
       script:
-        - git config --global user.email $GITHUB_EMAIL
-        - git config --global user.name $GITHUB_USERNAME
-        - git remote rm origin 
-        - git remote add origin https://vitaba:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git 
         - yarn vitaba-release
 notifications:
   email: true
+  GITHUB_TOKEN=dbb80aad0b428a264f7fbacf10a500eb5131006e
   webhooks:
     on_success: true
     on_failure: true
