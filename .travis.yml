@@ -17,7 +17,7 @@ stages:
   - name: build
     if: false
   - name: deployment
-    if: type = push AND branch = master  
+    if: type = push  
 jobs:
   fast_finish: true
   include:
@@ -76,19 +76,16 @@ jobs:
       dist: trusty
       cache:
         npm: false
+      branches:
+        only:
+          - master  
       before_install:
         - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
         - yarn global add firebase-tools
       script:
-        - echo "Deployment"  
-      deploy:
-        - skip_cleanup: true
-        - provider: script
-          script: ./tools/scripts/release.sh.sh
-          on:
-            branch: master
+        - yarn vitaba-release
 notifications:
   email: true
   webhooks:
