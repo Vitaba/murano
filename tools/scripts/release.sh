@@ -8,6 +8,8 @@ git config --global user.email $GITHUB_EMAIL
 git config --global user.name $GITHUB_USERNAME
 git remote rm origin
 git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
+git fetch --all
+git checkout origin/master
 echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
 echo "👻 Building apps for release"
