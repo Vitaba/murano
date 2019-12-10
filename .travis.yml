@@ -84,6 +84,7 @@ jobs:
       script:
         - echo "Deployment"  
       deploy:
+        - skip_cleanup: true
         - provider: script
           script: ./tools/scripts/release.sh.sh
           on:
