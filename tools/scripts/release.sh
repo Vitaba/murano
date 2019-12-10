@@ -2,6 +2,7 @@
 # echo "👉️ minor release"
 #     if [ "prod" = "prod" ]; then echo "equal";
 #     else echo "not equal";fi;
+cd Vitaba/murano
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
 git config --global user.email $GITHUB_EMAIL
@@ -9,7 +10,7 @@ git config --global user.name $GITHUB_USERNAME
 git remote rm origin
 git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
 git fetch origin
-git symbolic-ref master refs/heads/master
+git remote set-head origin master
 yarn install --network-timeout 1000000 --frozen-lockfile
 yarn global add firebase-tools
 echo "👻 Building libraries for release"
