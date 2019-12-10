@@ -8,8 +8,7 @@ git config --global user.email $GITHUB_EMAIL
 git config --global user.name $GITHUB_USERNAME
 git remote rm origin
 git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
-git fetch --all
-git checkout origin/master
+git symbolic-ref HEAD refs/heads/master
 yarn install --network-timeout 1000000 --frozen-lockfile
 yarn global add firebase-tools
 echo "👻 Building libraries for release"
