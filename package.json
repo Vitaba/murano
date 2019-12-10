@@ -97,6 +97,12 @@
     "typescript": "~3.4.5"
   },
   "release-it": {
+    "git": {
+      "push": false
+    },
+    "hooks": {
+      "after:git:release": "git push origin master"
+    },
     "github": {
       "release": true
     }
