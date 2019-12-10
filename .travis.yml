@@ -9,13 +9,13 @@ stages:
   - name: setup
     if: type = pull_request OR type = push AND head_branch != master
   - name: lint
-    if: type = pull_request 
+    if: false 
   - name: unit
-    if: type = pull_request
+    if: false
   - name: e2e
-    if: type = pull_request      
+    if: false     
   - name: build
-    if: type = pull_request
+    if: false
   - name: deployment
     if: type = push AND branch = master  
 jobs:
