@@ -75,5 +75,5 @@ esac
 
 git push origin HEAD
 firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
-# ./node_modules/.bin/nx affected --target=deploy --all --parallel
+./node_modules/.bin/nx affected --target=deploy --all --parallel
 
