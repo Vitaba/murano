@@ -10,8 +10,10 @@ git config --global user.name $GITHUB_USERNAME
 git remote rm origin
 git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
 git fetch origin
+echo "👻 Current Branch"
 echo $(git rev-parse --abbrev-ref HEAD)
-echo ${TRAVIS_BRANCHa}
+echo "👻 Travis Branch"
+echo ${TRAVIS_BRANCH}
 git remote set-head origin TRAVIS_BRANCH
 yarn install --network-timeout 1000000 --frozen-lockfile
 yarn global add firebase-tools
