@@ -1,6 +1,6 @@
 {
   "name": "vitaba",
-  "version": "5.0.1-beta.0",
+  "version": "5.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -101,7 +101,7 @@
       "changelog": "git log --pretty=format:\"* %s (%h)\" ${latestTag}...HEAD",
       "requireCleanWorkingDir": false,
       "requireUpstream": false,
-      "pushArgs": "--follow-tags"
+      "pushArgs": "--follow-tags",
     },
     "github": {
       "release": true
