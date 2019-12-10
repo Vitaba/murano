@@ -1,4 +1,12 @@
-# 
+#!/bin/bash
+# echo "👉️ minor release"
+#     if [ "prod" = "prod" ]; then echo "equal";
+#     else echo "not equal";fi;
+echo "👻 Building libraries for release"
+node_modules/.bin/nx affected:build --all
+echo "👻 Building apps for release"
+node_modules/.bin/nx affected --target=package --configuration=production --all --parallel 
+
 COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')
 ## https://stackoverflow.com/questions/19482123/extract-part-of-a-string-using-bash-cut-split
 COMMIT_TYPE=${COMMIT_MESSAGE%(*}  # retain the part before the colon
@@ -11,49 +19,45 @@ case "${COMMIT_SCOPE}" in
     ENV="prod";
     echo "Release for production 👌"
     ;;
-*)
 'pre-release')
     ENV="beta";
     COMMIT_SCOPE="rc"
     echo "Pre-release for production 👌"
     ;;
 *)
-echo 'default'
-    ENV="beta"
-    COMMIT_SCOPE="beta"
+    ENV="beta";
+    COMMIT_SCOPE="beta";
     echo "Release for beta 👌"
     ;;
 
 esac
 
-echo ${ENV}
-
 case "$COMMIT_TYPE" in
 'feat')
     echo "👉️ Major Release "
-    if $ENV = "prod" then
-    .node_modules/bin/release-it --ci major;
+    if [ "$ENV" = "prod" ]; then
+    node_modules/.bin/release-it --ci major;
     else 
-    .node_modules/bin/release-it --ci major --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --ci major --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 'refactor'| 'test')
     echo "👉️ minor release"
-    if $ENV = "prod" then
-    .node_modules/bin/release-it --ci minor;
+    if  [ "$ENV" = "prod" ]; then node_modules/.bin/release-it --ci minor;
     else 
-    .node_modules/bin/release-it --ci minor --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --ci minor --preRelease=$COMMIT_SCOPE;
     fi;
     ;;    
 'chore' | 'build' | 'fix' | 'style' | 'docs')
-    echo "👉️ patch release"
-    if $ENV = "prod" then
-    .node_modules/bin/release-it --ci patch;
+    echo "👉️ patch release";
+    if  [ "$ENV" = "prod" ]; then
+    ./node_modules/.bin/release-it --ci patch;
     else 
-    .node_modules/bin/release-it --ci patch --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --ci patch --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 esac
 
-.node_modules/bin/firebase deploy --only hosting:$ENV --non-interactive --token $FIREBASE_TOKEN;
+./node_modules/.bin/firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
+./node_modules/.bin/nx affected --target=deploy --all --parallel
 

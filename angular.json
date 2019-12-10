@@ -12,7 +12,7 @@
       "sourceRoot": "apps/murano-admin/src",
       "prefix": "vitaba",
       "architect": {
-        "build": {
+        "package": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/murano-admin",
