@@ -58,6 +58,6 @@ case "$COMMIT_TYPE" in
     ;;
 esac
 
-./node_modules/.bin/firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
+firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
 ./node_modules/.bin/nx affected --target=deploy --all --parallel
 
