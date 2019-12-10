@@ -2,6 +2,8 @@
 # echo "👉️ minor release"
 #     if [ "prod" = "prod" ]; then echo "equal";
 #     else echo "not equal";fi;
+GITHUB_EMAIL = rlxsebas@gmail.com
+GITHUB_USERNAME = SebasG22
 git config --global user.email $GITHUB_EMAIL
 git config --global user.name $GITHUB_USERNAME
 git remote rm origin
