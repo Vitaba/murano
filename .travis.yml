@@ -88,7 +88,7 @@ jobs:
         - git config --global user.email $GITHUB_EMAIL
         - git config --global user.name $GITHUB_USERNAME
         - git remote rm origin 
-        - git remote add origin https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git 
+        - git remote add origin https://vitaba:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git 
         - yarn vitaba-release
 notifications:
   email: true
