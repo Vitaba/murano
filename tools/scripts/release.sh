@@ -10,6 +10,8 @@ git remote rm origin
 git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
 git fetch --all
 git checkout origin/master
+yarn install --network-timeout 1000000 --frozen-lockfile
+yarn global add firebase-tools
 echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
 echo "👻 Building apps for release"
@@ -43,24 +45,24 @@ case "$COMMIT_TYPE" in
 'feat')
     echo "👉️ Major Release "
     if [ "$ENV" = "prod" ]; then
-    node_modules/.bin/release-it --ci major;
+    node_modules/.bin/release-it --no-git.requireUpstream --ci major;
     else 
-    ./node_modules/.bin/release-it --ci major --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --ci major --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 'refactor'| 'test')
     echo "👉️ minor release"
-    if  [ "$ENV" = "prod" ]; then node_modules/.bin/release-it --ci minor;
+    if  [ "$ENV" = "prod" ]; then node_modules/.bin/release-it --no-git.requireUpstream --ci minor;
     else 
-    ./node_modules/.bin/release-it --ci minor --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --ci minor --preRelease=$COMMIT_SCOPE;
     fi;
     ;;    
 *)
     echo "👉️ patch release";
     if  [ "$ENV" = "prod" ]; then
-    ./node_modules/.bin/release-it --ci patch;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --ci patch;
     else 
-    ./node_modules/.bin/release-it --ci patch --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --ci patch --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 esac

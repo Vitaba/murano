@@ -81,9 +81,6 @@ jobs:
           - master  
       before_install:
         - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
-      install:
-        - yarn install --network-timeout 1000000 --frozen-lockfile
-        - yarn global add firebase-tools
       script:
         - yarn vitaba-release
 notifications:
