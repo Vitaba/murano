@@ -10,6 +10,7 @@ git config --global user.name $GITHUB_USERNAME
 git remote rm origin
 git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
 git fetch origin
+git symbolic-ref HEAD refs/heads/${TRAVIS_BRANCH}
 echo "👻 Current Branch"
 echo $(git rev-parse --abbrev-ref HEAD)
 echo "👻 Travis Branch"
