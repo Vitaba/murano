@@ -12,7 +12,7 @@
       "sourceRoot": "apps/murano-admin/src",
       "prefix": "vitaba",
       "architect": {
-        "build": {
+        "package": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/murano-admin",
@@ -67,7 +67,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "murano-admin:build"
+            "browserTarget": "murano-admin:package"
           },
           "configurations": {
             "production": {
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "murano-admin:build"
+            "browserTarget": "murano-admin:package"
           }
         },
         "lint": {

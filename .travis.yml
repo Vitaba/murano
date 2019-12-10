@@ -9,15 +9,15 @@ stages:
   - name: setup
     if: type = pull_request OR type = push AND head_branch != master
   - name: lint
-    if: type = pull_request 
+    if: false 
   - name: unit
-    if: type = pull_request
+    if: false
   - name: e2e
-    if: type = pull_request      
+    if: false     
   - name: build
-    if: type = pull_request
+    if: false
   - name: deployment
-    if: type = push AND head_branch = master  
+    if: type = push AND branch = master  
 jobs:
   fast_finish: true
   include:
@@ -70,7 +70,7 @@ jobs:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile  
       script:
-        - yarn nx affected:build --base=$(git merge-base HEAD $TRAVIS_BRANCH) HEAD --parallel    
+        - yarn nx affected:build --base=$(git merge-base HEAD $TRAVIS_BRANCH) HEAD --parallel      
     - stage: deployment
       node_js: 12
       dist: trusty
@@ -81,11 +81,11 @@ jobs:
       install:
         - yarn install --network-timeout 1000000 --frozen-lockfile
         - yarn add firebase-tools
-      script:
-        - yarn nx affected:build --all --parallel;
-        - yarn vitaba-release
-        - yarn nx affected --target="deploy" --all --parallel;
- 
+      deploy:
+        - provider: script
+          script: ./tools/scripts/release.sh.sh
+          on:
+            branch: master
 notifications:
   email: true
   webhooks:
