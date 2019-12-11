@@ -2,6 +2,8 @@
 # echo "👉️ minor release"
 #     if [ "prod" = "prod" ]; then echo "equal";
 #     else echo "not equal";fi;
+cp .npmrc $HOME/.npmrc
+npm whoiam
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
@@ -76,6 +78,7 @@ case "$COMMIT_TYPE" in
 esac
 
 git push origin HEAD
+npm whoiam
 firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
 ./node_modules/.bin/nx affected --target=deploy --all --parallel
 
