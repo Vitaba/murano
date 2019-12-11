@@ -2,12 +2,12 @@
 # echo "👉️ minor release"
 #     if [ "prod" = "prod" ]; then echo "equal";
 #     else echo "not equal";fi;
+echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
 cp .npmrc $HOME/.npmrc
 cat .npmrc
 npm whoami
 cat ~/.npmrc
 npm whoami
-echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
 git config --global user.email $GITHUB_EMAIL
