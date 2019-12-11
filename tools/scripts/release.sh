@@ -19,6 +19,7 @@ git remote set-head origin $TRAVIS_BRANCH
 yarn install --network-timeout 1000000 --frozen-lockfile
 yarn global add firebase-tools
 yarn global add npm-cli-login
+npm-cli-login
 echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
 echo "👻 Building apps for release"
