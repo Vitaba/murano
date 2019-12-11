@@ -3,7 +3,6 @@
 #     if [ "prod" = "prod" ]; then echo "equal";
 #     else echo "not equal";fi;
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-cd Vitaba/murano
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
 git config --global user.email $GITHUB_EMAIL
@@ -16,9 +15,10 @@ echo "👻 Current Branch"
 echo $(git rev-parse --abbrev-ref HEAD)
 echo "👻 Travis Branch"
 echo ${TRAVIS_BRANCH}
-git remote set-head origin TRAVIS_BRANCH
+git remote set-head origin $TRAVIS_BRANCH
 yarn install --network-timeout 1000000 --frozen-lockfile
 yarn global add firebase-tools
+yarn global add npm-cli-login
 echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
 echo "👻 Building apps for release"
