@@ -3,6 +3,9 @@
 #     if [ "prod" = "prod" ]; then echo "equal";
 #     else echo "not equal";fi;
 cp .npmrc $HOME/.npmrc
+cat .npmrc
+npm whoami
+cat ~/.npmrc
 npm whoami
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 GITHUB_EMAIL=rlxsebas@gmail.com
@@ -22,6 +25,7 @@ yarn install --network-timeout 1000000 --frozen-lockfile
 yarn global add firebase-tools
 yarn global add npm-cli-login
 npm-cli-login
+npm whoami
 echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
 echo "👻 Building apps for release"
