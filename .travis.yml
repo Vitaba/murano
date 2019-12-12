@@ -75,6 +75,8 @@ jobs:
       language: ruby
       install: true
       script:
+        - nvm install 12
+        - nvm use 12
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
         - npm whoami
         - yarn vitaba-release
