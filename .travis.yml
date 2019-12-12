@@ -73,6 +73,7 @@ jobs:
         - yarn nx affected:build --base=$(git merge-base HEAD $TRAVIS_BRANCH) HEAD --parallel      
     - stage: deployment
       language: ruby
+      node_js:  12
       install: true
       script:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
