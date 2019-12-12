@@ -1,4 +1,3 @@
 #!/bin/bash
-echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
 npm whoami
-
