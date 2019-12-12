@@ -2,15 +2,15 @@
 # echo "👉️ minor release"
 #     if [ "prod" = "prod" ]; then echo "equal";
 #     else echo "not equal";fi;
-echo "//registry.npmjs.org/:_password=${NPM_PASS}" > ~/.npmrc
-echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
-echo "//registry.npmjs.org/:username=sebasg" >> ~/.npmrc
-echo "//registry.npmjs.org/:email=info@sebasg.dev" >> ~/.npmrc
-npm adduser <<!
+# echo "//registry.npmjs.org/:_password=${NPM_PASS}" > ~/.npmrc
+# echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+# echo "//registry.npmjs.org/:username=sebasg" >> ~/.npmrc
+# echo "//registry.npmjs.org/:email=info@sebasg.dev" >> ~/.npmrc
+cat <<EOF
 $NPM_USER
 $NPM_PASS
 $NPM_EMAIL
-!
+EOF | npm adduser
 # rm -rf $HOME/.npmrc
 # cp .npmrc $HOME/.npmrc
 cat $HOME/.npmrc
