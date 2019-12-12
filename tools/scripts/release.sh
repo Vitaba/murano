@@ -11,4 +11,3 @@ echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
 npm whoami
 ./node_modules/.bin/nx affected --target=deploy --all --parallel
-
