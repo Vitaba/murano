@@ -72,18 +72,11 @@ jobs:
       script:
         - yarn nx affected:build --base=$(git merge-base HEAD $TRAVIS_BRANCH) HEAD --parallel      
     - stage: deployment
-      node_js: 12
-      dist: trusty
-      cache:
-        npm: false
-      branches:
-        only:
-          - master  
-      before_install:
-        - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start;
-        - echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+      language: ruby
+      install: true
       script:
-        - yarn vitaba-release
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+        - npm whoami
 notifications:
   email: false
   webhooks:
