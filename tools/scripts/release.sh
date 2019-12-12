@@ -5,4 +5,5 @@ echo "Local Directory"
 ls -la
 echo "Home Directory"
 ls -la $HOME
+cat $HOME/.npmrc
 npm whoami
