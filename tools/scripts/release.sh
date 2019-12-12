@@ -71,7 +71,6 @@ case "$COMMIT_TYPE" in
 esac
 
 git push origin HEAD
-npm whoami
 firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
 ./node_modules/.bin/nx affected --target=deploy --all --parallel
 
