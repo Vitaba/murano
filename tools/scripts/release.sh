@@ -2,10 +2,14 @@
 # echo "👉️ minor release"
 #     if [ "prod" = "prod" ]; then echo "equal";
 #     else echo "not equal";fi;
-echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
-rm -rf $HOME/.npmrc
-cp .npmrc $HOME/.npmrc
+echo "//registry.npmjs.org/:_password=${NPM_PASS}" > ~/.npmrc
+echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+echo "//registry.npmjs.org/:username=sebasg" >> ~/.npmrc
+echo "//registry.npmjs.org/:email=info@sebasg.dev" >> ~/.npmrc
+# rm -rf $HOME/.npmrc
+# cp .npmrc $HOME/.npmrc
 cat $HOME/.npmrc
+npm whoami
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
 git config --global user.email $GITHUB_EMAIL
@@ -21,9 +25,6 @@ echo ${TRAVIS_BRANCH}
 git remote set-head origin $TRAVIS_BRANCH
 yarn install --network-timeout 1000000 --frozen-lockfile
 yarn global add firebase-tools
-yarn global add npm-cli-login
-npm-cli-login
-npm whoami
 echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
 echo "👻 Building apps for release"
