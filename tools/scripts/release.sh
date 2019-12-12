@@ -12,6 +12,7 @@ echo $(git rev-parse --abbrev-ref HEAD)
 echo "👻 Travis Branch"
 echo ${TRAVIS_BRANCH}
 git remote set-head origin $TRAVIS_BRANCH
+yarn config set registry //registry.npmjs.org/
 yarn install --network-timeout 1000000 --frozen-lockfile
 yarn global add firebase-tools
 echo "👻 Building libraries for release"
