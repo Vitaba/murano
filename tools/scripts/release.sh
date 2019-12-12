@@ -1,5 +1,5 @@
 #!/bin/bash
-cat <<EOF
+cat <<-EOF
 $NPM_USER
 $NPM_PASS
 $NPM_EMAIL
