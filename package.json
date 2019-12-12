@@ -98,7 +98,8 @@
   },
   "release-it": {
     "git": {
-      "push": false
+      "push": false,
+      "releaseName": "chore(bump): release${version}"
     },
     "hooks": {
       "after:git:release": ""

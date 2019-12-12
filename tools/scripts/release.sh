@@ -1,4 +1,5 @@
 #!/bin/bash
+if [[ $TRAVIS_COMMIT_MESSAGE != *"chore(bump):"* ]]; then
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
 git config --global user.email $GITHUB_EMAIL
@@ -73,4 +74,6 @@ esac
 git push origin HEAD
 firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
 ./node_modules/.bin/nx affected --target=deploy --all --parallel
-
+else
+echo "No deployment";
+fi;
