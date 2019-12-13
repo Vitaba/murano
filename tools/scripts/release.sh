@@ -22,7 +22,6 @@ echo ${TRAVIS_BRANCH}
 git remote set-head origin $TRAVIS_BRANCH
 yarn config set registry //registry.npmjs.org/
 yarn install --network-timeout 1000000 --frozen-lockfile
-yarn global add firebase-tools
 echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
 echo "👻 Building apps for release"
@@ -77,7 +76,7 @@ case "$COMMIT_TYPE" in
     fi;
     ;;
 esac
-
+yarn global add firebase-tools
 git push origin HEAD
 firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
 ./node_modules/.bin/nx affected --target=deploy --all --parallel
