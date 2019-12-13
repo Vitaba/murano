@@ -1,12 +1,12 @@
 #!/bin/bash
 echo "Commit message"
-echo $TRAVIS_COMMIT_MESSAGE;
-if [[ $TRAVIS_COMMIT_MESSAGE != *"chore(bump):"* ]]; then
+echo $TRAVIS_COMMIT_MESSAGE
+if [[ ($TRAVIS_COMMIT_MESSAGE != *"Merge"*) && ($TRAVIS_COMMIT_MESSAGE != *"chore(bump):"*) ]]; then
 echo "not contains";
 else
 echo "contains";
 fi;
-if [[ $TRAVIS_COMMIT_MESSAGE != *"chore(bump):"* ]]; then
+if [[ ($TRAVIS_COMMIT_MESSAGE != *"Merge"*) && ($TRAVIS_COMMIT_MESSAGE != *"chore(bump):"*) ]]; then
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
 git config --global user.email $GITHUB_EMAIL
@@ -79,7 +79,7 @@ esac
 yarn global add firebase-tools
 git push origin HEAD
 firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
-./node_modules/.bin/nx affected --target=deploy --all --parallel
+./node_modules/.bin/nx affected --target=deploy --all --parallel;
 else
 echo "No deployment"
 fi;
