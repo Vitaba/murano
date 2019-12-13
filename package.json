@@ -1,6 +1,6 @@
 {
   "name": "vitaba",
-  "version": "5.0.1-beta.20",
+  "version": "5.0.1-beta.21",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -99,7 +99,7 @@
   "release-it": {
     "git": {
       "push": false,
-      "releaseName": "chore(bump): release${version}"
+      "commitMessage": "chore(bump): release${version}"
     },
     "hooks": {
       "after:git:release": ""
