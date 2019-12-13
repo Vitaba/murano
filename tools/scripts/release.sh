@@ -1,6 +1,12 @@
 #!/bin/bash
 echo "Commit message"
+TRAVIS_COMMIT_MESSAGE="chore(bumaasp): update"
 echo $TRAVIS_COMMIT_MESSAGE;
+if [[ $TRAVIS_COMMIT_MESSAGE != *"chore(bump):"* ]]; then
+echo "not contains";
+else
+echo "contains";
+fi;
 # if [[ $TRAVIS_COMMIT_MESSAGE != *"chore(bump):"* ]]; then
 # GITHUB_EMAIL=rlxsebas@gmail.com
 # GITHUB_USERNAME=SebasG22
