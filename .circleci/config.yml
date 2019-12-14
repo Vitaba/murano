@@ -153,13 +153,7 @@ jobs:
       - setup
       - run:
           name: Deploy Part 3
-          command: node ./tools/scripts/run-many.js deploy3 deploy
-  release-vitaba:
-    executor: default
-    steps:
-      - run:
-          name: Release Vitaba
-          command: ./tools/scripts/release.sh                                
+          command: node ./tools/scripts/run-many.js deploy3 deploy                            
 
 workflows:
   version: 2.1
