@@ -204,7 +204,4 @@ workflows:
             - install
       - build-vitaba-3:
           requires:
-            - install       
-  deployment_workflow:
-      jobs:
-        - release-vitaba:
+            - install
