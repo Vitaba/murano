@@ -206,7 +206,5 @@ workflows:
           requires:
             - install       
   deployment_workflow:
-      branches:
-            only: circle
       jobs:
         - release-vitaba:
