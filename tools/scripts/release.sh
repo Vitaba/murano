@@ -1,12 +1,13 @@
 #!/bin/bash
 echo "Commit message"
-echo $TRAVIS_COMMIT_MESSAGE
-if [[ ($TRAVIS_COMMIT_MESSAGE != *"Merge"*) && ($TRAVIS_COMMIT_MESSAGE != *"chore(bump):"*) ]]; then
+GIT_COMMIT_DESC: git log --format=%B -n 1 $CIRCLE_SHA1
+echo $GIT_COMMIT_DESC
+if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
 echo "not contains";
 else
 echo "contains";
 fi;
-if [[ ($TRAVIS_COMMIT_MESSAGE != *"Merge"*) && ($TRAVIS_COMMIT_MESSAGE != *"chore(bump):"*) ]]; then
+if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
 git config --global user.email $GITHUB_EMAIL
@@ -24,8 +25,6 @@ yarn config set registry //registry.npmjs.org/
 yarn install --network-timeout 1000000 --frozen-lockfile
 echo "👻 Building libraries for release"
 node_modules/.bin/nx affected:build --all
-echo "👻 Building apps for release"
-node_modules/.bin/nx affected --target=package --configuration=production --all --parallel 
 
 COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')
 ## https://stackoverflow.com/questions/19482123/extract-part-of-a-string-using-bash-cut-split
@@ -78,7 +77,7 @@ case "$COMMIT_TYPE" in
 esac
 yarn global add firebase-tools
 git push origin HEAD
-firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
+# firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
 ./node_modules/.bin/nx affected --target=deploy --all --parallel;
 else
 echo "No deployment"

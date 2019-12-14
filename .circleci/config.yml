@@ -1,0 +1,212 @@
+version: 2.1 # use CircleCI 2.1
+
+executors:
+  default:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:12-browsers
+
+commands:
+  install_rsync:
+    description: 'Install Rsync'
+    steps:
+      - run: sudo apt install rsync
+  yarn_install:
+    description: 'Install Dependencies'
+    steps:
+      - run: yarn install --frozen-lockfile --non-interactive
+      - save_cache:
+          key: vitaba-murano-node12-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache
+            - node_modules
+  restore_yarn_cache:
+    description: 'Restore Cached Dependencies'
+    steps:
+      - restore_cache:
+          keys:
+            - vitaba-murano-node12-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - vitaba-murano-node12-
+  setup:
+    description: 'Setup Executor'
+    steps:
+      - checkout
+      - restore_yarn_cache
+      - install_rsync
+
+jobs:
+  install:
+    executor: default
+    steps:
+      - checkout
+      - restore_yarn_cache
+      - yarn_install
+  basic-checks:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Check Commit Message Format
+          command: yarn checkcommit
+  lint-vitaba-1:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Lint Part 1
+          command: node ./tools/scripts/run-many.js lint1 lint
+  lint-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Lint Part 2
+          command: node ./tools/scripts/run-many.js lint2 lint
+  lint-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Lint Part 3
+          command: node ./tools/scripts/run-many.js lint3 lint
+  test-vitaba-1:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 1
+          command: node ./tools/scripts/run-many.js test1 test
+  test-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 2
+          command: node ./tools/scripts/run-many.js test2 test
+  test-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 3
+          command: node ./tools/scripts/run-many.js test3 test                        
+  e2e-vitaba-1:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 1
+          command: node ./tools/scripts/run-many.js e2e1 e2e
+  e2e-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 2
+          command: node ./tools/scripts/run-many.js e2e2 e2e
+  e2e-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 3
+          command: node ./tools/scripts/run-many.js e2e3 e2e                        
+  build-vitaba-1:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Build Part 1
+          command: node ./tools/scripts/run-many.js build1 build
+  build-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Build Part 2
+          command: node ./tools/scripts/run-many.js build2 build
+  build-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Build Part 3
+          command: node ./tools/scripts/run-many.js build3 build                        
+  deploy-vitaba-1:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Deploy Part 1
+          command: node ./tools/scripts/run-many.js deploy1 deploy
+  deploy-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Deploy Part 2
+          command: node ./tools/scripts/run-many.js deploy2 deploy
+  deploy-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Deploy Part 3
+          command: node ./tools/scripts/run-many.js deploy3 deploy
+  release-vitaba:
+    executor: default
+    steps:
+      - run:
+          name: Release Vitaba
+          command: ./tools/scripts/release.sh                                
+
+workflows:
+  version: 2.1
+  default_workflow:
+    jobs:
+      - install
+      - basic-checks:
+          requires:
+            - install
+      - lint-vitaba-1:
+          requires:
+            - install
+      - lint-vitaba-2:
+          requires:
+            - install
+      - lint-vitaba-3:
+          requires:
+            - install
+      - test-vitaba-1:
+          requires:
+            - install
+      - test-vitaba-2:
+          requires:
+            - install
+      - test-vitaba-3:
+          requires:
+            - install            
+      - e2e-vitaba-1:
+          requires:
+            - install
+      - e2e-vitaba-2:
+          requires:
+            - install
+      - e2e-vitaba-3:
+          requires:
+            - install
+      - build-vitaba-1:
+          requires:
+            - install
+      - build-vitaba-2:
+          requires:
+            - install
+      - build-vitaba-3:
+          requires:
+            - install       
+  deployment_workflow:
+      branches:
+            only: circle
+      jobs:
+        - release-vitaba:
