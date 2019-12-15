@@ -4,7 +4,7 @@ import { waitForAngular } from 'testcafe-angular-selectors';
 const header = Selector('.sample');
 
 fixture('Home')
- .page('http://localhost:4200/')
+ .page('http://localhost:4201/')
  .beforeEach(async () => waitForAngular());
 
 test('Sample', async t => {

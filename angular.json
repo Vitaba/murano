@@ -12,7 +12,7 @@
       "sourceRoot": "apps/murano-admin/src",
       "prefix": "vitaba",
       "architect": {
-        "package": {
+        "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/murano-admin",
@@ -67,7 +67,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "murano-admin:package"
+            "browserTarget": "murano-admin:build"
           },
           "configurations": {
             "production": {
@@ -117,14 +117,16 @@
               "firefox"
             ],
             "dev": true,
-            "devServerTarget": "murano-admin:serve",
+            "devServerTarget": "murano-admin:serve --port 4201",
             "devServerTargetTimeout": 50000,
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
             "reporters": [
               {
                 "name": "spec"
               }
-            ]
+            ],
+            "ports":[8001],
+            "concurrency": 10
           }
         },
         "lint": {
@@ -179,7 +181,7 @@
           "builder": "@nrwl/storybook:storybook",
           "options": {
             "uiFramework": "@storybook/angular",
-            "port": 4400,
+            "port": 5001,
             "config": {
               "configFolder": "libs/common/ui/.storybook"
             }
@@ -188,23 +190,6 @@
             "ci": {
               "quiet": true
             }
-          }
-        },
-        "e2e": {
-          "builder": "@angular-plugins/testcafe:e2e",
-          "options": {
-            "browsers": [
-              "chrome --no-sandbox",
-              "firefox"
-            ],
-            "devServerTarget": "murano-admin:serve",
-            "devServerTargetTimeout": 50000,
-            "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
-            "reporters": [
-              {
-                "name": "spec"
-              }
-            ]
           }
         },
         "deploy":{
@@ -294,7 +279,9 @@
               {
                 "name": "spec"
               }
-            ]
+            ],
+            "ports":[8002],
+            "concurrency":10
           }
         }
       }
