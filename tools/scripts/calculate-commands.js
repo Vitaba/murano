@@ -12,7 +12,7 @@ console.log(
     // ...commands('e2e'),
     ...commands('deploy'),
   })
-);3
+);
 
 function commands(target) {
   const affected = execSync(

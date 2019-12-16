@@ -65,42 +65,42 @@ jobs:
       - setup
       - run:
           name: Lint Part 1
-          command: node ./tools/scripts/run-many.js $COMMANDS lint1 lint
+          command: node ./tools/scripts/run-many.js $TASKS lint1 lint
   lint-vitaba-2:
     executor: default
     steps:
       - setup
       - run:
           name: Lint Part 2
-          command: node ./tools/scripts/run-many.js $COMMANDS lint2 lint
+          command: node ./tools/scripts/run-many.js $TASKS lint2 lint
   lint-vitaba-3:
     executor: default
     steps:
       - setup
       - run:
           name: Lint Part 3
-          command: node ./tools/scripts/run-many.js $COMMANDS lint3 lint
+          command: node ./tools/scripts/run-many.js $TASKS lint3 lint
   test-vitaba-1:
     executor: default
     steps:
       - setup
       - run:
           name: Unit Test Part 1
-          command: node ./tools/scripts/run-many.js $COMMANDS test1 test
+          command: node ./tools/scripts/run-many.js $TASKS test1 test
   test-vitaba-2:
     executor: default
     steps:
       - setup
       - run:
           name: Unit Test Part 2
-          command: node ./tools/scripts/run-many.js $COMMANDS test2 test
+          command: node ./tools/scripts/run-many.js $TASKS test2 test
   test-vitaba-3:
     executor: default
     steps:
       - setup
       - run:
           name: Unit Test Part 3
-          command: node ./tools/scripts/run-many.js $COMMANDS test3 test                        
+          command: node ./tools/scripts/run-many.js $TASKS test3 test                        
   e2e-vitaba:
     executor: default
     steps:
@@ -121,7 +121,7 @@ jobs:
       - setup
       - run:
           name: Deploy Part 1
-          command: node ./tools/scripts/run-many.js $COMMANDS deploy1 deploy
+          command: node ./tools/scripts/run-many.js $TASKS deploy1 deploy
   deploy-vitaba-2:
     executor: default
     steps:
@@ -135,7 +135,7 @@ jobs:
       - setup
       - run:
           name: Deploy Part 3
-          command: node ./tools/scripts/run-many.js $COMMANDS deploy3 deploy                            
+          command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy                            
 
 workflows:
   version: 2.1
