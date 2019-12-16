@@ -137,8 +137,8 @@ workflows:
     jobs:
       - install
       - setup:
-        requires: 
-          - install
+          requires: 
+            - install
       - basic-checks:
           requires:
             - setup
