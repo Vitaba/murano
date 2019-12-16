@@ -2,6 +2,7 @@ const execSync = require('child_process').execSync;
 
 const isMaster = process.argv[2] === 'False';
 const baseSha = isMaster ? 'origin/master~1' : 'master';
+const head = process.argv[3];
 
 // prints an object with keys {lint1: [...], lint2: [...], lint3: [...], test1: [...], .... build3: [...]}
 console.log(
@@ -16,14 +17,14 @@ console.log(
 
 function commands(target) {
   const affected = execSync(
-    `yarn nx print-affected --base=${baseSha} --head=${CIRCLE_SHA1} --target=${target}`
+    `yarn nx print-affected --base=${baseSha} --head=${head} --target=${target}`
   ).toString();
   
     const array = JSON.parse(affected
     .trim()
     .replace(/\r?\n?[^\r\n]*$/, '')
       .substring(affected.indexOf("\n") + 1)
-      .replace(`$ nx print-affected --base=${baseSha} --head=${CIRCLE_SHA1} --target=${target}`, "")
+      .replace(`$ nx print-affected --base=${baseSha} --head=${head} --target=${target}`, "")
       .trim()).tasks.map(t => t.target.project);
 
     array.sort(() => 0.5 - Math.random());
