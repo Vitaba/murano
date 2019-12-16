@@ -6,7 +6,7 @@ executors:
     docker:
       - image: circleci/node:12-browsers
     environment:
-      COMMANDS: empty  
+      COMMANDS: $(node ./tools/scripts/calculate-commands.js false)  
 
 commands:
   install_rsync:
@@ -29,21 +29,13 @@ commands:
           keys:
             - vitaba-murano-node12-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - vitaba-murano-node12-
-  set_commands:
-    description: 'Set commands'
-    steps:
-      - run: 
-          command: |- 
-            echo "COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV  
-            echo $COMMANDS     
+            - vitaba-murano-node12- 
   setup:
-    description: 'Setup Executor'
+    description: 'Setup Command'
     steps:
       - checkout
       - restore_yarn_cache
       - install_rsync          
-      - set_commands
 
 jobs:
   install:
@@ -52,7 +44,6 @@ jobs:
       - checkout
       - restore_yarn_cache
       - yarn_install
-      - set_commands
   basic-checks:
     executor: default
     steps:
