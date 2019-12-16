@@ -33,7 +33,9 @@ commands:
   set_commands:
     description: 'Set commands'
     steps:
-      - run: echo "COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV       
+      - run: 
+          command: |- 
+            echo "COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV       
   setup:
     description: 'Setup Executor'
     steps:
@@ -49,7 +51,7 @@ jobs:
       - checkout
       - restore_yarn_cache
       - yarn_install
-      - echo "export COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV
+      - set_commands
   basic-checks:
     executor: default
     steps:
