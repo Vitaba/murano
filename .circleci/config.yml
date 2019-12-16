@@ -30,7 +30,7 @@ commands:
             - vitaba-murano-node12-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
             - vitaba-murano-node12-
-  setup_commands:
+  setup:
     description: 'Setup Executor'
     steps:
       - run: echo "export COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV
@@ -42,10 +42,7 @@ jobs:
       - checkout
       - restore_yarn_cache
       - yarn_install
-  setup_env:
-    executor: default
-    steps:
-      - setup_commands
+      - setup
   basic-checks:
     executor: default
     steps:
@@ -141,28 +138,28 @@ workflows:
             - install
       - basic-checks:
           requires:
-            - setup_env
+            - install
       - lint-vitaba-1:
           requires:
-            - setup_env
+            - install
       - lint-vitaba-2:
           requires:
-            - setup_env
+            - install
       - lint-vitaba-3:
           requires:
-            - setup_env
+            - install
       - test-vitaba-1:
           requires:
-            - setup_env
+            - install
       - test-vitaba-2:
           requires:
-            - setup_env
+            - install
       - test-vitaba-3:
           requires:
-            - setup_env            
+            - install            
       - e2e-vitaba:
           requires:
-            - setup_env
+            - install
       - build-vitaba:
           requires:
-            - setup_env
+            - install
