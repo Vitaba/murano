@@ -32,10 +32,11 @@ commands:
     description: 'Set commands'
     steps:
       - run: 
-          command: |- 
+          command: 
+            echo "$(node ./tools/scripts/calculate-commands.js false)"
             echo "export TASKS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV  
             source $BASH_ENV  
-            echo "Taks defined : $TASKS" 
+            echo "Taks defined: $TASKS" 
   setup:
     description: 'Setup Executor'
     steps:
