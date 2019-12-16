@@ -136,33 +136,33 @@ workflows:
   default_workflow:
     jobs:
       - install
-      - setup:
+      - setup_env:
           requires: 
             - install
       - basic-checks:
           requires:
-            - setup
+            - setup_env
       - lint-vitaba-1:
           requires:
-            - setup
+            - setup_env
       - lint-vitaba-2:
           requires:
-            - setup
+            - setup_env
       - lint-vitaba-3:
           requires:
-            - setup
+            - setup_env
       - test-vitaba-1:
           requires:
-            - setup
+            - setup_env
       - test-vitaba-2:
           requires:
-            - setup
+            - setup_env
       - test-vitaba-3:
           requires:
-            - setup            
+            - setup_env            
       - e2e-vitaba:
           requires:
-            - setup
+            - setup_env
       - build-vitaba:
           requires:
-            - setup
+            - setup_env
