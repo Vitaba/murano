@@ -36,8 +36,8 @@ commands:
       - run: 
           command: |- 
             echo "export COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV  
-            echo $COMMANDS 
             source $BASH_ENV    
+            echo $COMMANDS 
   setup:
     description: 'Setup Executor'
     steps:
