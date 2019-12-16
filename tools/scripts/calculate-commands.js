@@ -10,7 +10,7 @@ console.log(
     ...commands('lint'),
     ...commands('test'),
     ...commands('build'),
-    // ...commands('e2e'),
+    ...commands('e2e'),
     ...commands('deploy'),
   })
 );

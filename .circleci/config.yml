@@ -103,13 +103,27 @@ jobs:
       - run:
           name: Unit Test Part 3
           command: node ./tools/scripts/run-many.js $TASKS test3 test                        
-  e2e-vitaba:
+  e2e-vitaba-1:
     executor: default
     steps:
       - setup
       - run:
           name: E2E Affected
-          command: node_modules/.bin/nx affected:e2e                       
+          command: node ./tools/scripts/run-many.js $TASKS e2e1 e2e 
+  e2e-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: E2E Affected
+          command: node ./tools/scripts/run-many.js $TASKS e2e2 e2e
+  e2e-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: E2E Affected
+          command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e                                       
   build-vitaba:
     executor: default
     steps:
