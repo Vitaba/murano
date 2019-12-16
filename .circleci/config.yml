@@ -45,7 +45,6 @@ jobs:
   setup:
     executor: default
     steps:
-      - install
       - setup_commands
       - echo $COMMANDS 
   basic-checks:
