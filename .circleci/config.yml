@@ -29,13 +29,22 @@ commands:
           keys:
             - vitaba-murano-node12-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - vitaba-murano-node12- 
+            - vitaba-murano-node12-
+  set_commands:
+    description: 'Set commands'
+    steps:
+      - run: 
+          command: |- 
+            echo "COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV  
+            echo $COMMANDS 
+            source $BASH_ENV    
   setup:
-    description: 'Setup Command'
+    description: 'Setup Executor'
     steps:
       - checkout
       - restore_yarn_cache
       - install_rsync          
+      - set_commands
 
 jobs:
   install:
@@ -44,6 +53,7 @@ jobs:
       - checkout
       - restore_yarn_cache
       - yarn_install
+      - set_commands
   basic-checks:
     executor: default
     steps:
