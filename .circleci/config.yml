@@ -31,7 +31,7 @@ commands:
             # fallback to using the latest cache if no exact match is found
             - vitaba-murano-node12-
   set_commands:
-    description: 'Set commands',
+    description: 'Set commands'
     steps:
       - run: echo "COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV       
   setup:
