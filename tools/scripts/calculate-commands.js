@@ -9,38 +9,24 @@ console.log(
     ...commands('lint'),
     ...commands('test'),
     ...commands('build'),
-    ...commands('e2e'),
+    // ...commands('e2e'),
+    ...commands('deploy'),
   })
 );3
 
 function commands(target) {
-  console.log('base', baseSha);
-  console.log('target', target);
-
-  const a = execSync(
+  const affected = execSync(
     `yarn nx print-affected --base=${baseSha} --target=${target} --plain`
   ).toString();
-  console.log('Index', a.trim().lastIndexOf('\n'));
-//   fs.writeFileSync(
-//     'name.txt',
-//     execSync(
-//       `yarn nx print-affected --base=${baseSha} --target=${target} --plain`
-//     )
-//       .toString()
-//       .trim()
-//       .replace(/\r?\n?[^\r\n]*$/, '')
-//   );
-
   
-    const array = JSON.parse(a
+    const array = JSON.parse(affected
     .trim()
     .replace(/\r?\n?[^\r\n]*$/, '')
-      .substring(a.indexOf("\n") + 1)
+      .substring(affected.indexOf("\n") + 1)
       .replace(`$ nx print-affected --base=${baseSha} --target=${target} --plain`, "")
       .trim()).tasks.map(t => t.target.project);
 
     array.sort(() => 0.5 - Math.random());
-    console.log('array', array.length);
     const third = Math.floor(array.length / 3);
     const a1 = array.slice(0, third);
     const a2 = array.slice(third, third * 2);
