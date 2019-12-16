@@ -135,28 +135,28 @@ workflows:
       - install
       - basic-checks:
           requires:
-            - install
+            - setup
       - lint-vitaba-1:
           requires:
-            - install
+            - setup
       - lint-vitaba-2:
           requires:
-            - install
+            - setup
       - lint-vitaba-3:
           requires:
-            - install
+            - setup
       - test-vitaba-1:
           requires:
-            - install
+            - setup
       - test-vitaba-2:
           requires:
-            - install
+            - setup
       - test-vitaba-3:
           requires:
-            - install            
+            - setup            
       - e2e-vitaba:
           requires:
-            - install
+            - setup
       - build-vitaba:
           requires:
-            - install
+            - setup
