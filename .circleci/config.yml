@@ -179,9 +179,15 @@ workflows:
       - test-vitaba-3:
           requires:
             - install            
-      - e2e-vitaba:
+      - e2e-vitaba-1:
           requires:
             - install
+      - e2e-vitaba-2:
+          requires:
+            - install
+      - e2e-vitaba-3:
+          requires:
+            - install            
       - build-vitaba:
           requires:
             - install
