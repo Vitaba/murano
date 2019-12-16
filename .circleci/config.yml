@@ -33,7 +33,10 @@ commands:
   setup:
     description: 'Setup Executor'
     steps:
-      - run: echo "export COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV
+      - checkout
+      - restore_yarn_cache
+      - install_rsync          
+      - echo "export COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV
 
 jobs:
   install:
@@ -42,88 +45,88 @@ jobs:
       - checkout
       - restore_yarn_cache
       - yarn_install
-      - setup
+      - echo "export COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV
   basic-checks:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Check Commit Message Format
           command: yarn checkcommit
   lint-vitaba-1:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Lint Part 1
           command: node ./tools/scripts/run-many.js $COMMANDS lint1 lint
   lint-vitaba-2:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Lint Part 2
           command: node ./tools/scripts/run-many.js $COMMANDS lint2 lint
   lint-vitaba-3:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Lint Part 3
           command: node ./tools/scripts/run-many.js $COMMANDS lint3 lint
   test-vitaba-1:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Unit Test Part 1
           command: node ./tools/scripts/run-many.js $COMMANDS test1 test
   test-vitaba-2:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Unit Test Part 2
           command: node ./tools/scripts/run-many.js $COMMANDS test2 test
   test-vitaba-3:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Unit Test Part 3
           command: node ./tools/scripts/run-many.js $COMMANDS test3 test                        
   e2e-vitaba:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: E2E Affected
           command: node_modules/.bin/nx affected:e2e                       
   build-vitaba:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Building all libraries
           command: node_modules/.bin/nx affected:build --all     
   deploy-vitaba-1:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Deploy Part 1
           command: node ./tools/scripts/run-many.js $COMMANDS deploy1 deploy
   deploy-vitaba-2:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Deploy Part 2
           command: node ./tools/scripts/run-many.js deploy2 deploy
   deploy-vitaba-3:
     executor: default
     steps:
-      - install
+      - setup
       - run:
           name: Deploy Part 3
           command: node ./tools/scripts/run-many.js $COMMANDS deploy3 deploy                            
