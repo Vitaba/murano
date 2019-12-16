@@ -33,7 +33,8 @@ commands:
     steps:
       - run: 
           command: |- 
-            echo 'Circle SHA ${CIRCLE_SHA1}'
+            git branch -f master origin/master
+            echo "Circle SHA $CIRCLE_SHA1"
             echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js false $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
             echo "Taks defined : $TASKS" 
