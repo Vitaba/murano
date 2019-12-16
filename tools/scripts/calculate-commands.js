@@ -16,14 +16,14 @@ console.log(
 
 function commands(target) {
   const affected = execSync(
-    `yarn nx print-affected --base=${baseSha} --target=${target} --plain`
+    `yarn nx print-affected --base=${baseSha} --head=${CIRCLE_SHA1} --target=${target}`
   ).toString();
   
     const array = JSON.parse(affected
     .trim()
     .replace(/\r?\n?[^\r\n]*$/, '')
       .substring(affected.indexOf("\n") + 1)
-      .replace(`$ nx print-affected --base=${baseSha} --target=${target} --plain`, "")
+      .replace(`$ nx print-affected --base=${baseSha} --head=${CIRCLE_SHA1} --target=${target}`, "")
       .trim()).tasks.map(t => t.target.project);
 
     array.sort(() => 0.5 - Math.random());
