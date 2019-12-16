@@ -35,7 +35,7 @@ commands:
     steps:
       - run: 
           command: |- 
-            echo "COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV  
+            echo "export COMMANDS=$(node ./tools/scripts/calculate-commands.js false)" >> $BASH_ENV  
             echo $COMMANDS 
             source $BASH_ENV    
   setup:
