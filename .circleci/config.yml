@@ -28,9 +28,10 @@ commands:
             - vitaba-murano-node12-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
             - vitaba-murano-node12-
-  set_commands:
+  setup_commands:
     description: 'Set commands'
     steps:
+      - checkout
       - run: 
           command: |- 
             git branch -f master origin/master
@@ -41,26 +42,29 @@ commands:
   setup:
     description: 'Setup Executor'
     steps:
-      - checkout
+      - setup_commands
       - restore_yarn_cache
       - install_rsync          
-      - set_commands
 
 jobs:
   install:
     executor: default
     steps:
-      - checkout
+      - setup_commands
       - restore_yarn_cache
       - yarn_install
-      - set_commands
   basic-checks:
     executor: default
     steps:
-      - setup
+      - run:
+          name: Validate Tasks
+          command: |-
+            if [ ! -z ${TASKS+x} ]; then
+            circleci-agent step halt  
+            fi
       - run:
           name: Check Commit Message Format
-          command: yarn checkcommit
+          command: yarn checkcommit       
   lint-vitaba-1:
     executor: default
     steps:
