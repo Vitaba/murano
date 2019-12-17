@@ -42,6 +42,7 @@ commands:
   setup:
     description: 'Setup Executor'
     steps:
+      - setup_commands
       - restore_yarn_cache
       - install_rsync          
 
@@ -49,6 +50,7 @@ jobs:
   install:
     executor: default
     steps:
+      - setup_commands
       - restore_yarn_cache
       - yarn_install
   basic-checks:
