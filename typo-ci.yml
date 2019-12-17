@@ -1,3 +1,14 @@
+dictionaries:
+  - en
+  - es
+
+# Any files/folders we should ignore?
+excluded_files:
+  - "package.json"
+  - "yarn.lock"
+  - ".typo-ci.yml"
+
+  # Any typos we should ignore?
 excluded_words:
   - murano
   - vitaba

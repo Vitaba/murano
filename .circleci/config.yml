@@ -148,6 +148,11 @@ jobs:
       - attach_workspace:
           at: /home/circleci/repo
       - setup
+      - run: 
+          name: Setup .npmrc
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            npm whoami
       - run:
           name: Deploy Part 1
           command: node ./tools/scripts/run-many.js $TASKS deploy1 deploy
@@ -157,6 +162,11 @@ jobs:
      - attach_workspace:
           at: /home/circleci/repo
      - setup
+     - run: 
+          name: Setup .npmrc
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            npm whoami
      - run:
         name: Deploy Part 2
         command: node ./tools/scripts/run-many.js deploy2 deploy
@@ -166,6 +176,11 @@ jobs:
      - attach_workspace:
           at: /home/circleci/repo
      - setup
+     - run: 
+          name: Setup .npmrc
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            npm whoami
      - run:
         name: Deploy Part 3
         command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy                         
@@ -182,10 +197,24 @@ jobs:
             npm whoami 
       - run:
           name: Generate Release
-          command: yarn vitaba-release              
+          command: yarn vitaba-release
+  deploy-firebase:
+    executor: default
+    steps:
+      - setup
+      - attach_workspace:
+          at: /home/circleci/repo
+      - run: 
+          name: Deploy to firebase
+          command: |-
+            yarn global add firebase-tools
+            firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN"
+      - run:
+          name: Generate Release
+          command: yarn vitaba-release                      
 workflows:
   version: 2.1
-  default_workflow:
+  pr_to_master:
     jobs:
       - checkout-job
       - install: 
@@ -194,36 +223,83 @@ workflows:
       - basic-checks:
           requires:
           - checkout-job
-      # - lint-vitaba-1:
-      #     requires:
-      #       - install
-      # - lint-vitaba-2:
-      #     requires:
-      #       - install
-      # - lint-vitaba-3:
-      #     requires:
-      #       - install
-      # - test-vitaba-1:
-      #     requires:
-      #       - install
-      # - test-vitaba-2:
-      #     requires:
-      #       - install
-      # - test-vitaba-3:
-      #     requires:
-      #       - install            
-      # - e2e-vitaba-1:
-      #     requires:
-      #       - install
-      # - e2e-vitaba-2:
-      #     requires:
-      #       - install
-      # - e2e-vitaba-3:
-      #     requires:
-      #       - install            
+      - lint-vitaba-1:
+          requires:
+            - install
+      - lint-vitaba-2:
+          requires:
+            - install
+      - lint-vitaba-3:
+          requires:
+            - install
+      - test-vitaba-1:
+          requires:
+            - install
+      - test-vitaba-2:
+          requires:
+            - install
+      - test-vitaba-3:
+          requires:
+            - install            
+      - e2e-vitaba-1:
+          requires:
+            - install
+      - e2e-vitaba-2:
+          requires:
+            - install
+      - e2e-vitaba-3:
+          requires:
+            - install            
       - build-vitaba:
           requires:
             - install
       - generate-release:
           requires:
-            - build-vitaba      
+            - lint-vitaba-1
+            - lint-vitaba-2
+            - lint-vitaba-3
+            - test-vitaba-1
+            - test-vitaba-2
+            - test-vitaba-3
+            - e2e-vitaba-1
+            - e2e-vitaba-2
+            - e2e-vitaba-3
+            - build-vitaba
+      - deploy-firebase:
+          requires:
+            - install
+            - generate-release
+          filters:
+            branches:
+              only: master        
+      - deploy-vitaba-1:
+          requires:
+            - install
+            - generate-release
+          filters:
+            branches:
+              only: master
+      - deploy-vitaba-2:
+          requires:
+            - install
+            - generate-release
+          filters:
+            branches:
+              only: master
+      - deploy-vitaba-3:
+          requires:
+            - install 
+            - generate-release
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/  
+  master_merge:
+    jobs:
+      - checkout-job:
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/            
