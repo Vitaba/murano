@@ -14,6 +14,7 @@ commands:
   yarn_install:
     description: 'Install Dependencies'
     steps:
+      - run: yarn config set registry //registry.npmjs.org/
       - run: yarn install --frozen-lockfile --non-interactive
       - save_cache:
           key: vitaba-murano-node12-{{ checksum "yarn.lock" }}
@@ -135,10 +136,16 @@ jobs:
       - setup
       - run:
           name: Building all libraries
-          command: node_modules/.bin/nx affected:build --all     
+          command: node_modules/.bin/nx affected:build --all   
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - dist/*         
   deploy-vitaba-1:
     executor: default
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - setup
       - run:
           name: Deploy Part 1
@@ -146,6 +153,8 @@ jobs:
   deploy-vitaba-2:
     executor: default
     steps:
+     - attach_workspace:
+          at: /tmp/workspace
      - setup
      - run:
         name: Deploy Part 2
@@ -153,11 +162,21 @@ jobs:
   deploy-vitaba-3:
     executor: default
     steps:
-      - setup
-      - run:
+     - attach_workspace:
+          at: /tmp/workspace
+     - setup
+     - run:
           name: Deploy Part 3
           command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy                            
-
+  generate-release:
+    executor: default
+    steps:
+      - setup
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Generate Release
+          command: yarn vitaba-release              
 workflows:
   version: 2.1
   default_workflow:
@@ -165,10 +184,10 @@ workflows:
       - checkout-job
       - install: 
           requires: 
-            - checkout-job
+          - checkout-job
       - basic-checks:
           requires:
-            - checkout-job
+          - checkout-job
       - lint-vitaba-1:
           requires:
             - install
@@ -190,33 +209,15 @@ workflows:
       - e2e-vitaba-1:
           requires:
             - install
-            - lint-vitaba-1
-            - lint-vitaba-2
-            - lint-vitaba-3
-            - test-vitaba-1
-            - test-vitaba-2
-            - test-vitaba-3
       - e2e-vitaba-2:
           requires:
             - install
-            - lint-vitaba-1
-            - lint-vitaba-2
-            - lint-vitaba-3
-            - test-vitaba-1
-            - test-vitaba-2
-            - test-vitaba-3
       - e2e-vitaba-3:
           requires:
-            - install
-            - lint-vitaba-1
-            - lint-vitaba-2
-            - lint-vitaba-3
-            - test-vitaba-1
-            - test-vitaba-2
-            - test-vitaba-3            
+            - install            
       - build-vitaba:
           requires:
             - install
-            - e2e-vitaba-1
-            - e2e-vitaba-2
-            - e2e-vitaba-3
+      - generate-release:
+          requires:
+            - build-vitaba      

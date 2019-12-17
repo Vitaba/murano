@@ -15,17 +15,12 @@ git config --global user.name $GITHUB_USERNAME
 git remote rm origin
 git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
 git fetch origin
-git symbolic-ref HEAD refs/heads/${TRAVIS_BRANCH}
+git symbolic-ref HEAD refs/heads/${CIRCLE_BRANCH}
 echo "👻 Current Branch"
 echo $(git rev-parse --abbrev-ref HEAD)
-echo "👻 Travis Branch"
-echo ${TRAVIS_BRANCH}
-git remote set-head origin $TRAVIS_BRANCH
-yarn config set registry //registry.npmjs.org/
-yarn install --network-timeout 1000000 --frozen-lockfile
-echo "👻 Building libraries for release"
-node_modules/.bin/nx affected:build --all
-
+echo "👻 Circle Branch"
+echo ${CIRCLE_BRANCH}
+git remote set-head origin $CIRCLE_BRANCH
 COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')
 ## https://stackoverflow.com/questions/19482123/extract-part-of-a-string-using-bash-cut-split
 COMMIT_TYPE=${COMMIT_MESSAGE%(*}  # retain the part before the colon
