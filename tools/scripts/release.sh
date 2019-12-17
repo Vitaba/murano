@@ -3,9 +3,9 @@ echo "Commit message"
 GIT_COMMIT_DESC: git log --format=%B -n 1 $CIRCLE_SHA1
 echo $GIT_COMMIT_DESC
 if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
-echo "not contains";
+echo "not contains chore(bump) or merge commit";
 else
-echo "contains";
+echo "contains chore(bump) or merge commit";
 fi;
 if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
 GITHUB_EMAIL=rlxsebas@gmail.com
@@ -14,12 +14,10 @@ git config --global user.email $GITHUB_EMAIL
 git config --global user.name $GITHUB_USERNAME
 git remote rm origin
 git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
-git fetch origin
+git fetch origin --tags
 git symbolic-ref HEAD refs/heads/${CIRCLE_BRANCH}
-echo "👻 Current Branch"
-echo $(git rev-parse --abbrev-ref HEAD)
-echo "👻 Circle Branch"
-echo ${CIRCLE_BRANCH}
+echo "👻 Current Branch $(git rev-parse --abbrev-ref HEAD)"
+echo "👻 Circle Branch ${CIRCLE_BRANCH}"
 git remote set-head origin $CIRCLE_BRANCH
 COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')
 ## https://stackoverflow.com/questions/19482123/extract-part-of-a-string-using-bash-cut-split
@@ -70,10 +68,7 @@ case "$COMMIT_TYPE" in
     fi;
     ;;
 esac
-yarn global add firebase-tools
 git push origin HEAD
-# firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
-./node_modules/.bin/nx affected --target=deploy --all --parallel;
 else
 echo "No deployment"
 fi;
