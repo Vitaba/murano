@@ -32,7 +32,8 @@ commands:
   setup_commands:
     description: 'Set commands'
     steps:
-      - run: 
+      - run:
+          name: Setup Tasks 
           command: |- 
             git branch -f master origin/master
             echo "Circle SHA $CIRCLE_SHA1"
@@ -166,20 +167,20 @@ jobs:
           at: /home/circleci/repo
      - setup
      - run:
-          name: Deploy Part 3
-          command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy                            
+        name: Deploy Part 3
+        command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy                         
   generate-release:
     executor: default
     steps:
       - setup
       - attach_workspace:
           at: /home/circleci/repo
-     - run: 
-        name: Setting npm token
-        command: |-
-        echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-        npm whoami
-     - run:
+      - run: 
+          name: Setup .npmrc
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            npm whoami 
+      - run:
           name: Generate Release
           command: yarn vitaba-release              
 workflows:
