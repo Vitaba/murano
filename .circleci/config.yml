@@ -138,14 +138,14 @@ jobs:
           name: Building all libraries
           command: node_modules/.bin/nx affected:build --all   
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: /root/repo
           paths:
             - dist/*         
   deploy-vitaba-1:
     executor: default
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: /root/repo
       - setup
       - run:
           name: Deploy Part 1
@@ -154,7 +154,7 @@ jobs:
     executor: default
     steps:
      - attach_workspace:
-          at: /tmp/workspace
+          at: /root/repo
      - setup
      - run:
         name: Deploy Part 2
@@ -163,7 +163,7 @@ jobs:
     executor: default
     steps:
      - attach_workspace:
-          at: /tmp/workspace
+          at: /root/repo
      - setup
      - run:
           name: Deploy Part 3
@@ -173,7 +173,7 @@ jobs:
     steps:
       - setup
       - attach_workspace:
-          at: /tmp/workspace
+          at: /root/repo
       - run:
           name: Generate Release
           command: yarn vitaba-release              
