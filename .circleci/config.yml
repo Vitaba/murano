@@ -59,15 +59,13 @@ jobs:
       - run:
           name: Validate Tasks
           command: |-
-          echo "Tasks $TASKS"
-          if [ -z ${TASKS+x} ]; then
-            yarn checkcommit;
-            else
+            echo "Tasks $TASKS"
+            if [ ! -z ${TASKS+x} ]; then
             circleci-agent step halt;
-          fi
+            fi
       - run:
           name: Check Commit Message Format
-          command:        
+          command: yarn checkcommit     
   lint-vitaba-1:
     executor: default
     steps:
