@@ -190,12 +190,33 @@ workflows:
       - e2e-vitaba-1:
           requires:
             - install
+            - lint-vitaba-1
+            - lint-vitaba-2
+            - lint-vitaba-3
+            - test-vitaba-1
+            - test-vitaba-2
+            - test-vitaba-3
       - e2e-vitaba-2:
           requires:
             - install
+            - lint-vitaba-1
+            - lint-vitaba-2
+            - lint-vitaba-3
+            - test-vitaba-1
+            - test-vitaba-2
+            - test-vitaba-3
       - e2e-vitaba-3:
           requires:
-            - install            
+            - install
+            - lint-vitaba-1
+            - lint-vitaba-2
+            - lint-vitaba-3
+            - test-vitaba-1
+            - test-vitaba-2
+            - test-vitaba-3            
       - build-vitaba:
           requires:
             - install
+            - e2e-vitaba-1
+            - e2e-vitaba-2
+            - e2e-vitaba-3
