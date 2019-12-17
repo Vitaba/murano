@@ -265,6 +265,11 @@ workflows:
             - e2e-vitaba-2
             - e2e-vitaba-3
             - build-vitaba
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/   
       - deploy-firebase:
           requires:
             - install
@@ -289,12 +294,7 @@ workflows:
       - deploy-vitaba-3:
           requires:
             - install 
-            - generate-release
-          filters:
-            branches:
-              only: master
-            tags:
-              ignore: /.*/  
+            - generate-release 
   master_merge:
     jobs:
       - checkout-job:
