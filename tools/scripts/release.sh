@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Commit message"
-GIT_COMMIT_DESC: git log --format=%B -n 1 $CIRCLE_SHA1
+GIT_COMMIT_DESC=git log --format=%B -n 1 $CIRCLE_BRANCH
 echo $GIT_COMMIT_DESC
 if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
 echo "not contains chore(bump) or merge commit";
