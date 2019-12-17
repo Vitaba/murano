@@ -194,33 +194,33 @@ workflows:
       - basic-checks:
           requires:
           - checkout-job
-      - lint-vitaba-1:
-          requires:
-            - install
-      - lint-vitaba-2:
-          requires:
-            - install
-      - lint-vitaba-3:
-          requires:
-            - install
-      - test-vitaba-1:
-          requires:
-            - install
-      - test-vitaba-2:
-          requires:
-            - install
-      - test-vitaba-3:
-          requires:
-            - install            
-      - e2e-vitaba-1:
-          requires:
-            - install
-      - e2e-vitaba-2:
-          requires:
-            - install
-      - e2e-vitaba-3:
-          requires:
-            - install            
+      # - lint-vitaba-1:
+      #     requires:
+      #       - install
+      # - lint-vitaba-2:
+      #     requires:
+      #       - install
+      # - lint-vitaba-3:
+      #     requires:
+      #       - install
+      # - test-vitaba-1:
+      #     requires:
+      #       - install
+      # - test-vitaba-2:
+      #     requires:
+      #       - install
+      # - test-vitaba-3:
+      #     requires:
+      #       - install            
+      # - e2e-vitaba-1:
+      #     requires:
+      #       - install
+      # - e2e-vitaba-2:
+      #     requires:
+      #       - install
+      # - e2e-vitaba-3:
+      #     requires:
+      #       - install            
       - build-vitaba:
           requires:
             - install
