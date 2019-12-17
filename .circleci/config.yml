@@ -31,7 +31,6 @@ commands:
   setup_commands:
     description: 'Set commands'
     steps:
-      - checkout
       - run: 
           command: |- 
             git branch -f master origin/master
@@ -42,17 +41,23 @@ commands:
   setup:
     description: 'Setup Executor'
     steps:
-      - setup_commands
+      - checkout
       - restore_yarn_cache
       - install_rsync          
+      - setup_commands
 
 jobs:
   install:
     executor: default
     steps:
-      - setup_commands
+      - checkout
       - restore_yarn_cache
       - yarn_install
+      - setup_commands
+  checkout-job:
+    executor: default
+    steps:
+      - checkout
   basic-checks:
     executor: default
     steps:
@@ -64,7 +69,6 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: Lint Part 1
           command: node ./tools/scripts/run-many.js $TASKS lint1 lint
@@ -72,7 +76,6 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: Lint Part 2
           command: node ./tools/scripts/run-many.js $TASKS lint2 lint
@@ -80,7 +83,6 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: Lint Part 3
           command: node ./tools/scripts/run-many.js $TASKS lint3 lint
@@ -88,16 +90,13 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: Unit Test Part 1
           command: node ./tools/scripts/run-many.js $TASKS test1 test
   test-vitaba-2:
     executor: default
     steps:
-      - setup_commands
       - setup
-      - setup_commands
       - run:
           name: Unit Test Part 2
           command: node ./tools/scripts/run-many.js $TASKS test2 test
@@ -105,7 +104,6 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: Unit Test Part 3
           command: node ./tools/scripts/run-many.js $TASKS test3 test                        
@@ -121,7 +119,6 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: E2E Affected Part 2
           command: node ./tools/scripts/run-many.js $TASKS e2e2 e2e
@@ -129,15 +126,13 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: E2E Affected Part 3
-          command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e                                       
+          command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e  
   build-vitaba:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: Building all libraries
           command: node_modules/.bin/nx affected:build --all     
@@ -145,7 +140,6 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: Deploy Part 1
           command: node ./tools/scripts/run-many.js $TASKS deploy1 deploy
@@ -153,7 +147,6 @@ jobs:
     executor: default
     steps:
      - setup
-     - setup_commands
      - run:
         name: Deploy Part 2
         command: node ./tools/scripts/run-many.js deploy2 deploy
@@ -161,7 +154,6 @@ jobs:
     executor: default
     steps:
       - setup
-      - setup_commands
       - run:
           name: Deploy Part 3
           command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy                            
@@ -170,10 +162,13 @@ workflows:
   version: 2.1
   default_workflow:
     jobs:
-      - install
+      - checkout-job
+      - install: 
+          requires: 
+            - checkout-job
       - basic-checks:
           requires:
-            - install
+            - checkout-job
       - lint-vitaba-1:
           requires:
             - install
