@@ -39,10 +39,13 @@ commands:
             echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js false $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
             echo "Taks defined : $TASKS" 
+  checkout_command:
+    description: 'Checkout Executor'
+    steps:
+      - checkout          
   setup:
     description: 'Setup Executor'
     steps:
-      - setup_commands
       - restore_yarn_cache
       - install_rsync          
 
@@ -50,12 +53,12 @@ jobs:
   install:
     executor: default
     steps:
-      - setup_commands
       - restore_yarn_cache
       - yarn_install
   basic-checks:
     executor: default
     steps:
+      - setup_commands
       - run:
           name: Validate Tasks
           command: |-
@@ -63,15 +66,23 @@ jobs:
             if [ -z ${TASKS+x} ]; then
             echo "Finish job"
             circleci-agent step halt;
-            else
-            echo "Continue job"
             fi
+      - checkout_command
       - run:
           name: Check Commit Message Format
           command: yarn checkcommit     
   lint-vitaba-1:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Lint Part 1
@@ -79,6 +90,15 @@ jobs:
   lint-vitaba-2:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Lint Part 2
@@ -86,6 +106,15 @@ jobs:
   lint-vitaba-3:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Lint Part 3
@@ -93,6 +122,15 @@ jobs:
   test-vitaba-1:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Unit Test Part 1
@@ -100,6 +138,15 @@ jobs:
   test-vitaba-2:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Unit Test Part 2
@@ -107,6 +154,15 @@ jobs:
   test-vitaba-3:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Unit Test Part 3
@@ -114,6 +170,15 @@ jobs:
   e2e-vitaba-1:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: E2E Affected
@@ -121,6 +186,15 @@ jobs:
   e2e-vitaba-2:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: E2E Affected
@@ -128,6 +202,15 @@ jobs:
   e2e-vitaba-3:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: E2E Affected
@@ -135,6 +218,15 @@ jobs:
   build-vitaba:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Building all libraries
@@ -142,6 +234,15 @@ jobs:
   deploy-vitaba-1:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Deploy Part 1
@@ -149,6 +250,15 @@ jobs:
   deploy-vitaba-2:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Deploy Part 2
@@ -156,6 +266,15 @@ jobs:
   deploy-vitaba-3:
     executor: default
     steps:
+      - setup_commands
+      - run:
+          name: Validate Tasks
+          command: |-
+            echo "Tasks $TASKS"
+            if [ -z ${TASKS+x} ]; then
+            echo "Finish job"
+            circleci-agent step halt;
+            fi
       - setup
       - run:
           name: Deploy Part 3
