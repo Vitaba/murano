@@ -151,10 +151,10 @@ jobs:
     executor: default
     steps:
      - setup
-      - setup_commands
-      - run:
-          name: Deploy Part 2
-          command: node ./tools/scripts/run-many.js deploy2 deploy
+     - setup_commands
+     - run:
+        name: Deploy Part 2
+        command: node ./tools/scripts/run-many.js deploy2 deploy
   deploy-vitaba-3:
     executor: default
     steps:
