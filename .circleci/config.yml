@@ -61,7 +61,10 @@ jobs:
           command: |-
             echo "Tasks $TASKS"
             if [ ! -z ${TASKS+x} ]; then
+            echo "Finish job"
             circleci-agent step halt;
+            else
+            echo "Continue job"
             fi
       - run:
           name: Check Commit Message Format
