@@ -59,7 +59,7 @@ jobs:
       - run:
           name: Validate Tasks
           command: |-
-          echo "Tasks ${TASKS}"
+          echo "Tasks $TASKS"
           if [ -z ${TASKS+x} ]; then
             yarn checkcommit;
             else
