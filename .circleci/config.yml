@@ -174,7 +174,12 @@ jobs:
       - setup
       - attach_workspace:
           at: /home/circleci/repo
-      - run:
+     - run: 
+        name: Setting npm token
+        command: |-
+        echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+        npm whoami
+     - run:
           name: Generate Release
           command: yarn vitaba-release              
 workflows:
