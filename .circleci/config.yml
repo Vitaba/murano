@@ -60,7 +60,7 @@ jobs:
           name: Validate Tasks
           command: |-
             echo "Tasks $TASKS"
-            if [ ! -z ${TASKS+x} ]; then
+            if [ -z ${TASKS+x} ]; then
             echo "Finish job"
             circleci-agent step halt;
             else
