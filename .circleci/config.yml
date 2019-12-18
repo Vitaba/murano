@@ -35,7 +35,6 @@ commands:
       - run:
           name: Setup Tasks 
           command: |- 
-            git branch -f master origin/master
             echo "Circle SHA $CIRCLE_SHA1"
             echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js false $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
@@ -344,7 +343,6 @@ workflows:
               ignore: /.*/   
       - deploy-firebase:
           requires:
-            - install
             - generate-release
           filters:
             branches:
@@ -353,7 +351,6 @@ workflows:
               ignore: /.*/        
       - deploy-vitaba-1:
           requires:
-            - install
             - generate-release
           filters:
             branches:
@@ -362,7 +359,6 @@ workflows:
               ignore: /.*/
       - deploy-vitaba-2:
           requires:
-            - install
             - generate-release
           filters:
             branches:
@@ -371,7 +367,6 @@ workflows:
               ignore: /.*/
       - deploy-vitaba-3:
           requires:
-            - install 
             - generate-release 
           filters:
             branches:
