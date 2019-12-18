@@ -90,7 +90,6 @@ jobs:
     steps:
       - checkout
       - setup
-      - 
       - run:
           name: Lint Part 1
           command: node ./tools/scripts/run-many.js $TASKS lint1 lint
