@@ -94,11 +94,7 @@ jobs:
       - setup_commands
       - run:
           command: |-
-            git branch -f master origin/master
             echo "Tasks defined : $TASKS"
-      - run:
-          name: Lint Part 1
-          command: node ./tools/scripts/run-many.js $TASKS lint1 lint
   lint-vitaba-2:
     executor: default
     steps:
