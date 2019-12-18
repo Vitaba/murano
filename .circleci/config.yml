@@ -38,11 +38,18 @@ commands:
             echo "Circle SHA $CIRCLE_SHA1"
             echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js false $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
-            echo "Taks defined : $TASKS"         
+            echo "Taks defined : $TASKS"
+  validate-release:
+    description: 'Set release env'
+    steps:
+      - run:
+          name: Retrieve commit message 
+          command: |- 
+            chmod +x ./tools/scripts/release-message.sh
+            ./tools/scripts/release-message.sh
   setup:
     description: 'Setup Executor'
     steps:
-      - checkout
       - restore_yarn_cache
       - install_rsync          
       - setup_commands
@@ -51,17 +58,24 @@ jobs:
   install:
     executor: default
     steps:
-      - checkout
       - restore_yarn_cache
       - yarn_install
       - setup_commands
+  install-release:
+    executor: default
+    steps:
+      - validate-release
+      - restore_yarn_cache
+      - yarn_install
+      - setup_commands    
   checkout-job:
     executor: default
     steps:
-      - checkout
+      - checkout    
   basic-checks:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: Check Commit Message Format
@@ -69,6 +83,7 @@ jobs:
   lint-vitaba-1:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: Lint Part 1
@@ -76,6 +91,7 @@ jobs:
   lint-vitaba-2:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: Lint Part 2
@@ -83,6 +99,7 @@ jobs:
   lint-vitaba-3:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: Lint Part 3
@@ -90,6 +107,7 @@ jobs:
   test-vitaba-1:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: Unit Test Part 1
@@ -97,6 +115,7 @@ jobs:
   test-vitaba-2:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: Unit Test Part 2
@@ -104,6 +123,7 @@ jobs:
   test-vitaba-3:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: Unit Test Part 3
@@ -111,6 +131,7 @@ jobs:
   e2e-vitaba-1:
     executor: default
     steps:
+      - checkout
       - setup
       - setup_commands
       - run:
@@ -119,6 +140,7 @@ jobs:
   e2e-vitaba-2:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: E2E Affected Part 2
@@ -126,13 +148,24 @@ jobs:
   e2e-vitaba-3:
     executor: default
     steps:
+      - checkout
       - setup
       - run:
           name: E2E Affected Part 3
-          command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e  
+          command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e 
+  release-message:
+    executor: default
+    steps:
+      - checkout
+      - validate-release
+      - run:
+          name: Check Commit Message Format
+          command: yarn release-message         
   build-vitaba:
     executor: default
     steps:
+      - checkout
+      - validate-release
       - setup
       - run:
           name: Building all libraries
@@ -140,13 +173,14 @@ jobs:
       - persist_to_workspace:
           root: /home/circleci/repo
           paths:
-            - dist/*         
+            - dist/*          
   deploy-vitaba-1:
     executor: default
     steps:
+      - checkout
+      - validate-release
       - attach_workspace:
           at: /home/circleci/repo
-      - setup
       - run: 
           name: Setup .npmrc
           command: |-
@@ -158,9 +192,10 @@ jobs:
   deploy-vitaba-2:
     executor: default
     steps:
+     - checkout
+     - validate-release
      - attach_workspace:
           at: /home/circleci/repo
-     - setup
      - run: 
           name: Setup .npmrc
           command: |-
@@ -172,9 +207,10 @@ jobs:
   deploy-vitaba-3:
     executor: default
     steps:
+     - checkout
+     - validate-release
      - attach_workspace:
           at: /home/circleci/repo
-     - setup
      - run: 
           name: Setup .npmrc
           command: |-
@@ -182,11 +218,12 @@ jobs:
             npm whoami
      - run:
         name: Deploy Part 3
-        command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy                         
+        command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy
   generate-release:
     executor: default
     steps:
-      - setup
+      - checkout
+      - validate-release
       - attach_workspace:
           at: /home/circleci/repo
       - run: 
@@ -200,14 +237,14 @@ jobs:
   deploy-firebase:
     executor: default
     steps:
-      - setup
+      - checkout
+      - validate-release
       - attach_workspace:
           at: /home/circleci/repo
       - run: 
           name: Deploy to firebase
           command: |-
-            yarn global add firebase-tools
-            firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN"
+            node_modules/.bin/firebase deploy --token firebase deploy --only hosting:beta --non-interactive --token=$FIREBASE_TOKEN
       - run:
           name: Generate Release
           command: yarn vitaba-release                      
@@ -219,157 +256,118 @@ workflows:
           filters:
             branches:
               ignore: master
-            tags:
-              ignore: /.*/
       - install: 
           requires: 
             - checkout-job
           filters:
             branches:
               ignore: master
-            tags:
-              ignore: /.*/
       - basic-checks:
           requires:
             - checkout-job
           filters:
             branches:
               ignore: master
-            tags:
-              ignore: /.*/
       - lint-vitaba-1:
           requires:
             - install
           filters:
             branches:
               ignore: master
-            tags:
-              ignore: /.*/  
       - lint-vitaba-2:
           requires:
             - install
           filters:
             branches:
-              ignore: master
-            tags:
-              ignore: /.*/  
+              ignore: master  
       - lint-vitaba-3:
           requires:
             - install
           filters:
             branches:
-              ignore: master
-            tags:
-              ignore: /.*/  
+              ignore: master 
       - test-vitaba-1:
           requires:
             - install
           filters:
             branches:
-              ignore: master
-            tags:
-              ignore: /.*/  
+              ignore: master  
       - test-vitaba-2:
           requires:
             - install
           filters:
             branches:
-              ignore: master
-            tags:
-              ignore: /.*/  
+              ignore: master  
       - test-vitaba-3:
           requires:
             - install
           filters:
             branches:
-              ignore: master
-            tags:
-              ignore: /.*/              
+              ignore: master              
       - e2e-vitaba-1:
           requires:
             - install
           filters:
             branches:
-              ignore: master
-            tags:
-              ignore: /.*/  
+              ignore: master  
       - e2e-vitaba-2:
           requires:
             - install
           filters:
             branches:
-              ignore: master
-            tags:
-              ignore: /.*/  
+              ignore: master  
       - e2e-vitaba-3:
           requires:
             - install 
           filters:
             branches:
               ignore: master
-            tags:
-              ignore: /.*/               
+              
   master_merge:
     jobs:
       - checkout-job:
           filters:
             branches:
               only: master
-            tags:
-              only: /.*/
-      - install: 
+      - install-release: 
           requires: 
             - checkout-job  
           filters:
             branches:
-              only: master
-            tags:
-              only: /.*/   
+              only: master  
       - build-vitaba:
           requires:
-            - install
+            - install-release
           filters:
             branches:
-              only: master
-            tags:
-              ignore: /.*/  
+              only: master 
       - generate-release:
           requires:
             - build-vitaba
           filters:
             branches:
-              only: master
-            tags:
-              ignore: /.*/   
+              only: master 
       - deploy-firebase:
           requires:
             - generate-release
           filters:
             branches:
-              only: master
-            tags:
-              ignore: /.*/        
+              only: master       
       - deploy-vitaba-1:
           requires:
             - generate-release
           filters:
             branches:
               only: master
-            tags:
-              ignore: /.*/
       - deploy-vitaba-2:
           requires:
             - generate-release
           filters:
             branches:
               only: master
-            tags:
-              ignore: /.*/
       - deploy-vitaba-3:
           requires:
             - generate-release 
           filters:
             branches:
-              only: master
-            tags:
-              ignore: /.*/                   
+              only: master                
