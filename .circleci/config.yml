@@ -219,7 +219,7 @@ workflows:
       - checkout-job:
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/
       - install: 
@@ -227,7 +227,7 @@ workflows:
           - checkout-job
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/
       - basic-checks:
@@ -235,7 +235,7 @@ workflows:
             - checkout-job
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/
       - lint-vitaba-1:
@@ -243,7 +243,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
       - lint-vitaba-2:
@@ -251,7 +251,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
       - lint-vitaba-3:
@@ -259,7 +259,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
       - test-vitaba-1:
@@ -267,7 +267,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
       - test-vitaba-2:
@@ -275,7 +275,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
       - test-vitaba-3:
@@ -283,7 +283,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/              
       - e2e-vitaba-1:
@@ -291,7 +291,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
       - e2e-vitaba-2:
@@ -299,7 +299,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
       - e2e-vitaba-3:
@@ -307,7 +307,7 @@ workflows:
             - install 
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/             
       - build-vitaba:
@@ -315,7 +315,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
       - generate-release:
@@ -332,7 +332,7 @@ workflows:
             - build-vitaba
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/   
       - deploy-firebase:
@@ -341,7 +341,7 @@ workflows:
             - generate-release
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/        
       - deploy-vitaba-1:
@@ -350,7 +350,7 @@ workflows:
             - generate-release
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/
       - deploy-vitaba-2:
@@ -359,7 +359,7 @@ workflows:
             - generate-release
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/
       - deploy-vitaba-3:
@@ -368,7 +368,7 @@ workflows:
             - generate-release 
           filters:
             branches:
-              only: master
+              ignore: master
             tags:
               ignore: /.*/  
   master_merge:
