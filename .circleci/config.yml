@@ -93,7 +93,7 @@ jobs:
       - setup
       - setup_commands
       - run:
-        command: |-
+          command: |-
           echo "Tasks defined : $TASKS"
       - run:
           name: Lint Part 1
