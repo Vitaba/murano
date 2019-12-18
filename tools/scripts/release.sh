@@ -3,11 +3,6 @@ echo "Commit message"
 GIT_COMMIT_DESC=git log --format=%B -n 1 $CIRCLE_BRANCH
 echo $GIT_COMMIT_DESC
 if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
-echo "not contains chore(bump) or merge commit";
-else
-echo "contains chore(bump) or merge commit";
-fi;
-if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
 GITHUB_EMAIL=rlxsebas@gmail.com
 GITHUB_USERNAME=SebasG22
 git config --global user.email $GITHUB_EMAIL
