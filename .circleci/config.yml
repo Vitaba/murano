@@ -64,6 +64,7 @@ jobs:
   install-release:
     executor: default
     steps:
+      - checkout
       - validate-release
       - restore_yarn_cache
       - yarn_install
@@ -207,18 +208,18 @@ jobs:
   deploy-vitaba-3:
     executor: default
     steps:
-     - checkout
-     - validate-release
-     - attach_workspace:
-          at: /home/circleci/repo
-     - run: 
-          name: Setup .npmrc
-          command: |-
-            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-            npm whoami
-     - run:
-        name: Deploy Part 3
-        command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy
+      - checkout
+      - validate-release
+      - attach_workspace:
+            at: /home/circleci/repo
+      - run: 
+            name: Setup .npmrc
+            command: |-
+              echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+              npm whoami
+      - run:
+          name: Deploy Part 3
+          command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy
   generate-release:
     executor: default
     steps:
