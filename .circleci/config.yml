@@ -1,0 +1,380 @@
+version: 2.1 # use CircleCI 2.1
+
+executors:
+  default:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:12-browsers  
+
+commands:
+  install_rsync:
+    description: 'Install Rsync'
+    steps:
+      - run: sudo apt install rsync
+  yarn_install:
+    description: 'Install Dependencies'
+    steps:
+      - run: yarn config set registry //registry.npmjs.org/
+      - run: yarn install --frozen-lockfile --non-interactive
+      - save_cache:
+          key: vitaba-murano-node12-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache
+            - node_modules
+  restore_yarn_cache:
+    description: 'Restore Cached Dependencies'
+    steps:
+      - restore_cache:
+          keys:
+            - vitaba-murano-node12-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - vitaba-murano-node12-
+  setup_commands:
+    description: 'Set commands'
+    steps:
+      - run:
+          name: Setup Tasks 
+          command: |- 
+            git branch -f master origin/master
+            echo "Circle SHA $CIRCLE_SHA1"
+            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js false $CIRCLE_SHA1)' &> $BASH_ENV  
+            source $BASH_ENV  
+            echo "Taks defined : $TASKS"         
+  setup:
+    description: 'Setup Executor'
+    steps:
+      - checkout
+      - restore_yarn_cache
+      - install_rsync          
+      - setup_commands
+
+jobs:
+  install:
+    executor: default
+    steps:
+      - checkout
+      - restore_yarn_cache
+      - yarn_install
+      - setup_commands
+  checkout-job:
+    executor: default
+    steps:
+      - checkout
+  basic-checks:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Check Commit Message Format
+          command: yarn checkcommit     
+  lint-vitaba-1:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Lint Part 1
+          command: node ./tools/scripts/run-many.js $TASKS lint1 lint
+  lint-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Lint Part 2
+          command: node ./tools/scripts/run-many.js $TASKS lint2 lint
+  lint-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Lint Part 3
+          command: node ./tools/scripts/run-many.js $TASKS lint3 lint
+  test-vitaba-1:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 1
+          command: node ./tools/scripts/run-many.js $TASKS test1 test
+  test-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 2
+          command: node ./tools/scripts/run-many.js $TASKS test2 test
+  test-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Unit Test Part 3
+          command: node ./tools/scripts/run-many.js $TASKS test3 test                        
+  e2e-vitaba-1:
+    executor: default
+    steps:
+      - setup
+      - setup_commands
+      - run:
+          name: E2E Affected Part 1
+          command: node ./tools/scripts/run-many.js $TASKS e2e1 e2e 
+  e2e-vitaba-2:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: E2E Affected Part 2
+          command: node ./tools/scripts/run-many.js $TASKS e2e2 e2e
+  e2e-vitaba-3:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: E2E Affected Part 3
+          command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e  
+  build-vitaba:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Building all libraries
+          command: node_modules/.bin/nx affected:build --all   
+      - persist_to_workspace:
+          root: /home/circleci/repo
+          paths:
+            - dist/*         
+  deploy-vitaba-1:
+    executor: default
+    steps:
+      - attach_workspace:
+          at: /home/circleci/repo
+      - setup
+      - run: 
+          name: Setup .npmrc
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            npm whoami
+      - run:
+          name: Deploy Part 1
+          command: node ./tools/scripts/run-many.js $TASKS deploy1 deploy
+  deploy-vitaba-2:
+    executor: default
+    steps:
+     - attach_workspace:
+          at: /home/circleci/repo
+     - setup
+     - run: 
+          name: Setup .npmrc
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            npm whoami
+     - run:
+        name: Deploy Part 2
+        command: node ./tools/scripts/run-many.js deploy2 deploy
+  deploy-vitaba-3:
+    executor: default
+    steps:
+     - attach_workspace:
+          at: /home/circleci/repo
+     - setup
+     - run: 
+          name: Setup .npmrc
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            npm whoami
+     - run:
+        name: Deploy Part 3
+        command: node ./tools/scripts/run-many.js $TASKS deploy3 deploy                         
+  generate-release:
+    executor: default
+    steps:
+      - setup
+      - attach_workspace:
+          at: /home/circleci/repo
+      - run: 
+          name: Setup .npmrc
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+            npm whoami 
+      - run:
+          name: Generate Release
+          command: yarn vitaba-release
+  deploy-firebase:
+    executor: default
+    steps:
+      - setup
+      - attach_workspace:
+          at: /home/circleci/repo
+      - run: 
+          name: Deploy to firebase
+          command: |-
+            yarn global add firebase-tools
+            firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN"
+      - run:
+          name: Generate Release
+          command: yarn vitaba-release                      
+workflows:
+  version: 2.1
+  pr_to_master:
+    jobs:
+      - checkout-job:
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/
+      - install: 
+          requires: 
+            - checkout-job
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/
+      - basic-checks:
+          requires:
+            - checkout-job
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/
+      - lint-vitaba-1:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/  
+      - lint-vitaba-2:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/  
+      - lint-vitaba-3:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/  
+      - test-vitaba-1:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/  
+      - test-vitaba-2:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/  
+      - test-vitaba-3:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/              
+      - e2e-vitaba-1:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/  
+      - e2e-vitaba-2:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/  
+      - e2e-vitaba-3:
+          requires:
+            - install 
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/               
+  master_merge:
+    jobs:
+      - checkout-job:
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/
+      - install: 
+          requires: 
+            - checkout-job  
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/   
+      - build-vitaba:
+          requires:
+            - install
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/  
+      - generate-release:
+          requires:
+            - build-vitaba
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/   
+      - deploy-firebase:
+          requires:
+            - install
+            - generate-release
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/        
+      - deploy-vitaba-1:
+          requires:
+            - install
+            - generate-release
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/
+      - deploy-vitaba-2:
+          requires:
+            - install
+            - generate-release
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/
+      - deploy-vitaba-3:
+          requires:
+            - install 
+            - generate-release 
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/                   

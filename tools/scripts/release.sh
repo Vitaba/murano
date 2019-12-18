@@ -1,18 +1,29 @@
 #!/bin/bash
-# echo "👉️ minor release"
-#     if [ "prod" = "prod" ]; then echo "equal";
-#     else echo "not equal";fi;
-echo "👻 Building libraries for release"
-node_modules/.bin/nx affected:build --all
-echo "👻 Building apps for release"
-node_modules/.bin/nx affected --target=package --configuration=production --all --parallel 
-
+echo "Commit message"
+GIT_COMMIT_DESC=git log --format=%B -n 1 $CIRCLE_BRANCH
+echo $GIT_COMMIT_DESC
+if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
+echo "not contains chore(bump) or merge commit";
+else
+echo "contains chore(bump) or merge commit";
+fi;
+if [[ ($GIT_COMMIT_DESC != *"Merge"*) && ($GIT_COMMIT_DESC != *"chore(bump):"*) ]]; then
+GITHUB_EMAIL=rlxsebas@gmail.com
+GITHUB_USERNAME=SebasG22
+git config --global user.email $GITHUB_EMAIL
+git config --global user.name $GITHUB_USERNAME
+git remote rm origin
+git remote add origin https://Vitaba:${GITHUB_TOKEN}@github.com/Vitaba/murano.git
+git fetch origin --tags
+git symbolic-ref HEAD refs/heads/${CIRCLE_BRANCH}
+echo "👻 Current Branch $(git rev-parse --abbrev-ref HEAD)"
+echo "👻 Circle Branch ${CIRCLE_BRANCH}"
+git remote set-head origin $CIRCLE_BRANCH
 COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')
 ## https://stackoverflow.com/questions/19482123/extract-part-of-a-string-using-bash-cut-split
 COMMIT_TYPE=${COMMIT_MESSAGE%(*}  # retain the part before the colon
 COMMIT_SCOPE=${COMMIT_MESSAGE#*(}
 COMMIT_SCOPE=${COMMIT_SCOPE%)*}
-
 # Based on feat(release): adding new feature
 case "${COMMIT_SCOPE}" in
 'release')
@@ -36,28 +47,28 @@ case "$COMMIT_TYPE" in
 'feat')
     echo "👉️ Major Release "
     if [ "$ENV" = "prod" ]; then
-    node_modules/.bin/release-it --ci major;
+    node_modules/.bin/release-it --no-git.requireUpstream --ci major;
     else 
-    ./node_modules/.bin/release-it --ci major --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --ci major --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 'refactor'| 'test')
     echo "👉️ minor release"
-    if  [ "$ENV" = "prod" ]; then node_modules/.bin/release-it --ci minor;
+    if  [ "$ENV" = "prod" ]; then node_modules/.bin/release-it --no-git.requireUpstream --ci minor;
     else 
-    ./node_modules/.bin/release-it --ci minor --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --ci minor --preRelease=$COMMIT_SCOPE;
     fi;
     ;;    
-'chore' | 'build' | 'fix' | 'style' | 'docs')
+*)
     echo "👉️ patch release";
     if  [ "$ENV" = "prod" ]; then
-    ./node_modules/.bin/release-it --ci patch;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --ci patch;
     else 
-    ./node_modules/.bin/release-it --ci patch --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --ci patch --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 esac
-
-firebase deploy --only hosting:$ENV --non-interactive --token "$FIREBASE_TOKEN";
-./node_modules/.bin/nx affected --target=deploy --all --parallel
-
+git push origin HEAD
+else
+echo "No deployment"
+fi;

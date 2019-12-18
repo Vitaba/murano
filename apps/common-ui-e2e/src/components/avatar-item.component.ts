@@ -1,7 +1,7 @@
 import { Selector } from 'testcafe';
 
 export class AvatarItemComponent {
-  public storybookPath = 'http://localhost:4400/iframe.html?id=avataritemcomponent--';
+  public storybookPath = 'http://localhost:5001/iframe.html?id=avataritemcomponent--';
   public storybooks = {
     basic: 'basic',
     dateProjection: 'date-projection',

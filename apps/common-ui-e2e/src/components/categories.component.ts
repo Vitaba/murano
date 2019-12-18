@@ -1,7 +1,7 @@
 import { Selector } from 'testcafe';
 
 export class CategoriesComponent {
-  public storybookPath = 'http://localhost:4400/iframe.html?id=categoriescomponent--';
+  public storybookPath = 'http://localhost:5001/iframe.html?id=categoriescomponent--';
   public storybooks = {
     basic: 'basic',
     imageProjection: 'image-projection',
