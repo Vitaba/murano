@@ -18,9 +18,9 @@ console.log(
 function commands(target) {
   let affectedCommand;
   switch (target) {
-    case 'e2e':
+    case 'build':
     case 'deploy':
-      affectedCommand = `nx print-affected --base=${baseSha} --head=${head} --target=${target}`;
+      affectedCommand = `nx print-affected --target=${target} --all`;
       break;
     default:
       affectedCommand = `nx print-affected --base=${baseSha} --head=${head} --target=${target}`;
