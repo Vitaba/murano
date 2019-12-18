@@ -36,10 +36,15 @@ commands:
           name: Setup Tasks 
           command: |- 
             echo "Circle SHA $CIRCLE_SHA1"
-            IS_PR=[ ! -z ${CIRCLE_PULL_REQUEST+x} ]
+            if [ -z ${CIRCLE_PULL_REQUEST+x} ] ; then
+            IS_PR=false
+            else
+            IS_PR=true
+            fi;
+            echo "IS PR $IS_PR"  
             echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js $IS_PR $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
-            echo "Taks defined : $TASKS"
+            echo "Tasks defined : $TASKS"
   validate-release:
     description: 'Set release env'
     steps:
@@ -59,6 +64,7 @@ jobs:
   install:
     executor: default
     steps:
+      - checkout
       - restore_yarn_cache
       - yarn_install
       - setup_commands

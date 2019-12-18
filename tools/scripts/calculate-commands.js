@@ -16,28 +16,25 @@ console.log(
 );
 
 function commands(target) {
-  let affected;
+  let affectedCommand;
   switch (target) {
     case 'build':
     case 'deploy':
-      affected = execSync(
-        `yarn nx print-affected --base=${baseSha} --head=${head} --target=${target} --all`
-      ).toString();
+      affectedCommand = `nx print-affected --target=${target} --all`;
       break;
     default:
-      affected = execSync(
-        `yarn nx print-affected --base=${baseSha} --head=${head} --target=${target}`
-      ).toString();
+      affectedCommand = `nx print-affected --base=${baseSha} --head=${head} --target=${target}`;
       break;
   }
 
+  const affected = execSync(`yarn ${affectedCommand}`).toString();
   const array = JSON.parse(
     affected
       .trim()
       .replace(/\r?\n?[^\r\n]*$/, '')
       .substring(affected.indexOf('\n') + 1)
       .replace(
-        `$ nx print-affected --base=${baseSha} --head=${head} --target=${target}`,
+        `$ ${affectedCommand}`,
         ''
       )
       .trim()
