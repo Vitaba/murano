@@ -224,7 +224,7 @@ workflows:
               ignore: /.*/
       - install: 
           requires: 
-          - checkout-job
+            - checkout-job
           filters:
             branches:
               ignore: master
@@ -309,30 +309,37 @@ workflows:
             branches:
               ignore: master
             tags:
-              ignore: /.*/             
+              ignore: /.*/               
+  master_merge:
+    jobs:
+      - checkout-job:
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/
+      - install: 
+          requires: 
+            - checkout-job  
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/   
       - build-vitaba:
           requires:
             - install
           filters:
             branches:
-              ignore: master
+              only: master
             tags:
               ignore: /.*/  
       - generate-release:
           requires:
-            - lint-vitaba-1
-            - lint-vitaba-2
-            - lint-vitaba-3
-            - test-vitaba-1
-            - test-vitaba-2
-            - test-vitaba-3
-            - e2e-vitaba-1
-            - e2e-vitaba-2
-            - e2e-vitaba-3
             - build-vitaba
           filters:
             branches:
-              ignore: master
+              only: master
             tags:
               ignore: /.*/   
       - deploy-firebase:
@@ -341,7 +348,7 @@ workflows:
             - generate-release
           filters:
             branches:
-              ignore: master
+              only: master
             tags:
               ignore: /.*/        
       - deploy-vitaba-1:
@@ -350,7 +357,7 @@ workflows:
             - generate-release
           filters:
             branches:
-              ignore: master
+              only: master
             tags:
               ignore: /.*/
       - deploy-vitaba-2:
@@ -359,7 +366,7 @@ workflows:
             - generate-release
           filters:
             branches:
-              ignore: master
+              only: master
             tags:
               ignore: /.*/
       - deploy-vitaba-3:
@@ -368,14 +375,6 @@ workflows:
             - generate-release 
           filters:
             branches:
-              ignore: master
-            tags:
-              ignore: /.*/  
-  master_merge:
-    jobs:
-      - checkout-job:
-          filters:
-            branches:
               only: master
             tags:
-              only: /.*/            
+              ignore: /.*/                   
