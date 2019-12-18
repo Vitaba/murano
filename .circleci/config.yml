@@ -94,6 +94,7 @@ jobs:
       - setup_commands
       - run:
           command: |-
+            git branch -f master origin/master
             echo "Tasks defined : $TASKS"
       - run:
           name: Lint Part 1
