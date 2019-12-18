@@ -20,7 +20,7 @@ function commands(target) {
   switch (target) {
     case 'e2e':
     case 'deploy':
-      affectedCommand = `nx print-affected --target=${target} --all`;
+      affectedCommand = `nx print-affected --base=${baseSha} --head=${head} --target=${target}`;
       break;
     default:
       affectedCommand = `nx print-affected --base=${baseSha} --head=${head} --target=${target}`;
