@@ -93,6 +93,9 @@ jobs:
       - setup
       - setup_commands
       - run:
+        command: |-
+          echo "Tasks defined : $TASKS"
+      - run:
           name: Lint Part 1
           command: node ./tools/scripts/run-many.js $TASKS lint1 lint
   lint-vitaba-2:
