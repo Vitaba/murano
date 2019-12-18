@@ -18,7 +18,7 @@ console.log(
 function commands(target) {
   let affectedCommand;
   switch (target) {
-    case 'build':
+    case 'e2e':
     case 'deploy':
       affectedCommand = `nx print-affected --target=${target} --all`;
       break;
