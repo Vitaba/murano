@@ -35,6 +35,7 @@ commands:
       - run:
           name: Setup Tasks 
           command: |- 
+            git branch -f master origin/master
             echo "Circle SHA $CIRCLE_SHA1"
             if [ -z ${CIRCLE_PULL_REQUEST+x} ] ; then
             IS_PR=false
