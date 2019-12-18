@@ -54,11 +54,10 @@ commands:
             chmod +x ./tools/scripts/release-message.sh
             ./tools/scripts/release-message.sh
   setup:
-    description: 'Setup Executor'
+    description: 'Setup Command'
     steps:
       - restore_yarn_cache
       - install_rsync          
-      - setup_commands
 
 jobs:
   install:
@@ -67,7 +66,6 @@ jobs:
       - checkout
       - restore_yarn_cache
       - yarn_install
-      - setup_commands
   install-release:
     executor: default
     steps:
@@ -75,7 +73,6 @@ jobs:
       - validate-release
       - restore_yarn_cache
       - yarn_install
-      - setup_commands    
   checkout-job:
     executor: default
     steps:
@@ -93,6 +90,7 @@ jobs:
     steps:
       - checkout
       - setup
+      - 
       - run:
           name: Lint Part 1
           command: node ./tools/scripts/run-many.js $TASKS lint1 lint
@@ -117,6 +115,7 @@ jobs:
     steps:
       - checkout
       - setup
+      - setup_commands
       - run:
           name: Unit Test Part 1
           command: node ./tools/scripts/run-many.js $TASKS test1 test
