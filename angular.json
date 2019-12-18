@@ -125,8 +125,7 @@
                 "name": "spec"
               }
             ],
-            "ports":[8001],
-            "concurrency": 2
+            "ports":[8001]
           }
         },
         "lint": {
@@ -280,8 +279,7 @@
                 "name": "spec"
               }
             ],
-            "ports":[8002],
-            "concurrency":2
+            "ports":[8002]
           }
         }
       }
