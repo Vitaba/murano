@@ -44,7 +44,7 @@ commands:
             echo "IS PR $IS_PR"  
             echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js $IS_PR $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
-            echo "Taks defined : $TASKS"
+            echo "Tasks defined : $TASKS"
   validate-release:
     description: 'Set release env'
     steps:
