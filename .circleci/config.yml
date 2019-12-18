@@ -114,7 +114,6 @@ jobs:
     steps:
       - checkout
       - setup
-      - setup_commands
       - run:
           name: Unit Test Part 1
           command: node ./tools/scripts/run-many.js $TASKS test1 test
