@@ -36,7 +36,8 @@ commands:
           name: Setup Tasks 
           command: |- 
             echo "Circle SHA $CIRCLE_SHA1"
-            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js false $CIRCLE_SHA1)' &> $BASH_ENV  
+            IS_PR=[ ! -z ${CIRCLE_PULL_REQUEST+x} ]
+            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js $IS_PR $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
             echo "Taks defined : $TASKS"
   validate-release:
@@ -159,27 +160,55 @@ jobs:
     steps:
       - checkout
       - validate-release
+      - setup
       - run:
           name: Check Commit Message Format
           command: yarn release-message         
-  build-vitaba:
+  build-vitaba-1:
     executor: default
     steps:
       - checkout
       - validate-release
       - setup
       - run:
-          name: Building all libraries
-          command: node_modules/.bin/nx affected:build --all   
+          name: Build Artifacts Part 1
+          command: node ./tools/scripts/run-many.js $TASKS build1 build  
       - persist_to_workspace:
           root: /home/circleci/repo
           paths:
-            - dist/*          
+            - dist/*
+  build-vitaba-2:
+    executor: default
+    steps:
+      - checkout
+      - validate-release
+      - setup
+      - run:
+          name: Build Artifacts Part 2
+          command: node ./tools/scripts/run-many.js $TASKS build2 build  
+      - persist_to_workspace:
+          root: /home/circleci/repo
+          paths:
+            - dist/*    
+  build-vitaba-3:
+    executor: default
+    steps:
+      - checkout
+      - validate-release
+      - setup
+      - run:
+          name: Build Artifacts Part 3
+          command: node ./tools/scripts/run-many.js $TASKS build3 build  
+      - persist_to_workspace:
+          root: /home/circleci/repo
+          paths:
+            - dist/*                          
   deploy-vitaba-1:
     executor: default
     steps:
       - checkout
       - validate-release
+      - setup
       - attach_workspace:
           at: /home/circleci/repo
       - run: 
@@ -195,6 +224,7 @@ jobs:
     steps:
      - checkout
      - validate-release
+     - setup
      - attach_workspace:
           at: /home/circleci/repo
      - run: 
@@ -210,6 +240,7 @@ jobs:
     steps:
       - checkout
       - validate-release
+      - setup
       - attach_workspace:
             at: /home/circleci/repo
       - run: 
@@ -225,13 +256,7 @@ jobs:
     steps:
       - checkout
       - validate-release
-      - attach_workspace:
-          at: /home/circleci/repo
-      - run: 
-          name: Setup .npmrc
-          command: |-
-            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-            npm whoami 
+      - setup 
       - run:
           name: Generate Release
           command: yarn vitaba-release
@@ -245,10 +270,7 @@ jobs:
       - run: 
           name: Deploy to firebase
           command: |-
-            node_modules/.bin/firebase deploy --token firebase deploy --only hosting:beta --non-interactive --token=$FIREBASE_TOKEN
-      - run:
-          name: Generate Release
-          command: yarn vitaba-release                      
+            node_modules/.bin/firebase deploy --token firebase deploy --only hosting:beta --non-interactive --token=$FIREBASE_TOKEN      
 workflows:
   version: 2.1
   pr_to_master:
@@ -336,15 +358,29 @@ workflows:
           filters:
             branches:
               only: master  
-      - build-vitaba:
+      - build-vitaba-1:
           requires:
             - install-release
           filters:
             branches:
-              only: master 
+              only: master
+      - build-vitaba-2:
+          requires:
+            - install-release
+          filters:
+            branches:
+              only: master
+      - build-vitaba-3:
+          requires:
+            - install-release
+          filters:
+            branches:
+              only: master                 
       - generate-release:
           requires:
-            - build-vitaba
+            - build-vitaba-1
+            - build-vitaba-2
+            - build-vitaba-3
           filters:
             branches:
               only: master 
