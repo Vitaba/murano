@@ -64,6 +64,7 @@ jobs:
   install:
     executor: default
     steps:
+      - checkout
       - restore_yarn_cache
       - yarn_install
       - setup_commands
