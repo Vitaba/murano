@@ -37,10 +37,10 @@ commands:
           command: |- 
             echo "Circle SHA $CIRCLE_SHA1"
             if [ -z ${CIRCLE_PULL_REQUEST+x} ] ; then
-            IS_PR=true
+            IS_PR=false
             else
-            IS_PR=false;
-            fi  
+            IS_PR=true;
+            fi;;  
             echo "IS PR $IS_PR"  
             echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js $IS_PR $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
