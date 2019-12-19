@@ -296,7 +296,7 @@ workflows:
               only: master
       - generate-release:
           requires:
-            - generate-release          
+            - install-release          
       - deployment:
           requires:
             - generate-release
