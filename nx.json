@@ -26,6 +26,9 @@
     },
     "scss-ui": {
       "tags": ["type:ui", "scope:scss/ui"]
+    },
+    "worker-fire-data-access": {
+      "tags": []
     }
   }
 }

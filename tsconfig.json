@@ -16,11 +16,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vitaba/common-utils": [
-        "libs/common/utils/src/index.ts"
-      ],
+      "@vitaba/common-utils": ["libs/common/utils/src/index.ts"],
       "@vitaba/common-ui": ["libs/common/ui/src/index.ts"],
-      "@vitaba/scss-ui": ["libs/scss/ui/src/index.ts"]
+      "@vitaba/scss-ui": ["libs/scss/ui/src/index.ts"],
+      "@vitaba/worker-fire/data-access": [
+        "libs/worker-fire/data-access/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

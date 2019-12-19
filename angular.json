@@ -25,15 +25,13 @@
               "apps/murano-admin/src/favicon.ico",
               "apps/murano-admin/src/assets"
             ],
-            "styles": [
-              "apps/murano-admin/src/styles.scss"
-            ],
+            "styles": ["apps/murano-admin/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
-              "baseHref" : "/murano-admin/",
-            "deployUrl": "/murano-admin/",
+              "baseHref": "/murano-admin/",
+              "deployUrl": "/murano-admin/",
               "fileReplacements": [
                 {
                   "replace": "apps/murano-admin/src/environments/environment.ts",
@@ -88,10 +86,7 @@
               "apps/murano-admin/tsconfig.app.json",
               "apps/murano-admin/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/murano-admin/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/murano-admin/**"]
           }
         },
         "test": {
@@ -112,10 +107,7 @@
         "e2e": {
           "builder": "@angular-plugins/testcafe:e2e",
           "options": {
-            "browsers": [
-              "chrome --no-sandbox",
-              "firefox"
-            ],
+            "browsers": ["chrome --no-sandbox", "firefox"],
             "dev": true,
             "devServerTarget": "murano-admin:serve --port 4201",
             "devServerTargetTimeout": 50000,
@@ -125,19 +117,14 @@
                 "name": "spec"
               }
             ],
-            "ports":[8001]
+            "ports": [8001]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/murano-admin-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/murano-admin-e2e/**"
-            ]
+            "tsConfig": ["apps/murano-admin-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/murano-admin-e2e/**"]
           }
         }
       }
@@ -162,10 +149,7 @@
               "libs/common/ui/tsconfig.lib.json",
               "libs/common/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/common/ui/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/common/ui/**"]
           }
         },
         "test": {
@@ -191,13 +175,13 @@
             }
           }
         },
-        "deploy":{
+        "deploy": {
           "builder": "@angular-plugins/npm:deploy",
           "options": {
-            "packageJsonPath":"dist/libs/common/ui/package.json"
+            "packageJsonPath": "dist/libs/common/ui/package.json"
           }
-      }
-    },
+        }
+      },
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
@@ -224,10 +208,7 @@
               "libs/common/utils/tsconfig.lib.json",
               "libs/common/utils/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/common/utils/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/common/utils/**"]
           }
         },
         "test": {
@@ -253,13 +234,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/common-ui-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/common-ui-e2e/**"
-            ]
+            "tsConfig": ["apps/common-ui-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/common-ui-e2e/**"]
           }
         },
         "e2e": {
@@ -267,10 +243,7 @@
           "debugOnFail": true,
           "builder": "@angular-plugins/testcafe:e2e",
           "options": {
-            "browsers": [
-              "chrome --no-sandbox",
-              "firefox"
-            ],
+            "browsers": ["chrome --no-sandbox", "firefox"],
             "devServerTarget": "common-ui:storybook",
             "devServerTargetTimeout": 50000,
             "src": "apps/common-ui-e2e/src/integration/*/*.spec.ts",
@@ -279,7 +252,7 @@
                 "name": "spec"
               }
             ],
-            "ports":[8002]
+            "ports": [8002]
           }
         }
       }
@@ -313,6 +286,47 @@
             "jestConfig": "libs/scss/ui/jest.config.js",
             "tsConfig": "libs/scss/ui/tsconfig.spec.json",
             "setupFile": "libs/scss/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "worker-fire-data-access": {
+      "projectType": "library",
+      "root": "libs/worker-fire/data-access",
+      "sourceRoot": "libs/worker-fire/data-access/src",
+      "prefix": "vitaba",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/worker-fire/data-access/tsconfig.lib.json",
+            "project": "libs/worker-fire/data-access/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/worker-fire/data-access/tsconfig.lib.json",
+              "libs/worker-fire/data-access/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/worker-fire/data-access/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/worker-fire/data-access/jest.config.js",
+            "tsConfig": "libs/worker-fire/data-access/tsconfig.spec.json",
+            "setupFile": "libs/worker-fire/data-access/src/test-setup.ts"
           }
         }
       },
