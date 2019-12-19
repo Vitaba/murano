@@ -35,14 +35,16 @@ commands:
       - run:
           name: Setup Tasks 
           command: |- 
+            git branch -f master origin/master
             echo "Circle SHA $CIRCLE_SHA1"
             if [ -z ${CIRCLE_PULL_REQUEST+x} ] ; then
             IS_PR=false
+            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js false $CIRCLE_SHA1)' &> $BASH_ENV
             else
             IS_PR=true
+            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js true $CIRCLE_SHA1)' &> $BASH_ENV  
             fi;
             echo "IS PR $IS_PR"  
-            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js $IS_PR $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
             echo "Tasks defined : $TASKS"
   validate-release:
@@ -54,11 +56,10 @@ commands:
             chmod +x ./tools/scripts/release-message.sh
             ./tools/scripts/release-message.sh
   setup:
-    description: 'Setup Executor'
+    description: 'Setup Command'
     steps:
       - restore_yarn_cache
       - install_rsync          
-      - setup_commands
 
 jobs:
   install:
@@ -67,7 +68,6 @@ jobs:
       - checkout
       - restore_yarn_cache
       - yarn_install
-      - setup_commands
   install-release:
     executor: default
     steps:
@@ -75,7 +75,6 @@ jobs:
       - validate-release
       - restore_yarn_cache
       - yarn_install
-      - setup_commands    
   checkout-job:
     executor: default
     steps:
@@ -93,14 +92,13 @@ jobs:
     steps:
       - checkout
       - setup
-      - run:
-          name: Lint Part 1
-          command: node ./tools/scripts/run-many.js $TASKS lint1 lint
+      - setup_commands
   lint-vitaba-2:
     executor: default
     steps:
       - checkout
       - setup
+      - setup_commands
       - run:
           name: Lint Part 2
           command: node ./tools/scripts/run-many.js $TASKS lint2 lint
@@ -109,6 +107,7 @@ jobs:
     steps:
       - checkout
       - setup
+      - setup_commands
       - run:
           name: Lint Part 3
           command: node ./tools/scripts/run-many.js $TASKS lint3 lint
@@ -117,6 +116,7 @@ jobs:
     steps:
       - checkout
       - setup
+      - setup_commands
       - run:
           name: Unit Test Part 1
           command: node ./tools/scripts/run-many.js $TASKS test1 test
@@ -125,6 +125,7 @@ jobs:
     steps:
       - checkout
       - setup
+      - setup_commands
       - run:
           name: Unit Test Part 2
           command: node ./tools/scripts/run-many.js $TASKS test2 test
@@ -133,9 +134,10 @@ jobs:
     steps:
       - checkout
       - setup
+      - setup_commands
       - run:
           name: Unit Test Part 3
-          command: node ./tools/scripts/run-many.js $TASKS test3 test                        
+          command: node ./tools/scripts/run-many.js $TASKS test3 test
   e2e-vitaba-1:
     executor: default
     steps:
@@ -150,6 +152,7 @@ jobs:
     steps:
       - checkout
       - setup
+      - setup_commands
       - run:
           name: E2E Affected Part 2
           command: node ./tools/scripts/run-many.js $TASKS e2e2 e2e
@@ -158,6 +161,7 @@ jobs:
     steps:
       - checkout
       - setup
+      - setup_commands
       - run:
           name: E2E Affected Part 3
           command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e 
@@ -176,6 +180,7 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - run:
           name: Build Artifacts Part 1
           command: node ./tools/scripts/run-many.js $TASKS build1 build  
@@ -189,6 +194,7 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - run:
           name: Build Artifacts Part 2
           command: node ./tools/scripts/run-many.js $TASKS build2 build  
@@ -202,19 +208,21 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - run:
           name: Build Artifacts Part 3
           command: node ./tools/scripts/run-many.js $TASKS build3 build  
       - persist_to_workspace:
           root: /home/circleci/repo
           paths:
-            - dist/*                          
+            - dist/*  
   deploy-vitaba-1:
     executor: default
     steps:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - attach_workspace:
           at: /home/circleci/repo
       - run: 
@@ -231,6 +239,7 @@ jobs:
      - checkout
      - validate-release
      - setup
+     - setup_commands
      - attach_workspace:
           at: /home/circleci/repo
      - run: 
@@ -247,6 +256,7 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - attach_workspace:
             at: /home/circleci/repo
       - run: 
@@ -271,6 +281,7 @@ jobs:
     steps:
       - checkout
       - validate-release
+      - setup
       - attach_workspace:
           at: /home/circleci/repo
       - run: 
