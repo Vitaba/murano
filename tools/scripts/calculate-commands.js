@@ -9,7 +9,7 @@ console.log(
   JSON.stringify({
     ...commands('lint'),
     ...commands('test'),
-    // ...commands('build'),
+    ...commands('build'),
     ...commands('e2e'),
   })
 );
