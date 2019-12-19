@@ -39,11 +39,12 @@ commands:
             echo "Circle SHA $CIRCLE_SHA1"
             if [ -z ${CIRCLE_PULL_REQUEST+x} ] ; then
             IS_PR=false
+            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js false $CIRCLE_SHA1)' &> $BASH_ENV
             else
             IS_PR=true
+            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js true $CIRCLE_SHA1)' &> $BASH_ENV  
             fi;
             echo "IS PR $IS_PR"  
-            echo 'export TASKS=$(node ./tools/scripts/calculate-commands.js $IS_PR $CIRCLE_SHA1)' &> $BASH_ENV  
             source $BASH_ENV  
             echo "Tasks defined : $TASKS"
   validate-release:
