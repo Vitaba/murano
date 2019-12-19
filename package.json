@@ -1,6 +1,6 @@
 {
   "name": "vitaba",
-  "version": "5.0.1-beta.35",
+  "version": "5.0.1-beta.36",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -11,7 +11,7 @@
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "vitaba-release": "./tools/scripts/release.sh",
-    "release-message":".tools.scripts/release-message.sh",
+    "release-message": ".tools.scripts/release-message.sh",
     "browserstack": "testcafe --ts-config-path apps/murano-admin-e2e/tsconfig.e2e.json 'browserstack:iPhone 11,browserstack:safari:OS X Catalina,browserstack:chrome:OS X Catalina' apps/murano-admin-e2e/src/integration/*.spec.ts --app 'yarn start'",
     "checkcommit": "node ./tools/scripts/commit-lint.js",
     "affected:apps": "nx affected:apps",
