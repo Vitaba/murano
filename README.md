@@ -2,6 +2,10 @@
 
 [![CircleCI](https://circleci.com/gh/Vitaba/murano/tree/master.svg?style=svg)](https://circleci.com/gh/Vitaba/murano/tree/master)
 
+[![npm version](https://badge.fury.io/js/%40vitaba%2Fcommon-ui.svg)](https://badge.fury.io/js/%40vitaba%2Fcommon-ui)
+
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 This project was generated using [Nx](https://nx.dev).
 
 <p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
