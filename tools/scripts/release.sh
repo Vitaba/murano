@@ -42,24 +42,24 @@ case "$COMMIT_TYPE" in
 'feat')
     echo "👉️ Major Release "
     if [ "$ENV" = "prod" ]; then
-    node_modules/.bin/release-it --no-git.requireUpstream --ci major;
+    node_modules/.bin/release-it --no-git.requireUpstream --no-git.requireCleanWorkingDir --ci major;
     else 
-    ./node_modules/.bin/release-it --no-git.requireUpstream --ci major --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --no-git.requireCleanWorkingDir --ci major --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 'refactor'| 'test')
     echo "👉️ minor release"
-    if  [ "$ENV" = "prod" ]; then node_modules/.bin/release-it --no-git.requireUpstream --ci minor;
+    if  [ "$ENV" = "prod" ]; then node_modules/.bin/release-it --no-git.requireUpstream --no-git.requireCleanWorkingDir --ci minor;
     else 
-    ./node_modules/.bin/release-it --no-git.requireUpstream --ci minor --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --no-git.requireCleanWorkingDir --ci minor --preRelease=$COMMIT_SCOPE;
     fi;
     ;;    
 *)
     echo "👉️ patch release";
     if  [ "$ENV" = "prod" ]; then
-    ./node_modules/.bin/release-it --no-git.requireUpstream --ci patch;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --no-git.requireCleanWorkingDir --ci patch;
     else 
-    ./node_modules/.bin/release-it --no-git.requireUpstream --ci patch --preRelease=$COMMIT_SCOPE;
+    ./node_modules/.bin/release-it --no-git.requireUpstream --no-git.requireCleanWorkingDir --ci patch --preRelease=$COMMIT_SCOPE;
     fi;
     ;;
 esac
