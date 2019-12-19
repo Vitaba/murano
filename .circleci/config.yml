@@ -35,7 +35,11 @@ commands:
       - run:
           name: Setup Tasks 
           command: |- 
+            if [ "$CIRCLE_BRANCH" =  "master"]; then
+              echo 'Do not set master branch'
+            else
             git branch -f master origin/master
+            fi;
             echo "Circle SHA $CIRCLE_SHA1"
             if [ -z ${CIRCLE_PULL_REQUEST+x} ] ; then
             IS_PR=false
