@@ -35,7 +35,7 @@ commands:
       - run:
           name: Setup Tasks 
           command: |- 
-            if [ "$CIRCLE_BRANCH" =  "master"]; then
+            if [ "$CIRCLE_BRANCH" =  "master" ]; then
               echo 'Do not set master branch'
             else
             git branch -f master origin/master
