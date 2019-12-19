@@ -93,9 +93,6 @@ jobs:
       - checkout
       - setup
       - setup_commands
-      - run:
-          command: |-
-            echo "Tasks defined : $TASKS"
   lint-vitaba-2:
     executor: default
     steps:
@@ -183,6 +180,7 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - run:
           name: Build Artifacts Part 1
           command: node ./tools/scripts/run-many.js $TASKS build1 build  
@@ -196,6 +194,7 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - run:
           name: Build Artifacts Part 2
           command: node ./tools/scripts/run-many.js $TASKS build2 build  
@@ -209,6 +208,7 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - run:
           name: Build Artifacts Part 3
           command: node ./tools/scripts/run-many.js $TASKS build3 build  
@@ -222,6 +222,7 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - attach_workspace:
           at: /home/circleci/repo
       - run: 
@@ -238,6 +239,7 @@ jobs:
      - checkout
      - validate-release
      - setup
+     - setup_commands
      - attach_workspace:
           at: /home/circleci/repo
      - run: 
@@ -254,6 +256,7 @@ jobs:
       - checkout
       - validate-release
       - setup
+      - setup_commands
       - attach_workspace:
             at: /home/circleci/repo
       - run: 
@@ -278,6 +281,7 @@ jobs:
     steps:
       - checkout
       - validate-release
+      - setup
       - attach_workspace:
           at: /home/circleci/repo
       - run: 
