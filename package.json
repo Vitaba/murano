@@ -33,6 +33,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-builders/custom-webpack": "^8.4.1",
     "@angular-plugins/npm": "^0.0.7-beta",
     "@angular-plugins/testcafe": "0.0.2-beta",
     "@angular/animations": "^8.2.0",
@@ -45,7 +46,9 @@
     "@angular/router": "^8.2.0",
     "@nrwl/angular": "8.9.0",
     "@vitaba/content-loader": "^0.0.1-beta",
+    "comlink": "^4.2.0",
     "core-js": "^2.5.4",
+    "firebase": "^7.6.1",
     "firebase-tools": "^7.10.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
@@ -58,6 +61,7 @@
     "tslib": "^1.10.0",
     "tslint-consistent-codestyle": "^1.16.0",
     "tslint-eslint-rules": "^5.4.0",
+    "webpack-shell-plugin-next": "^1.1.5",
     "zone.js": "^0.9.1"
   },
   "devDependencies": {

@@ -13,8 +13,14 @@
       "prefix": "vitaba",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "mergeStrategies": {
+                "externals": "append"
+              },
+              "path": "apps/murano-admin/extra-webpack.config.js"
+            },
             "outputPath": "dist/apps/murano-admin",
             "index": "apps/murano-admin/src/index.html",
             "main": "apps/murano-admin/src/main.ts",
@@ -23,7 +29,8 @@
             "aot": false,
             "assets": [
               "apps/murano-admin/src/favicon.ico",
-              "apps/murano-admin/src/assets"
+              "apps/murano-admin/src/assets",
+              { "glob": "**/*", "input": "dist/libs/worker-fire/data-access", "output": "/assets/worker-fire/" }
             ],
             "styles": ["apps/murano-admin/src/styles.scss"],
             "scripts": []
@@ -63,7 +70,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "murano-admin:build"
           },
