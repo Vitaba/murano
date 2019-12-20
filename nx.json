@@ -27,8 +27,8 @@
     "scss-ui": {
       "tags": ["type:ui", "scope:scss/ui"]
     },
-    "worker-fire-data-access": {
-      "tags": []
+    "fire-js-data-access": {
+      "tags": ["type:data-access", "scope:fire-js/data-access"]
     }
   }
 }

@@ -1,3 +1,4 @@
+// tslint:disable:no-any no-unsafe-any
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import * as Comlink from 'comlink';
 import { Observable } from 'rxjs';
@@ -26,23 +27,32 @@ export class AppComponent {
   public async init() {
     const worker = new Worker('/assets/worker.js');
   // WebWorkers use `postMessage` and therefore work with Comlink.
-    const worker_firestore: any = Comlink.wrap(worker);
+
+    const workerFirestore: any = Comlink.wrap(worker);
 
     // alert(`Counter: ${await obj.counter}`);
     // await obj.inc();
     // alert(`Counter: ${await obj.counter}`);
-    const obs = Observable.create(observer => {
+    const obs = new Observable<any>(observer => {
       observer.next([]);
       observerDemo = observer;
-      worker_firestore.getCollection('restaurants', Comlink.proxy(restaurants => {
-        console.log(restaurants);
-        observer.uid = restaurants.uid;
-        debugger;
+      workerFirestore.
+      getCollection('restaurants', Comlink.proxy(restaurants => {
+        observer['uid'] = restaurants.uid;
         observer.next(restaurants);
       }));
     });
     let observerDemo;
 
-    obs.pipe(take(2)).subscribe(console.warn, console.error, () => { console.log('finish', worker_firestore.unsubscribe(observerDemo.uid)); });
+    obs.pipe(take(2))
+    .subscribe(
+      // tslint:disable-next-line: no-unbound-method
+      console.warn,
+      // tslint:disable-next-line: no-unbound-method
+      console.error,
+      () => {
+        console.warn(
+          'finish',
+          workerFirestore.unsubscribe(observerDemo.uid)); });
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@vitaba/worker-fire-data-access",
+  "name": "@vitaba/fire-js-data-access",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^8.2.11",

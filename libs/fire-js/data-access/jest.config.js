@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'worker-fire-data-access',
+  name: 'fire-js-data-access',
   preset: '../../../jest.config.js',
-  coverageDirectory: '../../../coverage/libs/worker-fire/data-access',
+  coverageDirectory: '../../../coverage/libs/fire-js/data-access',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'

@@ -294,6 +294,12 @@
             "tsConfig": "libs/scss/ui/tsconfig.spec.json",
             "setupFile": "libs/scss/ui/src/test-setup.ts"
           }
+        },
+        "deploy": {
+          "builder": "@angular-plugins/npm:deploy",
+          "options": {
+            "packageJsonPath": "dist/libs/common/scss/ui/package.json"
+          }
         }
       },
       "schematics": {
