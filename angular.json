@@ -30,7 +30,7 @@
             "assets": [
               "apps/murano-admin/src/favicon.ico",
               "apps/murano-admin/src/assets",
-              { "glob": "**/*", "input": "dist/libs/worker-fire/data-access", "output": "/assets/worker-fire/" }
+              { "glob": "**/*", "input": "dist/libs/fire-js/data-access", "output": "/assets/fire-js/" }
             ],
             "styles": ["apps/murano-admin/src/styles.scss"],
             "scripts": []
@@ -302,38 +302,44 @@
         }
       }
     },
-    "worker-fire-data-access": {
+    "fire-js-data-access": {
       "projectType": "library",
-      "root": "libs/worker-fire/data-access",
-      "sourceRoot": "libs/worker-fire/data-access/src",
+      "root": "libs/fire-js/data-access",
+      "sourceRoot": "libs/fire-js/data-access/src",
       "prefix": "vitaba",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/worker-fire/data-access/tsconfig.lib.json",
-            "project": "libs/worker-fire/data-access/ng-package.json"
+            "tsConfig": "libs/fire-js/data-access/tsconfig.lib.json",
+            "project": "libs/fire-js/data-access/ng-package.json"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/worker-fire/data-access/tsconfig.lib.json",
-              "libs/worker-fire/data-access/tsconfig.spec.json"
+              "libs/fire-js/data-access/tsconfig.lib.json",
+              "libs/fire-js/data-access/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/worker-fire/data-access/**"
+              "!libs/fire-js/data-access/**"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/worker-fire/data-access/jest.config.js",
-            "tsConfig": "libs/worker-fire/data-access/tsconfig.spec.json",
-            "setupFile": "libs/worker-fire/data-access/src/test-setup.ts"
+            "jestConfig": "libs/fire-js/data-access/jest.config.js",
+            "tsConfig": "libs/fire-js/data-access/tsconfig.spec.json",
+            "setupFile": "libs/fire-js/data-access/src/test-setup.ts"
+          }
+        },
+        "deploy": {
+          "builder": "@angular-plugins/npm:deploy",
+          "options": {
+            "packageJsonPath": "dist/libs/fire-js/data-access/package.json"
           }
         }
       },

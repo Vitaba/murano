@@ -4,7 +4,8 @@ module.exports = (config, options) => {
   config.plugins.push(
     new WebpackShellPlugin({
       onBuildStart: {
-        scripts: ['yarn ng build worker-fire-data-access --watch'],
+        // TODO: Based on parameters add --watch flag to see the changes
+        scripts: ['yarn ng build fire-js-data-access'],
         blocking: false,
         parallel: true
       },
