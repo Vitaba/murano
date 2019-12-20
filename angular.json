@@ -298,7 +298,7 @@
         "deploy": {
           "builder": "@angular-plugins/npm:deploy",
           "options": {
-            "packageJsonPath": "dist/libs/common/scss/ui/package.json"
+            "packageJsonPath": "dist/libs/scss/ui/package.json"
           }
         }
       },
