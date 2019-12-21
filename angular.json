@@ -225,6 +225,12 @@
             "tsConfig": "libs/common/utils/tsconfig.spec.json",
             "setupFile": "libs/common/utils/src/test-setup.ts"
           }
+        },
+        "deploy": {
+          "builder": "@angular-plugins/npm:deploy",
+          "options": {
+            "packageJsonPath": "dist/libs/common/utils/package.json"
+          }
         }
       },
       "schematics": {
