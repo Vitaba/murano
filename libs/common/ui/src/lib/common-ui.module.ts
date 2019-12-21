@@ -6,6 +6,7 @@ import { AvatarItemComponent } from './avatar-item/avatar-item.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { HeaderTitleComponent } from './header-title/header-title.component';
+import { InputControlComponent } from './input-control/input-control.component';
 @NgModule({
   declarations: [
     CardListComponent,
@@ -13,6 +14,7 @@ import { HeaderTitleComponent } from './header-title/header-title.component';
     AvatarItemLoaderComponent,
     HeaderTitleComponent,
     CategoriesComponent,
+    InputControlComponent,
   ],
   exports: [
     CardListComponent,
@@ -20,6 +22,7 @@ import { HeaderTitleComponent } from './header-title/header-title.component';
     AvatarItemLoaderComponent,
     HeaderTitleComponent,
     CategoriesComponent,
+    InputControlComponent,
   ],
   imports: [CommonModule, ContentLoaderModule],
 })

@@ -1,5 +1,6 @@
 // tslint:disable:no-any no-unsafe-any
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import * as Comlink from 'comlink';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -10,6 +11,10 @@ import { take } from 'rxjs/operators';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  public form = this.fBuilder.group({
+    name: 'John Doe',
+  });
+
   public avatarData = {
     date: '2019-11-26',
     image: {
@@ -23,6 +28,10 @@ export class AppComponent {
     description: 'Sample Description',
     title: 'Sebastian',
   };
+
+  public constructor(private fBuilder: FormBuilder) {
+
+  }
 
   public async init() {
     const worker = new Worker('/assets/worker.js');
