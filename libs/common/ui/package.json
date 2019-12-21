@@ -3,7 +3,10 @@
   "version": "0.0.1-beta-18",
   "peerDependencies": {
     "@angular/common": "^8.2.4",
-    "@angular/core": "^8.2.4"
+    "@angular/core": "^8.2.4",
+    "@vitaba/common-utils":"latest",
+    "@vitaba/scss-ui":"latest",
+    "@vitaba/content-loader": "latest"
   },
   "publishConfig": {
     "access": "public"
