@@ -1,6 +1,6 @@
 // tslint:disable:no-any no-unsafe-any
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import * as Comlink from 'comlink';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { take } from 'rxjs/operators';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  public form = this.fBuilder.group({
+  public form = this._fBuilder.group({
     name: 'John Doe',
   });
 
@@ -29,7 +29,7 @@ export class AppComponent {
     title: 'Sebastian',
   };
 
-  public constructor(private fBuilder: FormBuilder) {
+  public constructor(private readonly _fBuilder: FormBuilder) {
 
   }
 

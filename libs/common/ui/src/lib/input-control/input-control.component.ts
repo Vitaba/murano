@@ -1,3 +1,4 @@
+// tslint:disable: no-unsafe-any no-any
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { GuardError, InputConfig, InputStyles, isInputConfig, isInputStyles } from '@vitaba/common-utils';
@@ -30,7 +31,6 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
   ) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
-    console.log('hey', changes);
     if (!this.changes) {
       this.changes = new BehaviorSubject(changes);
     }
@@ -64,7 +64,6 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
   }
 
   public validateInputConfig(value: InputConfig) {
-    debugger;
     const validations = [{
       name: 'placeholder',
       type: 'string',
