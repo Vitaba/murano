@@ -7,6 +7,11 @@
         <ng-template #nameExtraTemplate> <b>Date content-projection</b> </ng-template>
 </vitaba-avatar-item>
 <form [formGroup]="form">
+    <vitaba-input-label [data]="{
+        label: 'Name'
+    }">
+
+    </vitaba-input-label>
     <vitaba-input-control [config]="{
     type: 'tel',
     placeholder:'jrjrj'

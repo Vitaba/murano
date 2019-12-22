@@ -3,7 +3,7 @@ import { GuardError } from '../../interfaces/guard/guard.interface';
 import { hasProperties } from '../common/has-properties.guard';
 import { isObject } from '../common/is-object.guard';
 
-export function isInputConfig(
+export function isInputLabelData(
   arg: any,
   properties: Array<{ name: string; type: string }>,
 ) {
@@ -22,12 +22,12 @@ export function isInputConfig(
 
   const compose: GuardError = {
     valid,
-    guard: 'isInputConfig',
+    guard: 'isInputLabelData',
     value: arg,
   };
 
   if (!valid) {
-    compose.message = 'Is not a input config';
+    compose.message = 'Is not a input label data';
     compose.errors = errors;
   }
 

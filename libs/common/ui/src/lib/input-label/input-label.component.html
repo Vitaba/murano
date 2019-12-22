@@ -1,0 +1,8 @@
+<ng-container *ngIf="!errors; else showErrors">
+<div [class]="styles.container">
+    <label [class]="styles.label">{{ data.label }}</label>
+  </div>
+  </ng-container>
+  <ng-template #showErrors>
+    {{ errors | json}}
+  </ng-template>

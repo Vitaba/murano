@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export interface InputConfig {
+export interface InputControlConfig {
   placeholder: string;
   type: string;
   fControl: FormControl;
@@ -10,7 +10,7 @@ export interface InputConfig {
   step?: number;
 }
 
-export interface InputStyles {
+export interface InputControlStyles {
   container: string;
   input: string;
 }

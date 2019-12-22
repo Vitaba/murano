@@ -3,7 +3,7 @@ import { GuardError } from '../../interfaces/guard/guard.interface';
 import { hasProperties } from '../common/has-properties.guard';
 import { isObject } from '../common/is-object.guard';
 
-export function isInputStyles(
+export function isInputControlConfig(
   arg: any,
   properties: Array<{ name: string; type: string }>,
 ) {

@@ -7,6 +7,7 @@ import { CardListComponent } from './card-list/card-list.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { HeaderTitleComponent } from './header-title/header-title.component';
 import { InputControlComponent } from './input-control/input-control.component';
+import { InputLabelComponent } from './input-label/input-label.component';
 @NgModule({
   declarations: [
     CardListComponent,
@@ -15,6 +16,7 @@ import { InputControlComponent } from './input-control/input-control.component';
     HeaderTitleComponent,
     CategoriesComponent,
     InputControlComponent,
+    InputLabelComponent,
   ],
   exports: [
     CardListComponent,
@@ -23,6 +25,7 @@ import { InputControlComponent } from './input-control/input-control.component';
     HeaderTitleComponent,
     CategoriesComponent,
     InputControlComponent,
+    InputLabelComponent,
   ],
   imports: [CommonModule, ContentLoaderModule],
 })
