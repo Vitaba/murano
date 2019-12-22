@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputLabelComponent should be default 1`] = `
+<vitaba-input-label-sample-implementation
+  data={[Function Object]}
+  styles={[Function Object]}
+>
+  <vitaba-input-label
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="md:w-1/3"
+    >
+      <label
+        class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+      >
+        Useful resources and assets for users.
+      </label>
+    </div>
+    
+  </vitaba-input-label>
+</vitaba-input-label-sample-implementation>
+`;
+
+exports[`InputLabelComponent should throw errors when data is not in right format 1`] = `
+<vitaba-input-label-sample-implementation
+  data={[Function Object]}
+  styles={[Function Object]}
+>
+  <vitaba-input-label
+    ng-reflect-data="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+     {
+    "valid": false,
+    "guard": "isInputLabelData",
+    "value": {
+      "label": 1
+    },
+    "message": "Is not a input label data",
+    "errors": [
+      {
+        "valid": false,
+        "guard": "hasProperties",
+        "value": {
+          "label": 1
+        },
+        "errors": [
+          {
+            "value": {
+              "name": "label",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": false
+          }
+        ]
+      }
+    ]
+  } 
+    
+  </vitaba-input-label>
+</vitaba-input-label-sample-implementation>
+`;

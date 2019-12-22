@@ -1,8 +1,7 @@
 // tslint:disable:ter-max-len
 import { inputControlComponent } from '../../components/index';
 
-fixture.only('Input Control - Basic Story')
-
+fixture('Input Control - Basic Story')
     .page(`${inputControlComponent.storybookPath}
 ${inputControlComponent.storybooks.basic}`);
 
@@ -35,8 +34,7 @@ test('Should have the default placeholder', async t => {
         .eql('placeholder');
 });
 
-fixture.only('Input Control - Combinations')
-
+fixture('Input Control - Combinations')
     .page(`${inputControlComponent.storybookPath}
 ${inputControlComponent.storybooks.basic}
 &knob-container_styles=w-full&knob-input_styles=bg-orange-400 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500&knob-placeholder_config=write your telephone...&knob-type_config=tel`);

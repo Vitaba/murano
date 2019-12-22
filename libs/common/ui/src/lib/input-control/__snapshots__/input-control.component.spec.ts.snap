@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderTitleComponent should be default 1`] = `
+exports[`InputControlComponent should be default 1`] = `
 <vitaba-input-control-sample-implementation
   config={[Function Object]}
   data={[Function Object]}
@@ -29,7 +29,7 @@ exports[`HeaderTitleComponent should be default 1`] = `
 </vitaba-input-control-sample-implementation>
 `;
 
-exports[`HeaderTitleComponent should throw errors when config is not in right format 1`] = `
+exports[`InputControlComponent should throw errors when config is not in right format 1`] = `
 <vitaba-input-control-sample-implementation
   config={[Function Object]}
   data={[Function Object]}

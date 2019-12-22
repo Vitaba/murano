@@ -2,43 +2,33 @@
 // tslint:disable: no-any component-max-inline-declarations ter-max-len
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl } from '@angular/forms';
-import { InputControlComponent } from './input-control.component';
+import { InputLabelComponent } from './input-label.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'vitaba-input-control-sample-implementation',
+  selector: 'vitaba-input-label-sample-implementation',
   template: `
-    <vitaba-input-control [config]="config" [styles]="styles">
-    </vitaba-input-control>
+    <vitaba-input-label [data]="data" [styles]="styles">
+    </vitaba-input-label>
   `,
 })
 class TestHostComponent {
   public styles = {
-    container: `md:w-2/3`,
-    input: `bg-gray-200 appearance-none border-2
-    border-gray-200 rounded w-auto py-2 px-4
-    text-gray-700 leading-tight focus:outline-none
-    focus:bg-white focus:border-purple-500`,
+    container: `md:w-1/3`,
+    label: `block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4`,
   };
   public data = {
-    description: 'Useful resources and assets for users.',
-    title: 'Lorem Ipsum',
-  };
-  public config = {
-    fControl: new FormControl('sample'),
-    placeholder: 'placeholder',
-    type: 'text',
+    label: 'Useful resources and assets for users.',
   };
 }
 
-describe('InputControlComponent', () => {
+describe('InputLabelComponent', () => {
   let component: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestHostComponent, InputControlComponent],
+      declarations: [TestHostComponent, InputLabelComponent],
     })
     .compileComponents();
   }));
@@ -58,10 +48,9 @@ describe('InputControlComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should throw errors when config is not in right format', () => {
-    component.config = {
-      placeholder: 1,
-      type: 1,
+  it('should throw errors when data is not in right format', () => {
+    component.data = {
+      label: 1,
     } as any;
     fixture.changeDetectorRef.detectChanges();
     expect(fixture).toMatchSnapshot();

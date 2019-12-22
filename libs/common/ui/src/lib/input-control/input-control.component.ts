@@ -1,7 +1,7 @@
 // tslint:disable: no-unsafe-any no-any
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { GuardError, InputConfig, InputStyles, isInputConfig, isInputStyles } from '@vitaba/common-utils';
+import { GuardError, InputControlConfig, InputControlStyles, isInputControlConfig, isInputControlStyles } from '@vitaba/common-utils';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -14,13 +14,13 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
   public changes!: BehaviorSubject<SimpleChanges>;
   public errors!: GuardError;
 
-  @Input() public config: InputConfig = {
+  @Input() public config: InputControlConfig = {
     fControl: new FormControl('sample'),
     placeholder: 'placeholder',
     type: 'text',
   };
 
-  @Input() public styles: InputStyles = {
+  @Input() public styles: InputControlStyles = {
     container: `md:w-2/3`,
     // tslint:disable-next-line:ter-max-len
     input: `bg-gray-200 appearance-none border-2 border-gray-200 rounded w-auto py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500`,
@@ -44,7 +44,8 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
     this.changes.subscribe((changes: SimpleChanges) => {
       if (changes.config) {
         const validation =
-        this.validateInputConfig(changes.config.currentValue as InputConfig);
+        this.validateInputControlConfig(
+          changes.config.currentValue as InputControlConfig);
 
         if (validation) {
           this.errors = { ...this.errors, ...validation };
@@ -53,7 +54,8 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
 
       if (changes.styles) {
         const validation =
-        this.validateInputStyles(changes.styles.currentValue as InputStyles);
+        this.validateInputControlStyles(
+          changes.styles.currentValue as InputControlStyles);
 
         if (validation) {
           this.errors = { ...this.errors, ...validation };
@@ -63,7 +65,7 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
     });
   }
 
-  public validateInputConfig(value: InputConfig) {
+  public validateInputControlConfig(value: InputControlConfig) {
     const validations = [{
       name: 'placeholder',
       type: 'string',
@@ -89,12 +91,12 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
       });
     }
 
-    const validation = isInputConfig(value, validations);
+    const validation = isInputControlConfig(value, validations);
 
     return !validation.valid ? validation : undefined;
   }
 
-  public validateInputStyles(value: InputStyles) {
+  public validateInputControlStyles(value: InputControlStyles) {
     const validations = [
       {
         name: 'container',
@@ -106,7 +108,7 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
       },
     ];
 
-    const validation = isInputStyles(value, validations);
+    const validation = isInputControlStyles(value, validations);
 
     return !validation.valid ? validation : undefined;
   }
