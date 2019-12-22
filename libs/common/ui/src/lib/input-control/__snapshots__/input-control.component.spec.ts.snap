@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderTitleComponent should be default 1`] = `
+<vitaba-input-control-sample-implementation
+  config={[Function Object]}
+  data={[Function Object]}
+  styles={[Function Object]}
+>
+  <vitaba-input-control
+    ng-reflect-config="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+    
+    <div
+      class="md:w-2/3"
+    >
+      <input
+        class="bg-gray-200 appearance-none border-2
+      border-gray-200 rounded w-auto py-2 px-4
+      text-gray-700 leading-tight focus:outline-none
+      focus:bg-white focus:border-purple-500"
+        placeholder="placeholder"
+        type="text"
+      />
+    </div>
+    
+  </vitaba-input-control>
+</vitaba-input-control-sample-implementation>
+`;
+
+exports[`HeaderTitleComponent should throw errors when config is not in right format 1`] = `
+<vitaba-input-control-sample-implementation
+  config={[Function Object]}
+  data={[Function Object]}
+  styles={[Function Object]}
+>
+  <vitaba-input-control
+    ng-reflect-config="[object Object]"
+    ng-reflect-styles="[object Object]"
+  >
+    
+     {
+    "valid": false,
+    "guard": "isInputConfig",
+    "value": {
+      "placeholder": 1,
+      "type": 1
+    },
+    "message": "Is not a input config",
+    "errors": [
+      {
+        "valid": false,
+        "guard": "hasProperties",
+        "value": {
+          "placeholder": 1,
+          "type": 1
+        },
+        "errors": [
+          {
+            "value": {
+              "name": "placeholder",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": false
+          },
+          {
+            "value": {
+              "name": "type",
+              "type": "string"
+            },
+            "guard": "String Validation",
+            "message": "Is not a string",
+            "valid": false
+          }
+        ]
+      }
+    ]
+  } 
+    
+  </vitaba-input-control>
+</vitaba-input-control-sample-implementation>
+`;

@@ -21,10 +21,8 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
 
   @Input() public styles: InputStyles = {
     container: `md:w-2/3`,
-    input: `bg-gray-200 appearance-none border-2
-    border-gray-200 rounded w-auto py-2 px-4
-    text-gray-700 leading-tight focus:outline-none
-    focus:bg-white focus:border-purple-500`,
+    // tslint:disable-next-line:ter-max-len
+    input: `bg-gray-200 appearance-none border-2 border-gray-200 rounded w-auto py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500`,
   };
 
   public constructor(
@@ -32,6 +30,7 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
   ) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
+    console.log('hey', changes);
     if (!this.changes) {
       this.changes = new BehaviorSubject(changes);
     }
@@ -40,7 +39,7 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
 
   public ngAfterViewInit(): void {
     if (!this.changes) {
-      this.changes = new BehaviorSubject({});
+      this.changes = new BehaviorSubject(null);
     }
     this.changes.subscribe((changes: SimpleChanges) => {
       if (changes.config) {
@@ -60,10 +59,12 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
           this.errors = { ...this.errors, ...validation };
         }
       }
+      this._changeDetectorRef.detectChanges();
     });
   }
 
   public validateInputConfig(value: InputConfig) {
+    debugger;
     const validations = [{
       name: 'placeholder',
       type: 'string',
@@ -72,10 +73,7 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
         name: 'type',
         type: 'string',
       },
-      {
-        name: 'fControl',
-        type: 'any',
-      }];
+    ];
 
     if (value.type === 'number' || value.type === 'range') {
       validations.push({
