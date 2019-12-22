@@ -1,0 +1,8 @@
+<ng-container *ngIf="!errors; else showErrors">
+<div [class]="styles.container">
+    <input [class]="styles.input" [type]="config.type" [placeholder]="config.placeholder">
+  </div>
+</ng-container>
+  <ng-template #showErrors>
+    {{ errors | json}}
+  </ng-template>
