@@ -1,5 +1,6 @@
 // tslint:disable: no-unsafe-any
 import { async, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonUiModule } from '@vitaba/common-ui';
 import { AppComponent } from './app.component';
 
@@ -7,7 +8,10 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [CommonUiModule],
+      imports: [
+        CommonUiModule,
+        ReactiveFormsModule,
+      ],
     }).compileComponents();
   }));
 
