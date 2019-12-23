@@ -37,4 +37,9 @@ export const basic = () => ({
     }"
     > </vitaba-input-label>
   `,
+  stylesUrl: [
+    'node_modules/tailwindcss/dist/base',
+    'node_modules/tailwindcss/dist/components',
+    'node_modules/tailwindcss/dist/utilities',
+  ]
 });
