@@ -21,9 +21,9 @@ export class InputControlComponent implements OnChanges, AfterViewInit {
   };
 
   @Input() public styles: InputControlStyles = {
-    container: `md:w-2/3`,
+    container: `w-full`,
     // tslint:disable-next-line:ter-max-len
-    input: `bg-gray-200 appearance-none border-2 border-gray-200 rounded w-auto py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500`,
+    input: `bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500`,
   };
 
   public constructor(

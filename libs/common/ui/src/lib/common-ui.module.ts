@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ContentLoaderModule } from '@vitaba/content-loader';
 import { AvatarItemLoaderComponent } from './avatar-item-loader/avatar-item-loader.component';
 import { AvatarItemComponent } from './avatar-item/avatar-item.component';
@@ -30,6 +31,6 @@ import { ResponsiveHeaderComponent } from './responsive-header/responsive-header
     InputLabelComponent,
     ResponsiveHeaderComponent,
   ],
-  imports: [CommonModule, ContentLoaderModule],
+  imports: [CommonModule, ContentLoaderModule, ReactiveFormsModule],
 })
 export class CommonUiModule {}

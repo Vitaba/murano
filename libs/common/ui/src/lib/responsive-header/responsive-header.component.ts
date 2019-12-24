@@ -1,14 +1,19 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'vitaba-responsive-header',
-  templateUrl: './responsive-header.component.html',
-  styleUrls: ['./responsive-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'vitaba-responsive-header',
+  styleUrls: ['./responsive-header.component.scss'],
+  templateUrl: './responsive-header.component.html',
 })
-export class ResponsiveHeaderComponent implements OnInit {
-  public constructor() { }
+export class ResponsiveHeaderComponent {
+  @Input() public data = {
+    title: 'Murano Admin',
+  };
+  public form = this._fBuilder.group({
+    name: 'John Doe',
+  });
 
-  public ngOnInit() {
-  }
+  public constructor(private readonly _fBuilder: FormBuilder) {}
 }
