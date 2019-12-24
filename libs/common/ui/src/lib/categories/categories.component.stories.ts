@@ -50,6 +50,11 @@ export const basic = () => ({
   }
   ">
   </vitaba-categories>`,
+  stylesUrl: [
+    'node_modules/tailwindcss/dist/base',
+    'node_modules/tailwindcss/dist/components',
+    'node_modules/tailwindcss/dist/utilities',
+  ]
 });
 
 export const nameProjection = () => ({
@@ -84,6 +89,11 @@ export const nameProjection = () => ({
   ">
   <ng-template #nameExtraTemplate> <b>Name Extra Template</b> </ng-template>
   </vitaba-categories>`,
+  stylesUrl: [
+    'node_modules/tailwindcss/dist/base',
+    'node_modules/tailwindcss/dist/components',
+    'node_modules/tailwindcss/dist/utilities',
+  ]
 });
 
 export const imageProjection = () => ({
@@ -118,4 +128,9 @@ export const imageProjection = () => ({
   ">
   <ng-template #imageExtraTemplate> <b>Image Extra Template</b> </ng-template>
   </vitaba-categories>`,
+  stylesUrl: [
+    'node_modules/tailwindcss/dist/base',
+    'node_modules/tailwindcss/dist/components',
+    'node_modules/tailwindcss/dist/utilities',
+  ]
 });

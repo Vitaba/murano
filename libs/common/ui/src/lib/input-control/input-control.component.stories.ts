@@ -1,5 +1,4 @@
 // tslint:disable:no-default-export object-literal-sort-keys ter-max-len
-
 import { FormControl } from '@angular/forms';
 import { text } from '@storybook/addon-knobs';
 import { InputControlComponent } from './input-control.component';
@@ -42,4 +41,9 @@ export const basic = () => ({
     }"
     > </vitaba-input-control>
   `,
+  stylesUrl: [
+    'node_modules/tailwindcss/dist/base',
+    'node_modules/tailwindcss/dist/components',
+    'node_modules/tailwindcss/dist/utilities',
+  ]
 });
