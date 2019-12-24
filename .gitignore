@@ -42,3 +42,6 @@ Thumbs.db
 # Firebase
 /.firebase
 firebase-debug.log
+
+# Generated Tailwind
+apps/murano-admin/src/tailwind.scss
