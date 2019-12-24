@@ -118,7 +118,7 @@
             "browsers": ["chrome --no-sandbox", "firefox"],
             "dev": true,
             "devServerTarget": "murano-admin:serve --port 4201",
-            "devServerTargetTimeout": 50000,
+            "devServerTargetTimeout": 100000,
             "src": "apps/murano-admin-e2e/src/integration/*.spec.ts",
             "reporters": [
               {
@@ -259,7 +259,7 @@
           "options": {
             "browsers": ["chrome --no-sandbox", "firefox"],
             "devServerTarget": "common-ui:storybook",
-            "devServerTargetTimeout": 50000,
+            "devServerTargetTimeout": 100000,
             "src": "apps/common-ui-e2e/src/integration/*/*.spec.ts",
             "reporters": [
               {
