@@ -36,7 +36,7 @@ export class ResponsiveHeaderComponent implements AfterViewInit, OnChanges {
 
   @ContentChild('menuExtraTemplate', { static: false })
   // tslint:disable-next-line:no-any
-  public titleExtraTemplate!: TemplateRef<any>;
+  public menuExtraTemplate!: TemplateRef<any>;
 
   public form = this._fBuilder.group({
     name: '',
