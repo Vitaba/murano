@@ -145,33 +145,33 @@ jobs:
       - run:
           name: Unit Test Part 3
           command: node ./tools/scripts/run-many.js $TASKS test3 test
-  e2e-vitaba-1:
-    executor: default
-    steps:
-      - checkout
-      - setup
-      - setup_commands
-      - run:
-          name: E2E Affected Part 1
-          command: node ./tools/scripts/run-many.js $TASKS e2e1 e2e 
-  e2e-vitaba-2:
-    executor: default
-    steps:
-      - checkout
-      - setup
-      - setup_commands
-      - run:
-          name: E2E Affected Part 2
-          command: node ./tools/scripts/run-many.js $TASKS e2e2 e2e
-  e2e-vitaba-3:
-    executor: default
-    steps:
-      - checkout
-      - setup
-      - setup_commands
-      - run:
-          name: E2E Affected Part 3
-          command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e 
+  # e2e-vitaba-1:
+  #   executor: default
+  #   steps:
+  #     - checkout
+  #     - setup
+  #     - setup_commands
+  #     - run:
+  #         name: E2E Affected Part 1
+  #         command: node ./tools/scripts/run-many.js $TASKS e2e1 e2e 
+  # e2e-vitaba-2:
+  #   executor: default
+  #   steps:
+  #     - checkout
+  #     - setup
+  #     - setup_commands
+  #     - run:
+  #         name: E2E Affected Part 2
+  #         command: node ./tools/scripts/run-many.js $TASKS e2e2 e2e
+  # e2e-vitaba-3:
+  #   executor: default
+  #   steps:
+  #     - checkout
+  #     - setup
+  #     - setup_commands
+  #     - run:
+  #         name: E2E Affected Part 3
+  #         command: node ./tools/scripts/run-many.js $TASKS e2e3 e2e 
   release-message:
     executor: default
     steps:
@@ -263,24 +263,24 @@ workflows:
           filters:
             branches:
               ignore: master              
-      - e2e-vitaba-1:
-          requires:
-            - install
-          filters:
-            branches:
-              ignore: master  
-      - e2e-vitaba-2:
-          requires:
-            - install
-          filters:
-            branches:
-              ignore: master  
-      - e2e-vitaba-3:
-          requires:
-            - install 
-          filters:
-            branches:
-              ignore: master
+      # - e2e-vitaba-1:
+      #     requires:
+      #       - install
+      #     filters:
+      #       branches:
+      #         ignore: master  
+      # - e2e-vitaba-2:
+      #     requires:
+      #       - install
+      #     filters:
+      #       branches:
+      #         ignore: master  
+      # - e2e-vitaba-3:
+      #     requires:
+      #       - install 
+      #     filters:
+      #       branches:
+      #         ignore: master
               
   master_merge:
     jobs:

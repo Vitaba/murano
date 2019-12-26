@@ -115,7 +115,7 @@
         "e2e": {
           "builder": "@angular-plugins/testcafe:e2e",
           "options": {
-            "browsers": ["chrome --no-sandbox", "firefox"],
+            "browsers": ["chrome --no-sandbox"],
             "dev": true,
             "devServerTarget": "murano-admin:serve --port 4201",
             "devServerTargetTimeout": 100000,
@@ -257,7 +257,7 @@
           "debugOnFail": true,
           "builder": "@angular-plugins/testcafe:e2e",
           "options": {
-            "browsers": ["chrome --no-sandbox", "firefox"],
+            "browsers": ["chrome --no-sandbox"],
             "devServerTarget": "common-ui:storybook",
             "devServerTargetTimeout": 100000,
             "src": "apps/common-ui-e2e/src/integration/*/*.spec.ts",

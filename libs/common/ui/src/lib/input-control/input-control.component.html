@@ -1,5 +1,8 @@
 <ng-container *ngIf="!errors; else showErrors">
 <div [class]="styles.container">
+  <div class="relative">
+      <ng-content select=".icon"> </ng-content>        
+  </div>
     <input [class]="styles.input" [type]="config.type" [placeholder]="config.placeholder">
   </div>
 </ng-container>

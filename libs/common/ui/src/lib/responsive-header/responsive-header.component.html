@@ -1,0 +1,40 @@
+<div [class]="styles.container">
+
+    <div [class]="styles.titleContainer">
+      <ng-content select=".company-logo"></ng-content>
+      <span [class]="styles.title">{{ data.title }}</span>
+    </div>
+    <div [class]="styles.formContainer">
+      <div [class]="styles.formSectionOne">
+        <form [formGroup]="form">
+
+          <vitaba-input-control [config]="{
+          type: data.formControlType,
+          placeholder: data.formControlPlaceholder
+          }"
+          [styles]="{
+           container: styles.formControlContainer,
+           input: styles.formControlInput
+          }">
+          <ng-container class="icon">
+            <div class="pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center">
+              <svg class="fill-current pointer-events-none text-gray-600 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path></svg>
+            </div>
+          </ng-container>
+          </vitaba-input-control>
+
+        </form>
+      </div>
+      <div [class]="styles.formSectionTwo">
+        <button [class]="styles.menuButton">
+          <ng-template #menuDefaultTemplate>
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </ng-template>
+          <ng-container [ngTemplateOutlet]="menuExtraTemplate || menuDefaultTemplate">
+          </ng-container>
+         </button>
+      </div>
+  </div>
