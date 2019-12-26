@@ -115,7 +115,7 @@
         "e2e-not": {
           "builder": "@angular-plugins/testcafe:e2e",
           "options": {
-            "browsers": ["chrome --no-sandbox", "firefox"],
+            "browsers": ["chrome --no-sandbox"],
             "dev": true,
             "devServerTarget": "murano-admin:serve --port 4201",
             "devServerTargetTimeout": 100000,
