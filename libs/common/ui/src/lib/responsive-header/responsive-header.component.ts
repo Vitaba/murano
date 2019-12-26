@@ -1,3 +1,4 @@
+// tslint:disable: no-unsafe-any no-any
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { GuardError, isResponsiveHeaderData, isResponsiveHeaderStyles, ResponsiveHeaderData, ResponsiveHeaderStyles } from '@vitaba/common-utils';

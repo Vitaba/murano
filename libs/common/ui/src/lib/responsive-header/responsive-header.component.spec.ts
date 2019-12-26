@@ -43,8 +43,8 @@ describe('ResponsiveHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
       declarations: [TestHostComponent, ResponsiveHeaderComponent, InputLabelComponent, InputControlComponent],
+      imports: [ReactiveFormsModule],
     })
     .compileComponents();
   }));
