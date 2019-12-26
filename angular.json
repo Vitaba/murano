@@ -112,7 +112,7 @@
       "sourceRoot": "apps/murano-admin-e2e/src",
       "projectType": "application",
       "architect": {
-        "e2e-not": {
+        "e2e": {
           "builder": "@angular-plugins/testcafe:e2e",
           "options": {
             "browsers": ["chrome --no-sandbox"],
