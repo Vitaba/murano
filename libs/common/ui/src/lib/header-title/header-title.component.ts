@@ -15,7 +15,7 @@ export class HeaderTitleComponent implements OnChanges, AfterViewInit {
 
   @Input() public styles: HeaderStyles = {
     container: `font-sans font-light leading-normal markdown mb-6 px-6
-    max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4`,
+     mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 w-full`,
     description: 'mt-0 mb-4 text-gray-600',
     line: 'my-8 border-b-2 border-gray-200',
     title: 'text-3xl text-gray-900',
