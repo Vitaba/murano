@@ -4,6 +4,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  firebase: {
+    apiKey: 'AIzaSyCoUxrUunx1KFyHwjzsm1BjH4hdlfLyvL4',
+    appId: '1:236556781436:web:694d3365132862426c06f9',
+    authDomain: 'vitaba-7f5f6.firebaseapp.com',
+    databaseURL: 'https://vitaba-7f5f6.firebaseio.com',
+    measurementId: 'G-E0BEQ7SV6L',
+    messagingSenderId: '236556781436',
+    projectId: 'vitaba-7f5f6',
+    storageBucket: 'vitaba-7f5f6.appspot.com',
+  },
   production: false,
 };
 

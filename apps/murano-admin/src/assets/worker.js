@@ -1,4 +1,4 @@
-importScripts("https://unpkg.com/comlink/dist/umd/comlink.js");
+importScripts("https://unpkg.com/comlink@4.2.0/dist/umd/comlink.js");
 
 importScripts("https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js");
