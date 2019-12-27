@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import * as Comlink from 'comlink';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'vitaba-root',
@@ -45,11 +46,13 @@ export class AppComponent {
     const obs = new Observable<any>(observer => {
       observer.next([]);
       observerDemo = observer;
+      workerFirestore.initFirebase(environment.firebase);
       workerFirestore.
-      getCollection('restaurants', Comlink.proxy(restaurants => {
-        observer['uid'] = restaurants.uid;
-        observer.next(restaurants);
-      }));
+      addDocumentToSubCollection(
+        'users', 'XXXX', 'hobbies', Comlink.proxy(hobbies => {
+          observer['uid'] = hobbies.uid;
+          observer.next(hobbies);
+        }));
     });
     let observerDemo;
 

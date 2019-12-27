@@ -1,21 +1,11 @@
 // tslint:disable:no-any no-unsafe-any
 declare var firebase: any;
 
-const app = firebase.initializeApp({
-  apiKey: 'AIzaSyCoUxrUunx1KFyHwjzsm1BjH4hdlfLyvL4',
-  appId: '1:236556781436:web:9a0428ccef47322d6c06f9',
-  authDomain: 'vitaba-7f5f6.firebaseapp.com',
-  databaseURL: 'https://vitaba-7f5f6.firebaseio.com',
-  measurementId: 'G-4PLL0L5B95',
-  messagingSenderId: '236556781436',
-  projectId: 'vitaba-7f5f6',
-  storageBucket: 'vitaba-7f5f6.appspot.com',
-});
-const firestore = app.firestore();
+let firestore: any;
 
 function uuid() {
   // tslint:disable-next-line: restrict-plus-operands
-  return (([1e7] as any) + -1e3 + -4e3 + -8e3 + -1e11).replace(
+  return (([1e7] as any) + 1e3 + 4e3 + 8e3).replace(
     /[018]/g,
     (c: any) =>
       // tslint:disable: no-bitwise
@@ -28,6 +18,18 @@ function uuid() {
 
 const subscribers = [];
 export const workerFirestore = {
+  initFirebase(config) {
+    if (firestore) {
+      console.error('You cannot initialize firebase twice');
+
+      return;
+    }
+    const app = firebase.initializeApp(config);
+    firestore = app.firestore();
+    const settings = { timestampsInSnapshots: true };
+
+    firestore.settings(settings);
+  },
   getCollection(collection, callback, _error) {
     const uid = uuid();
     const restaurantsCol = firestore.collection(collection);
@@ -36,6 +38,56 @@ export const workerFirestore = {
       callback({ uid, data: snap.docs.map(d => d.data()) });
     });
     subscribers.push({ uid, ref: snapshotRef });
+  },
+  getSubCollection(collection, document, subcollection, callback, _error) {
+    const uid = uuid();
+    const restaurantsCol = firestore.collection(collection)
+    .doc(document).collection(subcollection);
+    const snapshotRef = restaurantsCol.onSnapshot(snap => {
+        // unwrap the data from the snapshot
+      callback({ uid, data: snap.docs.map(d => d.data()) });
+    });
+    subscribers.push({ uid, ref: snapshotRef });
+  },
+  addDocumentToSubCollection(
+    collection, document, subcollection, value, callback, _error) {
+    // TODO: Validate the object exists before making the set
+    workerFirestore.setDocumentToSubCollection(
+      collection, document,
+      subcollection, {
+        added_at: firebase.firestore.FieldValue.serverTimestamp(),
+        hidden: false,
+        ...value },
+      callback, _error);
+  },
+  deleteDocumentToSubCollection(
+    collection, document, subcollection, docUID, callback, _error) {
+    const uid = uuid();
+      // TODO: Validate the object exists before making the set
+    const restaurantsCol = firestore.collection(collection)
+        .doc(document).collection(subcollection).doc(docUID).set(
+      { deleted_at: firebase.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true });
+
+    restaurantsCol.then(() => {
+          callback({ uid });
+        }).catch(error => {
+          console.error('Error writing document: ', error);
+        });
+  },
+  setDocumentToSubCollection(
+    collection, document, subcollection, value, callback, _error) {
+    const uid = uuid();
+    const docUID = uuid();
+    const restaurantsCol = firestore.collection(collection)
+    .doc(document).collection(subcollection).doc(docUID).set(
+      { id: docUID, ...value }, { merge: true });
+
+    restaurantsCol.then(() => {
+      callback({ uid, data: { id: docUID, ...value } });
+    }).catch(error => {
+      console.error('Error writing document: ', error);
+    });
   },
   unsubscribe(uid) {
     const listener = subscribers.find(i => i.uid === uid);
