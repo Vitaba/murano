@@ -3,7 +3,7 @@
   <div class="relative">
       <ng-content select=".icon"> </ng-content>        
   </div>
-    <input [class]="styles.input" [type]="config.type" [placeholder]="config.placeholder">
+    <input [class]="styles.input" [type]="config.type" [placeholder]="config.placeholder" [formControl]="config.fControl">
   </div>
 </ng-container>
   <ng-template #showErrors>

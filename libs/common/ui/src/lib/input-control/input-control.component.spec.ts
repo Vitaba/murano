@@ -2,7 +2,7 @@
 // tslint:disable: no-any component-max-inline-declarations ter-max-len
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { InputControlComponent } from './input-control.component';
 
 @Component({
@@ -39,6 +39,7 @@ describe('InputControlComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestHostComponent, InputControlComponent],
+      imports: [ReactiveFormsModule],
     })
     .compileComponents();
   }));
@@ -60,6 +61,7 @@ describe('InputControlComponent', () => {
 
   it('should throw errors when config is not in right format', () => {
     component.config = {
+      fControl: new FormControl('name'),
       placeholder: 1,
       type: 1,
     } as any;
