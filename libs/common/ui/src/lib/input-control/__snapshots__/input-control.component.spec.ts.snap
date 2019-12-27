@@ -19,10 +19,8 @@ exports[`InputControlComponent should be default 1`] = `
         class="relative"
       />
       <input
-        class="bg-gray-200 appearance-none border-2
-      border-gray-200 rounded w-auto py-2 px-4
-      text-gray-700 leading-tight focus:outline-none
-      focus:bg-white focus:border-purple-500"
+        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-auto py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 ng-untouched ng-pristine ng-valid"
+        ng-reflect-form="[object Object]"
         placeholder="placeholder"
         type="text"
       />
@@ -47,6 +45,40 @@ exports[`InputControlComponent should throw errors when config is not in right f
     "valid": false,
     "guard": "isInputConfig",
     "value": {
+      "fControl": {
+        "validator": null,
+        "asyncValidator": null,
+        "pristine": true,
+        "touched": false,
+        "_onDisabledChange": [
+          null
+        ],
+        "_onChange": [
+          null
+        ],
+        "_pendingValue": "name",
+        "value": "name",
+        "status": "VALID",
+        "errors": null,
+        "valueChanges": {
+          "_isScalar": false,
+          "observers": [],
+          "closed": false,
+          "isStopped": false,
+          "hasError": false,
+          "thrownError": null,
+          "__isAsync": false
+        },
+        "statusChanges": {
+          "_isScalar": false,
+          "observers": [],
+          "closed": false,
+          "isStopped": false,
+          "hasError": false,
+          "thrownError": null,
+          "__isAsync": false
+        }
+      },
       "placeholder": 1,
       "type": 1
     },
@@ -56,6 +88,40 @@ exports[`InputControlComponent should throw errors when config is not in right f
         "valid": false,
         "guard": "hasProperties",
         "value": {
+          "fControl": {
+            "validator": null,
+            "asyncValidator": null,
+            "pristine": true,
+            "touched": false,
+            "_onDisabledChange": [
+              null
+            ],
+            "_onChange": [
+              null
+            ],
+            "_pendingValue": "name",
+            "value": "name",
+            "status": "VALID",
+            "errors": null,
+            "valueChanges": {
+              "_isScalar": false,
+              "observers": [],
+              "closed": false,
+              "isStopped": false,
+              "hasError": false,
+              "thrownError": null,
+              "__isAsync": false
+            },
+            "statusChanges": {
+              "_isScalar": false,
+              "observers": [],
+              "closed": false,
+              "isStopped": false,
+              "hasError": false,
+              "thrownError": null,
+              "__isAsync": false
+            }
+          },
           "placeholder": 1,
           "type": 1
         },

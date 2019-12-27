@@ -10,7 +10,8 @@
 
           <vitaba-input-control [config]="{
           type: data.formControlType,
-          placeholder: data.formControlPlaceholder
+          placeholder: data.formControlPlaceholder,
+          fControl: form.get('search')
           }"
           [styles]="{
            container: styles.formControlContainer,

@@ -39,7 +39,7 @@ export class ResponsiveHeaderComponent implements AfterViewInit, OnChanges {
   public menuExtraTemplate!: TemplateRef<any>;
 
   public form = this._fBuilder.group({
-    name: '',
+    search: '',
   });
 
   public constructor(
