@@ -98,9 +98,9 @@ export const workerFirestore = {
         });
   },
   setDocumentToSubCollection(
-    collection, document, subcollection, value, callback, _error) {
+    collection, document, documentId, subcollection, value, callback, _error) {
     const uid = uuid();
-    const docUID = uuid();
+    const docUID = documentId || uuid();
     const restaurantsCol = firestore.collection(collection)
     .doc(document).collection(subcollection).doc(docUID).set(
       { ...value, id: docUID }, { merge: true });
