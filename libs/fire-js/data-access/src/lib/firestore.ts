@@ -39,6 +39,16 @@ export const workerFirestore = {
     });
     subscribers.push({ uid, ref: snapshotRef });
   },
+  getCollectionDocument(collection, document, callback, _error) {
+    const uid = uuid();
+    const restaurantsCol = firestore.collection(collection)
+    .doc(document);
+    const snapshotRef = restaurantsCol.onSnapshot(snap => {
+        // unwrap the data from the snapshot
+      callback({ uid, data: snap.data() });
+    });
+    subscribers.push({ uid, ref: snapshotRef });
+  },
   getSubCollection(collection, document, subcollection, callback, _error) {
     const uid = uuid();
     const restaurantsCol = firestore.collection(collection)
