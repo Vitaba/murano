@@ -103,7 +103,7 @@ export const workerFirestore = {
     const docUID = uuid();
     const restaurantsCol = firestore.collection(collection)
     .doc(document).collection(subcollection).doc(docUID).set(
-      { id: docUID, ...value }, { merge: true });
+      { ...value, id: docUID }, { merge: true });
 
     restaurantsCol.then(() => {
       callback({ uid, data: { id: docUID, ...value } });
