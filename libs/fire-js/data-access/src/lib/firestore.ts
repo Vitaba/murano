@@ -76,6 +76,7 @@ export const workerFirestore = {
     // TODO: Validate the object exists before making the set
     workerFirestore.setDocumentToSubCollection(
       collection, document,
+      uuid(),
       subcollection, {
         added_at: firebase.firestore.FieldValue.serverTimestamp(),
         hidden: false,
@@ -98,9 +99,8 @@ export const workerFirestore = {
         });
   },
   setDocumentToSubCollection(
-    collection, document, documentId, subcollection, value, callback, _error) {
+    collection, document, docUID, subcollection, value, callback, _error) {
     const uid = uuid();
-    const docUID = documentId || uuid();
     const restaurantsCol = firestore.collection(collection)
     .doc(document).collection(subcollection).doc(docUID).set(
       { ...value, id: docUID }, { merge: true });
