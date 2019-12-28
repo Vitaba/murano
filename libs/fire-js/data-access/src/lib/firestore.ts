@@ -59,6 +59,18 @@ export const workerFirestore = {
     });
     subscribers.push({ uid, ref: snapshotRef });
   },
+  getSubCollectionDocument(
+    collection, collectionDoc, subcollection, subcollectionDoc,
+    callback, _error) {
+    const uid = uuid();
+    const restaurantsCol = firestore.collection(collection)
+    .doc(collectionDoc).collection(subcollection).doc(subcollectionDoc);
+    const snapshotRef = restaurantsCol.onSnapshot(snap => {
+        // unwrap the data from the snapshot
+      callback({ uid, data: snap.data() });
+    });
+    subscribers.push({ uid, ref: snapshotRef });
+  },
   addDocumentToSubCollection(
     collection, document, subcollection, value, callback, _error) {
     // TODO: Validate the object exists before making the set
