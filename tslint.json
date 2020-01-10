@@ -106,7 +106,7 @@
     "no-implicit-dependencies": [
       true,
       "dev",
-      ["@vitaba/common-ui", "@vitaba/common-utils","@vitaba/overlay-utils", "@storybook/addon-knobs", "rxjs", "chance", "@vitaba/content-loader","firebase","jest-preset-angular","@angular/forms"]
+      ["@vitaba/common-ui", "@vitaba/common-utils","@vitaba/overlay-utils", "@storybook/addon-knobs", "rxjs", "chance", "@vitaba/content-loader","firebase","jest-preset-angular","@angular/forms","@angular/cdk"]
     ],
     "no-import-side-effect": [false],
     "no-inferrable-types": [true, "ignore-params"],
