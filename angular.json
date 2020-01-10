@@ -30,10 +30,16 @@
             "assets": [
               "apps/murano-admin/src/favicon.ico",
               "apps/murano-admin/src/assets",
-              { "glob": "**/*", "input": "dist/libs/fire-js/data-access", "output": "/assets/fire-js/" }
+              {
+                "glob": "**/*",
+                "input": "dist/libs/fire-js/data-access",
+                "output": "/assets/fire-js/"
+              }
             ],
-            "styles": ["apps/murano-admin/src/styles.scss",
-              "apps/murano-admin/src/tailwind.scss"],
+            "styles": [
+              "apps/murano-admin/src/styles.scss",
+              "apps/murano-admin/src/tailwind.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -291,10 +297,7 @@
               "libs/fire-js/data-access/tsconfig.lib.json",
               "libs/fire-js/data-access/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/fire-js/data-access/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/fire-js/data-access/**"]
           }
         },
         "test": {
@@ -309,6 +312,50 @@
           "builder": "@angular-plugins/npm:deploy",
           "options": {
             "packageJsonPath": "dist/libs/fire-js/data-access/package.json"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "overlay-utils": {
+      "projectType": "library",
+      "root": "libs/overlay/utils",
+      "sourceRoot": "libs/overlay/utils/src",
+      "prefix": "vitaba",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/overlay/utils/tsconfig.lib.json",
+            "project": "libs/overlay/utils/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/overlay/utils/tsconfig.lib.json",
+              "libs/overlay/utils/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/overlay/utils/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/overlay/utils/jest.config.js",
+            "tsConfig": "libs/overlay/utils/tsconfig.spec.json",
+            "setupFile": "libs/overlay/utils/src/test-setup.ts"
+          }
+        },
+        "deploy": {
+          "builder": "@angular-plugins/npm:deploy",
+          "options": {
+            "packageJsonPath": "dist/libs/common/ui/package.json"
           }
         }
       },

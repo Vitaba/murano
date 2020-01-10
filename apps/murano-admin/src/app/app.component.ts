@@ -1,10 +1,13 @@
 // tslint:disable:no-any no-unsafe-any
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+// tslint:disable-next-line:no-implicit-dependencies
+import { DialogService } from '@vitaba/overlay-utils';
 import * as Comlink from 'comlink';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from '../environments/environment';
+import { InstallMessageComponent } from './install-message/install-message.component';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'vitaba-root',
@@ -30,8 +33,9 @@ export class AppComponent {
     title: 'Sebastian',
   };
 
-  public constructor(private readonly _fBuilder: FormBuilder) {
-
+  public constructor(
+    private readonly _fBuilder: FormBuilder,
+    private readonly _dialogService: DialogService) {
   }
 
   public async init() {
@@ -66,5 +70,30 @@ export class AppComponent {
         console.warn(
           'finish',
           workerFirestore.unsubscribe(observerDemo.uid)); });
+  }
+
+  public openModal() {
+    const installModal = this._dialogService.open({
+      component: InstallMessageComponent,
+      data: { text: 'a' },
+      options: {
+        canClose: true,
+        hasBackdrop: true,
+        positionStrategy: {
+          builder: 'global',
+          value: {
+            centerHorizontally: true,
+            centerVertically: true,
+          },
+        },
+        scrollStrategy: 'Block',
+      },
+    });
+
+    if (installModal) {
+      installModal.afterClosed.subscribe(data => {
+        console.warn('Subscribe from the component', data);
+      });
+    }
   }
 }

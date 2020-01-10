@@ -26,6 +26,9 @@
     },
     "fire-js-data-access": {
       "tags": ["type:data-access", "scope:fire-js/data-access"]
+    },
+    "overlay-utils": {
+      "tags": []
     }
   }
 }
