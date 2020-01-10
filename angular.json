@@ -355,7 +355,7 @@
         "deploy": {
           "builder": "@angular-plugins/npm:deploy",
           "options": {
-            "packageJsonPath": "dist/libs/common/ui/package.json"
+            "packageJsonPath": "dist/libs/overlay/utils/package.json"
           }
         }
       },
