@@ -18,12 +18,14 @@ exports[`InputControlComponent should be default 1`] = `
       <div
         class="relative"
       />
+      
       <input
         class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-auto py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 ng-untouched ng-pristine ng-valid"
         ng-reflect-form="[object Object]"
         placeholder="placeholder"
         type="text"
       />
+      
     </div>
     
   </vitaba-input-control>

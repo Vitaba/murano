@@ -3,6 +3,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 import { InputControlComponent } from './input-control.component';
 
 @Component({
@@ -39,7 +40,7 @@ describe('InputControlComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestHostComponent, InputControlComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, NgxMaskModule.forRoot()],
     })
     .compileComponents();
   }));

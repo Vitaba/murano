@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NxModule } from '@nrwl/angular';
 import { OverlayUtilsModule } from '@vitaba/overlay-utils';
+import { NgxMaskModule } from 'ngx-mask';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { InstallMessageComponent } from './install-message/install-message.component';
@@ -32,6 +33,8 @@ import { InstallMessageComponent } from './install-message/install-message.compo
       },
     ),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    NgxMaskModule.forRoot(),
+
   ],
   providers: [],
 })

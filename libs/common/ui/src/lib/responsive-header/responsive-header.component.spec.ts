@@ -3,6 +3,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 import { InputControlComponent } from '../input-control/input-control.component';
 import { InputLabelComponent } from '../input-label/input-label.component';
 import { ResponsiveHeaderComponent } from './responsive-header.component';
@@ -44,7 +45,7 @@ describe('ResponsiveHeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestHostComponent, ResponsiveHeaderComponent, InputLabelComponent, InputControlComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, NgxMaskModule.forRoot()],
     })
     .compileComponents();
   }));
