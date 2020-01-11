@@ -17,7 +17,7 @@
 </vitaba-avatar-item>
 
 -->
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
     <vitaba-input-label [data]="{
         label: 'Name'
     }">
@@ -38,5 +38,13 @@
     }">
     
     </vitaba-input-control>
+    <div class="text-sm text-red-500 text-thin">
+        <vitaba-control-errors
+              [fControl]="form.get('value')"
+              [errorsMsg]="formErrors"
+            >
+            </vitaba-control-errors>
+    </div>
+<button type="submit">Submit</button>
 </form>
 <button (click)="init()">Init</button> 
