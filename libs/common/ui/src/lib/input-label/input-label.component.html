@@ -1,6 +1,11 @@
 <ng-container *ngIf="!errors; else showErrors">
 <div [class]="styles.container">
-    <label [class]="styles.label">{{ data.label }}</label>
+    <label [class]="styles.label">
+      <ng-container *ngIf="data.required">
+      <span [class]="styles.required"> {{data.required}}</span>
+      </ng-container>
+      {{ data.label }}
+    </label>
   </div>
   </ng-container>
   <ng-template #showErrors>
