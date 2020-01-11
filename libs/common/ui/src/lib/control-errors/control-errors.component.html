@@ -1,0 +1,6 @@
+<ul>
+    <ng-container *ngFor="let item of getControl() | keyvalue; trackBy: trackByFn">
+      <li>{{ errorsMsg[item.key] ? errorsMsg[item.key](item.value) : 'Unknown Error' }}</li>  
+    </ng-container>
+  </ul>
+  

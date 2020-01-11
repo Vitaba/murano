@@ -1,6 +1,6 @@
 // tslint:disable:no-any no-unsafe-any
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // tslint:disable-next-line:no-implicit-dependencies
 import { DialogService } from '@vitaba/overlay-utils';
 import * as Comlink from 'comlink';
@@ -16,10 +16,26 @@ import { InstallMessageComponent } from './install-message/install-message.compo
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  public form = this._fBuilder.group({
-    name: 'John Doe',
-    value: [{ value: '', disabled: false }],
-  });
+  public form: FormGroup;
+
+  public formErrors = {
+    email: () => `Provide a valid email`,
+    maxlength: ({
+      requiredLength,
+      actualLength,
+    }: {
+      requiredLength: number;
+      actualLength: number;
+    }) => `Expect ${requiredLength} but got ${actualLength}`,
+    minlength: ({
+      requiredLength,
+      actualLength,
+    }: {
+      requiredLength: number;
+      actualLength: number;
+    }) => `Expect ${requiredLength} but got ${actualLength}`,
+    required: (_error: any) => `This field is required`,
+  };
 
   public avatarData = {
     date: '2019-11-26',
@@ -38,6 +54,10 @@ export class AppComponent {
   public constructor(
     private readonly _fBuilder: FormBuilder,
     private readonly _dialogService: DialogService) {
+    this.form = this._fBuilder.group({
+      name: 'John Doe',
+      value: [{ value: '', disabled: false }, Validators.maxLength(1)],
+    });
   }
 
   public async init() {
@@ -97,5 +117,9 @@ export class AppComponent {
         console.warn('Subscribe from the component', data);
       });
     }
+  }
+
+  public onSubmit({ valid, value }: { valid: boolean; value: any}) {
+    console.warn(valid, value);
   }
 }
