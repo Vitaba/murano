@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { InstallMessageComponent } from './install-message/install-message.component';
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'vitaba-root',
@@ -17,6 +18,7 @@ import { InstallMessageComponent } from './install-message/install-message.compo
 export class AppComponent {
   public form = this._fBuilder.group({
     name: 'John Doe',
+    value: [{ value: '', disabled: false }],
   });
 
   public avatarData = {

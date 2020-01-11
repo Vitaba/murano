@@ -3,7 +3,24 @@
   <div class="relative">
       <ng-content select=".icon"> </ng-content>        
   </div>
+  <ng-container *ngIf="config.mask; else notMask">
+    <ng-container *ngIf="config.maskConfig.thousandSeparator && config.maskConfig.separatorLimit">
+      <input [class]="styles.input" type="text" mask="{{config.mask}}" thousandSeparator="{{config.maskConfig.thousandSeparator}}" separatorLimit="{{config.maskConfig.separatorLimit}}" [placeholder]="config.placeholder" [formControl]="config.fControl">
+    </ng-container>
+
+    <ng-container *ngIf="config.maskConfig.thousandSeparator && !config.maskConfig.separatorLimit">
+      <input [class]="styles.input" type="text" mask="{{config.mask}}" thousandSeparator="{{config.maskConfig.thousandSeparator}}" [placeholder]="config.placeholder" [formControl]="config.fControl">
+    </ng-container>
+
+    <ng-container *ngIf="!config.maskConfig.thousandSeparator && !config.maskConfig.separatorLimit">
+      <input [class]="styles.input" type="text" mask="{{config.mask}}"[placeholder]="config.placeholder" [formControl]="config.fControl">
+    </ng-container>
+    
+  </ng-container>
+  <ng-template #notMask>
     <input [class]="styles.input" [type]="config.type" [placeholder]="config.placeholder" [formControl]="config.fControl">
+  </ng-template>
+    
   </div>
 </ng-container>
   <ng-template #showErrors>
