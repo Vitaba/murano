@@ -18,7 +18,8 @@ exports[`ResponsiveHeaderComponent should be default 1`] = `
         <span
           class="font-sans text-xl tracking-tight text-black-400 select-none"
         >
-          Murano Admin
+          Murano Admin 
+          
         </span>
       </div>
       <div
@@ -118,7 +119,8 @@ exports[`ResponsiveHeaderComponent should throw errors when data is not in right
         <span
           class="font-sans text-xl tracking-tight text-black-400 select-none"
         >
-          1
+          1 
+          
         </span>
       </div>
       <div
