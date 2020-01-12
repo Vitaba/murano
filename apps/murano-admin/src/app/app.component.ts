@@ -74,8 +74,8 @@ export class AppComponent {
       observerDemo = observer;
       workerFirestore.initFirebase(environment.firebase);
       workerFirestore.
-      addDocumentToSubCollection(
-        'users', 'XXXX', 'hobbies', Comlink.proxy(hobbies => {
+      filterSubCollectionByField(
+        'users', 'XXXX', 'hobbies', 'name', 'a', 2, Comlink.proxy(hobbies => {
           observer['uid'] = hobbies.uid;
           observer.next(hobbies);
         }));
