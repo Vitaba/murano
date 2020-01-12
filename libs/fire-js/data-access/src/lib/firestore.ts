@@ -59,6 +59,20 @@ export const workerFirestore = {
     });
     subscribers.push({ uid, ref: snapshotRef });
   },
+  filterSubCollectionByField(
+    collection, document, subcollection, field,
+    value, limitValue, callback, _error) {
+    const uid = uuid();
+    const restaurantsCol = firestore.collection(collection)
+    .doc(document).collection(subcollection)
+    // tslint:disable-next-line: restrict-plus-operands
+    .orderBy(field).startAt(value).endAt(value + '\uf8ff').limit(limitValue);
+    const snapshotRef = restaurantsCol.onSnapshot(snap => {
+      // unwrap the data from the snapshot
+      callback({ uid, data: snap.docs.map(d => d.data()) });
+    });
+    subscribers.push({ uid, ref: snapshotRef });
+  },
   getSubCollectionDocument(
     collection, collectionDoc, subcollection, subcollectionDoc,
     callback, _error) {
