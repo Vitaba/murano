@@ -1,5 +1,5 @@
 // tslint:disable: no-unsafe-any no-any
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { GuardError, isResponsiveHeaderData, isResponsiveHeaderStyles, ResponsiveHeaderData, ResponsiveHeaderStyles } from '@vitaba/common-utils';
 import { BehaviorSubject } from 'rxjs';
@@ -35,7 +35,9 @@ export class ResponsiveHeaderComponent implements AfterViewInit, OnChanges {
   };
 
   @ContentChild('menuExtraTemplate', { static: false })
-  // tslint:disable-next-line:no-any
+
+  @Output() public readonly changed = new EventEmitter<any>();
+
   public menuExtraTemplate!: TemplateRef<any>;
 
   public form = this._fBuilder.group({
@@ -74,6 +76,13 @@ export class ResponsiveHeaderComponent implements AfterViewInit, OnChanges {
         }
       }
       this._changeDetectorRef.detectChanges();
+      this.listenFormChanges();
+    });
+  }
+
+  public listenFormChanges() {
+    this.form.valueChanges.subscribe(() => {
+      this.changed.emit(this.form.value);
     });
   }
 
