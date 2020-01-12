@@ -2,7 +2,11 @@
 
     <div [class]="styles.titleContainer">
       <ng-content select=".company-logo"></ng-content>
-      <span [class]="styles.title">{{ data.title }}</span>
+      <span [class]="styles.title">{{ data.title }}
+        <ng-container *ngIf="data.version">
+          <p [class]="styles.version">data.version</p>
+        </ng-container>
+      </span>
     </div>
     <div [class]="styles.formContainer">
       <div [class]="styles.formSectionOne">

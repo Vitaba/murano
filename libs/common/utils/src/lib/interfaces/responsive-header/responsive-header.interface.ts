@@ -2,6 +2,7 @@ export interface ResponsiveHeaderData {
   formControlPlaceholder: string;
   formControlType: string;
   title: string;
+  version?: string;
 }
 
 export interface ResponsiveHeaderStyles {
@@ -14,4 +15,5 @@ export interface ResponsiveHeaderStyles {
   menuButton: string;
   title: string;
   titleContainer: string;
+  version?: string;
 }
