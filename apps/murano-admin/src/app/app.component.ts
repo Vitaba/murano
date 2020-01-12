@@ -122,4 +122,8 @@ export class AppComponent {
   public onSubmit({ valid, value }: { valid: boolean; value: any}) {
     console.warn(valid, value);
   }
+
+  public change(e) {
+    console.warn(e);
+  }
 }

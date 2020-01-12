@@ -34,10 +34,9 @@ export class ResponsiveHeaderComponent implements AfterViewInit, OnChanges {
     titleContainer: 'flex items-center justify-center w-1/6 p-2',
   };
 
-  @ContentChild('menuExtraTemplate', { static: false })
-
   @Output() public readonly changed = new EventEmitter<any>();
 
+  @ContentChild('menuExtraTemplate', { static: false })
   public menuExtraTemplate!: TemplateRef<any>;
 
   public form = this._fBuilder.group({
