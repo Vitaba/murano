@@ -75,7 +75,9 @@ export class AppComponent {
       workerFirestore.initFirebase(environment.firebase);
       workerFirestore.
       filterSubCollectionByField(
-        'users', 'XXXX', 'hobbies', 'name', 'a', 2, Comlink.proxy(hobbies => {
+        'users', 'XXXX', 'hobbies', 'name', 'ares',
+        2, [{ field: 'hidden', operator: '==', value: false }],
+        Comlink.proxy(hobbies => {
           observer['uid'] = hobbies.uid;
           observer.next(hobbies);
         }));
