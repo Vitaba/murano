@@ -108,7 +108,8 @@
           "options": {
             "jestConfig": "apps/murano-admin/jest.config.js",
             "tsConfig": "apps/murano-admin/tsconfig.spec.json",
-            "setupFile": "apps/murano-admin/src/test-setup.ts"
+            "setupFile": "apps/murano-admin/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       }
@@ -150,7 +151,7 @@
       "prefix": "vitaba",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/common/ui/tsconfig.lib.json",
             "project": "libs/common/ui/ng-package.json"
@@ -171,7 +172,8 @@
           "options": {
             "jestConfig": "libs/common/ui/jest.config.js",
             "tsConfig": "libs/common/ui/tsconfig.spec.json",
-            "setupFile": "libs/common/ui/src/test-setup.ts"
+            "setupFile": "libs/common/ui/src/test-setup.ts",
+            "passWithNoTests": true
           }
         },
         "storybook": {
@@ -209,7 +211,7 @@
       "prefix": "vitaba",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/common/utils/tsconfig.lib.json",
             "project": "libs/common/utils/ng-package.json"
@@ -230,7 +232,8 @@
           "options": {
             "jestConfig": "libs/common/utils/jest.config.js",
             "tsConfig": "libs/common/utils/tsconfig.spec.json",
-            "setupFile": "libs/common/utils/src/test-setup.ts"
+            "setupFile": "libs/common/utils/src/test-setup.ts",
+            "passWithNoTests": true
           }
         },
         "deploy": {
@@ -284,7 +287,7 @@
       "prefix": "vitaba",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/fire-js/data-access/tsconfig.lib.json",
             "project": "libs/fire-js/data-access/ng-package.json"
@@ -305,7 +308,8 @@
           "options": {
             "jestConfig": "libs/fire-js/data-access/jest.config.js",
             "tsConfig": "libs/fire-js/data-access/tsconfig.spec.json",
-            "setupFile": "libs/fire-js/data-access/src/test-setup.ts"
+            "setupFile": "libs/fire-js/data-access/src/test-setup.ts",
+            "passWithNoTests": true
           }
         },
         "deploy": {
@@ -328,7 +332,7 @@
       "prefix": "vitaba",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/overlay/utils/tsconfig.lib.json",
             "project": "libs/overlay/utils/ng-package.json"
@@ -349,7 +353,8 @@
           "options": {
             "jestConfig": "libs/overlay/utils/jest.config.js",
             "tsConfig": "libs/overlay/utils/tsconfig.spec.json",
-            "setupFile": "libs/overlay/utils/src/test-setup.ts"
+            "setupFile": "libs/overlay/utils/src/test-setup.ts",
+            "passWithNoTests": true
           }
         },
         "deploy": {

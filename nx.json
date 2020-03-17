@@ -9,7 +9,8 @@
   },
   "projects": {
     "murano-admin-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["murano-admin"]
     },
     "murano-admin": {
       "tags": []
@@ -22,7 +23,8 @@
       "tags": ["type:utils", "scope:common/utils"]
     },
     "common-ui-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["common-ui"]
     },
     "fire-js-data-access": {
       "tags": ["type:data-access", "scope:fire-js/data-access"]
