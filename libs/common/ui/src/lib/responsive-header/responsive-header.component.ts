@@ -36,7 +36,7 @@ export class ResponsiveHeaderComponent implements AfterViewInit, OnChanges {
 
   @Output() public readonly changed = new EventEmitter<any>();
 
-  @ContentChild('menuExtraTemplate', { static: false })
+  @ContentChild('menuExtraTemplate')
   public menuExtraTemplate!: TemplateRef<any>;
 
   public form = this._fBuilder.group({

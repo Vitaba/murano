@@ -14,7 +14,6 @@
     "await-promise": true,
     "ban": false,
     "ban-comma-operator": true,
-    // "ban-ts-ignore": true,
     "ban-types": [
       true,
       ["Object", "Avoid using the `Object` type. Prefer explicit `{}` types."],
@@ -42,10 +41,8 @@
     "file-header": [false],
     "file-name-casing": [true, "kebab-case"],
     "forin": true,
-    // "function-constructor": true,
     "import-blacklist": [true, "rxjs/Rx"],
     "import-spacing": true,
-    // "increment-decrement": [true, "allow-post"],
     "indent": [true, "spaces", 2],
     "interface-name": [true, "never-prefix"],
     "interface-over-type-literal": true,
@@ -106,8 +103,21 @@
     "no-implicit-dependencies": [
       true,
       "dev",
-      ["@vitaba/common-ui", "@vitaba/common-utils","@vitaba/overlay-utils", "@storybook/addon-knobs", "rxjs", "chance", "@vitaba/content-loader","firebase","jest-preset-angular","@angular/forms","@angular/cdk",
-        "@angular/platform-browser","ngx-mask"]
+      [
+        "@vitaba/common-ui",
+        "@vitaba/common-utils",
+        "@vitaba/overlay-utils",
+        "@storybook/addon-knobs",
+        "rxjs",
+        "chance",
+        "@vitaba/content-loader",
+        "firebase",
+        "jest-preset-angular",
+        "@angular/forms",
+        "@angular/cdk",
+        "@angular/platform-browser",
+        "ngx-mask"
+      ]
     ],
     "no-import-side-effect": [false],
     "no-inferrable-types": [true, "ignore-params"],
@@ -146,7 +156,6 @@
     "no-string-throw": true,
     "no-submodule-imports": [false],
     "no-switch-case-fall-through": true,
-    // "no-tautology-expression": true,
     "no-this-assignment": true,
     "no-trailing-whitespace": true,
     "no-unbound-method": [
@@ -219,9 +228,7 @@
       }
     ],
     "space-within-parens": [true, 0],
-    // "static-this": true,
     "strict-boolean-expressions": false,
-    // "strict-type-predicates": true,
     "switch-default": false,
     "switch-final-break": [true, "always"],
     "trailing-comma": [
@@ -252,8 +259,6 @@
       }
     ],
     "unified-signatures": true,
-    // "unnecessary-bind": true,
-    // "unnecessary-constructor": true,
     "unnecessary-else": false,
     "use-default-type-parameter": true,
     "use-isnan": true,
@@ -330,7 +335,6 @@
     "template-mouse-events-have-key-events": true,
     "template-no-any": true,
     "template-no-autofocus": true,
-    // "template-no-call-expression": true,
     "template-no-distracting-elements": true,
     "template-no-negated-async": true,
     "template-use-track-by-function": true,
@@ -478,7 +482,8 @@
             "sourceTag": "*",
             "onlyDependOnLibsWithTags": ["*"]
           }
-        ]
+        ],
+        "enforceBuildableLibDependency": true
       }
     ]
   }

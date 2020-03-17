@@ -32,13 +32,13 @@ export class AvatarItemComponent implements AfterViewInit, OnChanges {
     },
     name: 'Jhon Doe'};
 
-  @ContentChild('imageExtraTemplate', { static: false })
+  @ContentChild('imageExtraTemplate')
   public imageExtraTemplate!: TemplateRef<any>;
 
-  @ContentChild('nameExtraTemplate', { static: false })
+  @ContentChild('nameExtraTemplate')
   public nameExtraTemplate!: TemplateRef<any>;
 
-  @ContentChild('dateExtraTemplate', { static: false })
+  @ContentChild('dateExtraTemplate')
   public dateExtraTemplate!: TemplateRef<any>;
 
   public constructor(

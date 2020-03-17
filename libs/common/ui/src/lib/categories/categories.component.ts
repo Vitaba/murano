@@ -26,10 +26,10 @@ export class CategoriesComponent implements AfterViewInit, OnChanges {
     name: 'text-sm text-gray-600 flex items-center',
   };
 
-  @ContentChild('imageExtraTemplate', { static: false })
+  @ContentChild('imageExtraTemplate')
   public imageExtraTemplate!: TemplateRef<any>;
 
-  @ContentChild('nameExtraTemplate', { static: false })
+  @ContentChild('nameExtraTemplate')
   public nameExtraTemplate!: TemplateRef<any>;
 
   public constructor(private readonly _changeDetectorRef: ChangeDetectorRef) {}

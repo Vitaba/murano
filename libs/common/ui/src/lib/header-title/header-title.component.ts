@@ -25,15 +25,15 @@ export class HeaderTitleComponent implements OnChanges, AfterViewInit {
     title: 'Lorem Ipsum',
   };
 
-  @ContentChild('titleExtraTemplate', { static: false })
+  @ContentChild('titleExtraTemplate')
   // tslint:disable-next-line:no-any
   public titleExtraTemplate!: TemplateRef<any>;
 
-  @ContentChild('descriptionExtraTemplate', { static: false })
+  @ContentChild('descriptionExtraTemplate')
   // tslint:disable-next-line:no-any
   public descriptionExtraTemplate!: TemplateRef<any>;
 
-  @ContentChild('lineExtraTemplate', { static: false })
+  @ContentChild('lineExtraTemplate')
   // tslint:disable-next-line:no-any
   public lineExtraTemplate!: TemplateRef<any>;
 
