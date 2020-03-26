@@ -37,6 +37,52 @@ export const workerFirestore = {
     });
     subscribers.push({ uid, ref: snapshotRef });
   },
+  filterCollectionByField(
+    collection,
+    field,
+    value,
+    limitValue,
+    filters: Array<{
+      field: string;
+      // tslint:disable-next-line: ter-max-len
+      operator:
+        | '<'
+        | '<='
+        | '=='
+        | '>'
+        | '>='
+        | 'array-contains'
+        | 'in'
+        | 'array-contains-any';
+      value: any;
+    }>,
+    callback,
+    _error,
+  ) {
+    const uid = uuid();
+    let restaurantsCol = firestore
+      .collection(collection)
+      .orderBy(field)
+      .startAt(value)
+      // tslint:disable-next-line: restrict-plus-operands
+      .endAt(value + '\uf8ff')
+      .limit(limitValue);
+      // .where('hidden','==', false);
+    if (filters) {
+      filters.forEach(filter => {
+        restaurantsCol = restaurantsCol.where(
+          filter.field,
+          filter.operator,
+          filter.value,
+        );
+      });
+    }
+    const snapshotRef = restaurantsCol.onSnapshot(snap => {
+      // unwrap the data from the snapshot
+      callback({ uid, data: snap.docs.map(d => d.data()) });
+    });
+    subscribers.push({ uid, ref: snapshotRef });
+  },
   getCollectionDocument(collection, document, callback, _error) {
     const uid = uuid();
     const restaurantsCol = firestore.collection(collection).doc(document);
