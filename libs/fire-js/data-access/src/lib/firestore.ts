@@ -28,6 +28,26 @@ export const workerFirestore = {
 
     firestore.settings(settings);
   },
+  setDocument(
+    collection,
+    docUID = uuid(),
+    value,
+    callback,
+    _error,
+  ) {
+    const uid = uuid();
+    const restaurantsCol = firestore
+      .collection(collection)
+      .set({ ...value, uid: docUID }, { merge: true });
+
+    restaurantsCol
+      .then(() => {
+        callback({ uid, data: { uid: docUID, ...value } });
+      })
+      .catch(error => {
+        console.error('Error writing document: ', error);
+      });
+  },
   getCollection(collection, callback, _error) {
     const uid = uuid();
     const restaurantsCol = firestore.collection(collection);
