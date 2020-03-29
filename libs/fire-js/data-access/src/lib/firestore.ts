@@ -28,16 +28,17 @@ export const workerFirestore = {
 
     firestore.settings(settings);
   },
-  setDocument(
+  addDocument(
     collection,
-    docUID = uuid(),
     value,
     callback,
     _error,
+    docUID = uuid(),
   ) {
     const uid = uuid();
     const restaurantsCol = firestore
       .collection(collection)
+      .doc(docUID)
       .set({ ...value, uid: docUID }, { merge: true });
 
     restaurantsCol
