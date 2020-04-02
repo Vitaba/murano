@@ -28,12 +28,12 @@ export const workerFirestore = {
 
     firestore.settings(settings);
   },
-  addDocument(
+  setDocument(
     collection,
     value,
+    docUID = uuid(),
     callback,
     _error,
-    docUID = uuid(),
   ) {
     const uid = uuid();
     const restaurantsCol = firestore
