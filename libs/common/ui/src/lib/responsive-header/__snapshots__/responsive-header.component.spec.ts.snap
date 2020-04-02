@@ -5,10 +5,7 @@ exports[`ResponsiveHeaderComponent should be default 1`] = `
   data={[Function Object]}
   styles={[Function Object]}
 >
-  <vitaba-responsive-header
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-responsive-header>
     <div
       class="flex bg-white-400 border-b border-gray-300"
     >
@@ -30,13 +27,9 @@ exports[`ResponsiveHeaderComponent should be default 1`] = `
         >
           <form
             class="ng-untouched ng-pristine ng-valid"
-            ng-reflect-form="[object Object]"
             novalidate=""
           >
-            <vitaba-input-control
-              ng-reflect-config="[object Object]"
-              ng-reflect-styles="[object Object]"
-            >
+            <vitaba-input-control>
               
               
               <div
@@ -63,7 +56,6 @@ exports[`ResponsiveHeaderComponent should be default 1`] = `
                 
                 <input
                   class="transition focus:outline-0 border border-transparent focus:bg-white focus:border-gray-300 placeholder-gray-600 rounded-lg bg-gray-200 py-2 pr-4 pl-10 block w-full appearance-none leading-normal ds-input outline-none ng-untouched ng-pristine ng-valid"
-                  ng-reflect-form="[object Object]"
                   placeholder="Search the items \\"(Press / to focus)\\""
                   type="text"
                 />
@@ -106,10 +98,7 @@ exports[`ResponsiveHeaderComponent should throw errors when data is not in right
   data={[Function Object]}
   styles={[Function Object]}
 >
-  <vitaba-responsive-header
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-responsive-header>
     <div
       class="flex bg-white-400 border-b border-gray-300"
     >
@@ -131,13 +120,9 @@ exports[`ResponsiveHeaderComponent should throw errors when data is not in right
         >
           <form
             class="ng-untouched ng-pristine ng-valid"
-            ng-reflect-form="[object Object]"
             novalidate=""
           >
-            <vitaba-input-control
-              ng-reflect-config="[object Object]"
-              ng-reflect-styles="[object Object]"
-            >
+            <vitaba-input-control>
               
                
               

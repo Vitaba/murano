@@ -6,10 +6,7 @@ exports[`HeaderTitleComponent should be default 1`] = `
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-header-title
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-header-title>
     
     
     <div
@@ -47,10 +44,7 @@ exports[`HeaderTitleComponent should be descriptionExtraTemplate 1`] = `
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-header-title
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-header-title>
     
     
     <div
@@ -86,10 +80,7 @@ exports[`HeaderTitleComponent should be lineExtraTemplate 1`] = `
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-header-title
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-header-title>
     
     
     <div
@@ -127,10 +118,7 @@ exports[`HeaderTitleComponent should be titleExtraTemplate 1`] = `
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-header-title
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-header-title>
     
     
     <div
@@ -166,10 +154,7 @@ exports[`HeaderTitleComponent should throw errors when data is not in right form
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-header-title
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-header-title>
     
      {
     "valid": false,

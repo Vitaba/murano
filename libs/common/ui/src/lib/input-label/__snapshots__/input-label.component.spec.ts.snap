@@ -5,10 +5,7 @@ exports[`InputLabelComponent should be default 1`] = `
   data={[Function Object]}
   styles={[Function Object]}
 >
-  <vitaba-input-label
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-input-label>
     
     
     <div
@@ -31,10 +28,7 @@ exports[`InputLabelComponent should throw errors when data is not in right forma
   data={[Function Object]}
   styles={[Function Object]}
 >
-  <vitaba-input-label
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-input-label>
     
      {
     "valid": false,

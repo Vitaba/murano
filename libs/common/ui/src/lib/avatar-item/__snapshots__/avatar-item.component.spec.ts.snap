@@ -7,11 +7,7 @@ exports[`AvatarItemComponent should be dateExtraTemplate 1`] = `
   avatarStyles={[Function Object]}
   mode={[Function String]}
 >
-  <vitaba-avatar-item
-    ng-reflect-config="[object Object]"
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-avatar-item>
     
     
     <div
@@ -53,11 +49,7 @@ exports[`AvatarItemComponent should be default 1`] = `
   avatarStyles={[Function Object]}
   mode={[Function String]}
 >
-  <vitaba-avatar-item
-    ng-reflect-config="[object Object]"
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-avatar-item>
     
     
     <div
@@ -101,11 +93,7 @@ exports[`AvatarItemComponent should be imageExtraTemplate 1`] = `
   avatarStyles={[Function Object]}
   mode={[Function String]}
 >
-  <vitaba-avatar-item
-    ng-reflect-config="[object Object]"
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-avatar-item>
     
     
     <div
@@ -147,11 +135,7 @@ exports[`AvatarItemComponent should be nameExtraTemplate 1`] = `
   avatarStyles={[Function Object]}
   mode={[Function String]}
 >
-  <vitaba-avatar-item
-    ng-reflect-config="[object Object]"
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-avatar-item>
     
     
     <div
@@ -193,11 +177,7 @@ exports[`AvatarItemComponent should throw errors when data is not in right forma
   avatarStyles={[Function Object]}
   mode={[Function String]}
 >
-  <vitaba-avatar-item
-    ng-reflect-config="[object Object]"
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-avatar-item>
     
      {
     "valid": false,
