@@ -6,10 +6,7 @@ exports[`CategoriesComponent should be default 1`] = `
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-categories
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-categories>
     
     
     <div
@@ -41,10 +38,7 @@ exports[`CategoriesComponent should be imageExtraTemplate 1`] = `
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-categories
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-categories>
     
     
     <div
@@ -74,10 +68,7 @@ exports[`CategoriesComponent should be nameExtraTemplate 1`] = `
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-categories
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-categories>
     
     
     <div
@@ -107,10 +98,7 @@ exports[`CategoriesComponent should throw errors when data is not in right forma
   mode={[Function String]}
   styles={[Function Object]}
 >
-  <vitaba-categories
-    ng-reflect-data="[object Object]"
-    ng-reflect-styles="[object Object]"
-  >
+  <vitaba-categories>
     
      {
     "valid": false,
