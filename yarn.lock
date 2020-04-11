@@ -2490,6 +2490,11 @@
     yargs "^11.0.0"
     yargs-parser "10.0.0"
 
+"@nx-plugins/npm@^9.0.1-canary.1":
+  version "9.0.1-canary.1"
+  resolved "https://registry.yarnpkg.com/@nx-plugins/npm/-/npm-9.0.1-canary.1.tgz#f369d13afcd3bc0a8d945f7a108f362ec48c13d4"
+  integrity sha512-O3a7VIsUJ0u/HaWyV/r0BwR8gLPIMeY/Vj1UqSoEmKWGPVN5xzKaGIJzqENKRKc9cjMv1cEGpqEjb5hcd1uw5w==
+
 "@octokit/auth-token@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@octokit/auth-token/-/auth-token-2.4.0.tgz#b64178975218b99e4dfe948253f0673cbbb59d9f"
