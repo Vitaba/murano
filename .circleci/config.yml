@@ -67,6 +67,7 @@ commands:
 
 jobs:
   install:
+    resource_class: large
     executor: default
     steps:
       - checkout

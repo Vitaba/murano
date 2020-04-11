@@ -22,11 +22,8 @@ export const workerFirestore = {
 
       return;
     }
-    const app = firebase.initializeApp(config);
-    firestore = app.firestore();
-    const settings = { timestampsInSnapshots: true };
-
-    firestore.settings(settings);
+    firebase.initializeApp(config);
+    firestore = firebase.firestore();
   },
   setDocument(
     collection,
@@ -67,14 +64,14 @@ export const workerFirestore = {
       field: string;
       // tslint:disable-next-line: ter-max-len
       operator:
-        | '<'
-        | '<='
-        | '=='
-        | '>'
-        | '>='
-        | 'array-contains'
-        | 'in'
-        | 'array-contains-any';
+      | '<'
+      | '<='
+      | '=='
+      | '>'
+      | '>='
+      | 'array-contains'
+      | 'in'
+      | 'array-contains-any';
       value: any;
     }>,
     callback,
@@ -88,7 +85,7 @@ export const workerFirestore = {
       // tslint:disable-next-line: restrict-plus-operands
       .endAt(value + '\uf8ff')
       .limit(limitValue);
-      // .where('hidden','==', false);
+    // .where('hidden','==', false);
     if (filters) {
       filters.forEach(filter => {
         restaurantsCol = restaurantsCol.where(
@@ -137,14 +134,14 @@ export const workerFirestore = {
       field: string;
       // tslint:disable-next-line: ter-max-len
       operator:
-        | '<'
-        | '<='
-        | '=='
-        | '>'
-        | '>='
-        | 'array-contains'
-        | 'in'
-        | 'array-contains-any';
+      | '<'
+      | '<='
+      | '=='
+      | '>'
+      | '>='
+      | 'array-contains'
+      | 'in'
+      | 'array-contains-any';
       value: any;
     }>,
     callback,
@@ -160,7 +157,7 @@ export const workerFirestore = {
       // tslint:disable-next-line: restrict-plus-operands
       .endAt(value + '\uf8ff')
       .limit(limitValue);
-      // .where('hidden','==', false);
+    // .where('hidden','==', false);
     if (filters) {
       filters.forEach(filter => {
         restaurantsCol = restaurantsCol.where(
