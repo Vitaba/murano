@@ -192,9 +192,12 @@
           }
         },
         "deploy": {
-          "builder": "@angular-plugins/npm:deploy",
+          "builder": "@nx-plugins/npm:deploy",
           "options": {
-            "packageJsonPath": "dist/libs/common/ui/package.json"
+            "packageJsonPath": "dist/libs/common/utils/package.json",
+            "access": "public",
+            "syncPackage": true,
+            "ignoreScripts": true
           }
         }
       },
@@ -237,9 +240,12 @@
           }
         },
         "deploy": {
-          "builder": "@angular-plugins/npm:deploy",
+          "builder": "@nx-plugins/npm:deploy",
           "options": {
-            "packageJsonPath": "dist/libs/common/utils/package.json"
+            "packageJsonPath": "dist/libs/common/utils/package.json",
+            "access": "public",
+            "syncPackage": true,
+            "ignoreScripts": true
           }
         }
       },
@@ -313,9 +319,12 @@
           }
         },
         "deploy": {
-          "builder": "@angular-plugins/npm:deploy",
+          "builder": "@nx-plugins/npm:deploy",
           "options": {
-            "packageJsonPath": "dist/libs/fire-js/data-access/package.json"
+            "packageJsonPath": "dist/libs/common/utils/package.json",
+            "access": "public",
+            "syncPackage": true,
+            "ignoreScripts": true
           }
         }
       },
@@ -358,9 +367,12 @@
           }
         },
         "deploy": {
-          "builder": "@angular-plugins/npm:deploy",
+          "builder": "@nx-plugins/npm:deploy",
           "options": {
-            "packageJsonPath": "dist/libs/overlay/utils/package.json"
+            "packageJsonPath": "dist/libs/common/utils/package.json",
+            "access": "public",
+            "syncPackage": true,
+            "ignoreScripts": true
           }
         }
       },

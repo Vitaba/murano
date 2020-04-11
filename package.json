@@ -48,6 +48,7 @@
     "@ngrx/router-store": "9.0.0",
     "@ngrx/store": "9.0.0",
     "@nrwl/angular": "9.2.2",
+    "@nx-plugins/npm": "^9.0.1-canary.1",
     "@vitaba/content-loader": "^0.0.1-beta",
     "comlink": "^4.2.0",
     "core-js": "^2.5.4",
