@@ -13,9 +13,8 @@ function uuid() {
   );
 }
 
-const subscribers = [];
 export const workerFirestorage = {
-  initFirebase(config, index = 0) {
+  initFirebase() {
     if (storage) {
       console.error('You cannot initialize firebase twice');
 
@@ -34,12 +33,11 @@ export const workerFirestorage = {
     const gsReference = storage.refFromURL(reference);
 
     // Get the download URL
-    gsReference.getDownloadURL().then((url) => {
+    gsReference.getDownloadURL().then(url => {
       callback({ uid, data: { ...url } });
-    }).catch((error) => {
+    }).catch(error => {
       console.error('Error getDownloadURL: ', error);
     });
-  }
+  },
 
-
-}
+};
