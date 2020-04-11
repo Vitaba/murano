@@ -10,18 +10,36 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vitaba/common-utils": ["libs/common/utils/src/index.ts"],
-      "@vitaba/common-ui": ["libs/common/ui/src/index.ts"],
-      "@vitaba/scss-ui": ["libs/scss/ui/src/index.ts"],
-      "@vitaba/fire-js-data-access": ["libs/fire-js/data-access/src/index.ts"],
-      "@vitaba/overlay-utils": ["libs/overlay/utils/src/index.ts"]
+      "@vitaba/common-utils": [
+        "libs/common/utils/src/index.ts"
+      ],
+      "@vitaba/common-ui": [
+        "libs/common/ui/src/index.ts"
+      ],
+      "@vitaba/scss-ui": [
+        "libs/scss/ui/src/index.ts"
+      ],
+      "@vitaba/fire-js-data-access": [
+        "libs/fire-js/data-access/src/index.ts"
+      ],
+      "@vitaba/overlay-utils": [
+        "libs/overlay/utils/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
