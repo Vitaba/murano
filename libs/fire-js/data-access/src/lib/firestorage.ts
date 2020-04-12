@@ -23,21 +23,19 @@ export const workerFirestorage = {
     storage = firebase.storage();
   },
   // Create a reference from a Google Cloud Storage URI
-  downloadFile(
-    reference,
-    callback,
-    _error,
-  ) {
+  downloadFile(reference, callback, _error) {
     const uid = uuid();
 
     const gsReference = storage.refFromURL(reference);
 
     // Get the download URL
-    gsReference.getDownloadURL().then(url => {
-      callback({ uid, data: { ...url } });
-    }).catch(error => {
-      console.error('Error getDownloadURL: ', error);
-    });
+    gsReference
+      .getDownloadURL()
+      .then(url => {
+        callback({ uid, data: { url } });
+      })
+      .catch(error => {
+        console.error('Error getDownloadURL: ', error);
+      });
   },
-
 };
