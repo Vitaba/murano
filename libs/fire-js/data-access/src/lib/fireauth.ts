@@ -11,7 +11,7 @@ function uuid() {
     (
       c ^
       (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-    ).toString(16)
+    ).toString(16),
   );
 }
 
@@ -34,12 +34,12 @@ export const workerFireauth = {
           },
           error => {
             callback({ uid, data: error });
-          }
+          },
         );
       } else {
         callback({ uid, data: null });
       }
     });
     subscribers.push({ uid, ref: authRef });
-  }
+  },
 };
