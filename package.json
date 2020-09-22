@@ -1,6 +1,6 @@
 {
   "name": "vitaba",
-  "version": "5.0.1-beta.72",
+  "version": "5.0.1-beta.73",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
